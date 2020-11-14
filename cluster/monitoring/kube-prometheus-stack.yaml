@@ -23,10 +23,10 @@ spec:
         kind: HelmRepository
         name: prometheus-community-charts
         namespace: flux-system
-    values:
-      grafana:
-        persistence:
-          storageClassName: longhorn
-          size: 10Gi
-          accessModes:
-            - ReadWriteOnce
+  values:
+    grafana:
+      persistence:
+        storageClassName: longhorn
+        size: 10Gi
+        accessModes:
+          - ReadWriteOnce
