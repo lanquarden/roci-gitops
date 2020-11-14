@@ -1,0 +1,27 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: longhorn
+  namespace: flux-system
+spec:
+  interval: 1h0m0s
+  timeout: 1m0s
+  url: https://charts.longhorn.io
+
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: longhorn
+  namespace: storage
+spec:
+  chart:
+    spec:
+      chart: longhorn
+      sourceRef:
+        kind: HelmRepository
+        name: longhorn
+      version: 1.0.x
+  interval: 1h0m0s
+
