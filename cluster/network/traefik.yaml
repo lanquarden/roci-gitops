@@ -23,9 +23,9 @@ spec:
         name: traefik
       version: 9.10.x
   interval: 1h0m0s
-  nodeSelector:
-    hostname: beast
   values:
+    nodeSelector:
+      hostname: beast
     logs:
       general:
         level: INFO
