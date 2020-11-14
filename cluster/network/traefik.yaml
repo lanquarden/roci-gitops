@@ -32,6 +32,20 @@ spec:
       access:
         enabled: true
 ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: traefik-frontend
+  namespace: kube-system
+spec:
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: treafik
+  selector:
+    app.kubernetes.io/name: kube-system-traefik
+---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
@@ -45,4 +59,11 @@ spec:
         - kind: Service
           name: longhorn-frontend
           namespace: storage
+          port: 80
+    - kind: Rule
+      match: Host(`traefik.k.lanquarden.com`)
+      services:
+        - kind: Service
+          name: traefik-frontend
+          namespace: kube-system
           port: 80
