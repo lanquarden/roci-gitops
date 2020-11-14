@@ -31,8 +31,17 @@ spec:
         level: INFO
       access:
         enabled: true
-    service:
-      externalIPs:
-        - 192.168.2.133
-
-
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik
+  namespace: kube-system
+spec:
+  routes:
+    - kind: Rule
+      match: Host(`longhorn.k.lanquarden.com`)
+      services:
+        - kind: Service
+          name: longhorn-frontend
+          port: 80
