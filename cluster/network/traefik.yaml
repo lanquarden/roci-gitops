@@ -21,6 +21,6 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: traefik
-      version: 2.3.x
+      version: 9.10.x
   interval: 1h0m0s
 
