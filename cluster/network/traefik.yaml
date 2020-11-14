@@ -23,4 +23,11 @@ spec:
         name: traefik
       version: 9.10.x
   interval: 1h0m0s
+  values:
+    logs:
+      general:
+        level: INFO
+      access:
+        enabled: true
+
 
