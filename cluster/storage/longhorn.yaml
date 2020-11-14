@@ -14,8 +14,9 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: longhorn
-  namespace: storage
+  namespace: flux-system
 spec:
+  targetNamespace: storage
   chart:
     spec:
       chart: longhorn
