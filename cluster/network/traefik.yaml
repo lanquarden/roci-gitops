@@ -65,3 +65,10 @@ spec:
           name: kube-prometheus-stack-prometheus
           namespace: monitoring
           port: 9090
+    - kind: Rule
+      match: Host(`kibana.k.lanquarden.com`)
+      services:
+        - kind: Service
+          name: kibana-kibana
+          namespace: monitoring
+          port: 5601
