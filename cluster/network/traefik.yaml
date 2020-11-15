@@ -70,3 +70,10 @@ spec:
           name: kibana-kibana
           namespace: monitoring
           port: 5601
+    - kind: Rule
+      match: Host(`adguard.k.lanquarden.com`)
+      services:
+        - kind: Service
+          name: network-adguard-adguard-home
+          namespace: network
+          port: 3000
