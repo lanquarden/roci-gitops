@@ -1,0 +1,27 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: adguard
+  namespace: flux-system
+spec:
+  targetNamespace: network
+  chart:
+    spec:
+      chart: adguard-home
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+      version: 2.2.x
+  interval: 1h0m0s
+  values:
+    persistence:
+      config:
+        enabled: false
+        size: 10Mi
+        storageClass: longhorn
+      work:
+        enabled: true
+        size: 10Gi
+        skipUninstall: true
+        storageClass: longhorn
