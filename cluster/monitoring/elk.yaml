@@ -56,3 +56,34 @@ spec:
       resources:
         requests:
           storage: 10Gi
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: kibana
+  namespace: monitoring
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: kibana
+      version: 7.9.x
+      sourceRef:
+        kind: HelmRepository
+        name: elastic-charts
+        namespace: flux-system
+  values:
+    podSecurityContext:
+      fsGroup: null
+    
+    securityContext:
+      runAsUser: null
+
+    # Allocate smaller chunks of memory per pod.
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "1Gi"
+      limits:
+        cpu: "1000m"
+        memory: "1Gi"
