@@ -66,6 +66,13 @@ spec:
           namespace: monitoring
           port: 9090
     - kind: Rule
+      match: Host(`alert.k.lanquarden.com`)
+      services:
+        - kind: Service
+          name: kube-prometheus-stack-alertmanager
+          namespace: monitoring
+          port: 9093
+    - kind: Rule
       match: Host(`kibana.k.lanquarden.com`)
       services:
         - kind: Service
