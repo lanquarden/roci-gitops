@@ -73,12 +73,6 @@ spec:
         name: elastic-charts
         namespace: flux-system
   values:
-    podSecurityContext:
-      fsGroup: null
-    
-    securityContext:
-      runAsUser: null
-
     # Allocate smaller chunks of memory per pod.
     resources:
       requests:
