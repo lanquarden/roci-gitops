@@ -24,9 +24,14 @@ spec:
         name: prometheus-community-charts
         namespace: flux-system
   values:
-    grafana:
-      persistence:
-        storageClassName: longhorn
-        size: 10Gi
-        accessModes:
-          - ReadWriteOnce
+    prometheus:
+      prometheusSpec:
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: longhorn
+              accessModes: ['ReadWriteOnce']
+              resources:
+                requests:
+                  storage: 10Gi
+
