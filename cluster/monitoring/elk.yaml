@@ -1,0 +1,58 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: elastic-charts
+  namespace: flux-system
+spec:
+  interval: 1h
+  url: https://helm.elastic.co
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: elastic
+  namespace: monitoring
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: elasticsearch
+      version: 7.9.x
+      sourceRef:
+        kind: HelmRepository
+        name: elastic-charts
+        namespace: flux-system
+  values:
+    # Based on https://github.com/elastic/helm-charts/blob/master/elasticsearch/examples/microk8s/values.yaml
+    # Disable privileged init Container creation.
+    sysctlInitContainer:
+      enabled: false
+
+    # Restrict the use of the memory-mapping when sysctlInitContainer is disabled.
+    esConfig:
+      elasticsearch.yml: |
+        node.store.allow_mmap: false
+
+    # Permit co-located instances for solitary minikube virtual machines.
+    antiAffinity: "soft"
+
+    # Shrink default JVM heap.
+    esJavaOpts: "-Xmx500m -Xms500m"
+
+    # Allocate smaller chunks of memory per pod.
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "1Gi"
+      limits:
+        cpu: "1000m"
+        memory: "1Gi"
+
+    # Request smaller persistent volumes.
+    volumeClaimTemplate:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "local-path"
+      resources:
+        requests:
+          storage: 10Gi
