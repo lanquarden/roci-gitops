@@ -17,11 +17,13 @@ spec:
   values:
     persistence:
       config:
-        enabled: false
+        enabled: true
         size: 10Mi
         storageClass: longhorn
+        skipuninstall: true
       work:
         enabled: true
         size: 10Gi
         skipUninstall: true
         storageClass: longhorn
+        skipuninstall: true
