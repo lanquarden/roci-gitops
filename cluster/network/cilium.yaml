@@ -15,4 +15,7 @@ spec:
       version: 1.9.x
   interval: 1h0m0s
   values:
-    
+    containerRuntime:
+      integration: containerd
+      socketPath: /var/run/k3s/containerd/containerd.sock
+    kubeProxyReplacement: strict  
