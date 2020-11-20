@@ -8,9 +8,9 @@ spec:
     matchLabels:
       app: elasticsearch-master
   ingress:
-		- fromEndpoints:
-			- {}
+    - fromEndpoints:
+      - {}
   egress:
-		- fromEndpoints:
-			- {}
+    - fromEndpoints:
+      - {}
 
