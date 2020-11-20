@@ -24,5 +24,7 @@ spec:
         enabled: 
           dns: query;ignoreAAAA;destinationContext=pod-short
           drop: sourceContext=pod;destinationContext=pod,tcp,flow,port-distribution,icmp,http
+      relay:
+        enabled: true
       ui:
         enabled: true
