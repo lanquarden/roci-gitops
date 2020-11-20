@@ -21,4 +21,6 @@ spec:
     kubeProxyReplacement: strict  
     hubble:
       metrics:
-        enabled: "{dns:query;ignoreAAAA;destinationContext=pod-short,drop:sourceContext=pod;destinationContext=pod,tcp,flow,port-distribution,icmp,http}"
+        enabled: 
+          dns: query;ignoreAAAA;destinationContext=pod-short
+          drop: sourceContext=pod;destinationContext=pod,tcp,flow,port-distribution,icmp,http
