@@ -19,3 +19,6 @@ spec:
       integration: containerd
       socketPath: /var/run/k3s/containerd/containerd.sock
     kubeProxyReplacement: strict  
+    hubble:
+      metrics:
+        enabled: "{dns:query;ignoreAAAA;destinationContext=pod-short,drop:sourceContext=pod;destinationContext=pod,tcp,flow,port-distribution,icmp,http}"
