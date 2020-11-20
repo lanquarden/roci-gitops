@@ -1,0 +1,16 @@
+---
+apiVersion: "cilium.io/v2"
+kind: CiliumNetworkPolicy
+metadata:
+  name: "allow-all-elasticsearch"
+spec:
+  endpointSelector:
+    matchLabels:
+      app: elasticsearch-master
+  ingress:
+		- fromEndpoints:
+			- {}
+  egress:
+		- fromEndpoints:
+			- {}
+
