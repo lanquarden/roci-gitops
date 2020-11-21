@@ -22,8 +22,12 @@ spec:
     hubble:
       metrics:
         enabled: 
-          dns: query;ignoreAAAA;destinationContext=pod-short
-          drop: sourceContext=pod;destinationContext=pod,tcp,flow,port-distribution,icmp,http
+          - dns:query;ignoreAAAA
+          - drop
+          - tcp
+          - flow
+          - icmp
+          - http
       relay:
         enabled: true
       ui:
