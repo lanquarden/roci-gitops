@@ -1,0 +1,27 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: metallb
+  namespace: flux-system
+spec:
+  targetNamespace: network
+  chart:
+    spec:
+      chart: metallb
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami-charts
+      version: 1.0.x
+  interval: 1h0m0s
+  values:
+    configInline:
+      address-pools:
+        - name: default
+          protocol: layer2
+          addresses:
+            - 192.168.2.10-192.168.2.30
+    prometheus:
+      enabled: true
+      serviceMonitor:
+        enabled: true
