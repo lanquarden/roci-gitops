@@ -3,6 +3,7 @@ apiVersion: "cilium.io/v2"
 kind: CiliumNetworkPolicy
 metadata:
   name: "allow-all-elasticsearch"
+  namespace: network
 spec:
   endpointSelector:
     matchLabels:
@@ -11,6 +12,6 @@ spec:
     - fromEndpoints:
       - {}
   egress:
-    - fromEndpoints:
+    - toEndpoints:
       - {}
 
