@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: cilium-charts
       version: 1.9.x
-  interval: 1h0m0s
+  interval: 10m0s
   values:
     containerRuntime:
       integration: containerd
