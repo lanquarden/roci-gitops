@@ -29,8 +29,8 @@ spec:
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: traefik
-  namespace: kube-system
+  name: traefik-routes
+  namespace: network
 spec:
   routes:
     - kind: Rule
