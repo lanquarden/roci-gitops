@@ -25,58 +25,58 @@ spec:
       type: LoadBalancer
       spec:
         loadBalancerIP: 192.168.2.10      
-# ---
-# apiVersion: traefik.containo.us/v1alpha1
-# kind: IngressRoute
-# metadata:
-#   name: traefik
-#   namespace: kube-system
-# spec:
-#   routes:
-#     - kind: Rule
-#       match: Host(`longhorn.k.lanquarden.com`)
-#       services:
-#         - kind: Service
-#           name: longhorn-frontend
-#           namespace: storage
-#           port: 80
-#     - kind: Rule
-#       match: Host(`traefik.k.lanquarden.com`)
-#       services:
-#         - kind: TraefikService
-#           name: api@internal
-#     - kind: Rule
-#       match: Host(`grafana.k.lanquarden.com`)
-#       services:
-#         - kind: Service
-#           name: kube-prometheus-stack-grafana
-#           namespace: monitoring
-#           port: 80
-#     - kind: Rule
-#       match: Host(`prometheus.k.lanquarden.com`)
-#       services:
-#         - kind: Service
-#           name: kube-prometheus-stack-prometheus
-#           namespace: monitoring
-#           port: 9090
-#     - kind: Rule
-#       match: Host(`alert.k.lanquarden.com`)
-#       services:
-#         - kind: Service
-#           name: kube-prometheus-stack-alertmanager
-#           namespace: monitoring
-#           port: 9093
-#     - kind: Rule
-#       match: Host(`kibana.k.lanquarden.com`)
-#       services:
-#         - kind: Service
-#           name: kibana-kibana
-#           namespace: monitoring
-#           port: 5601
-#     - kind: Rule
-#       match: Host(`adguard.k.lanquarden.com`)
-#       services:
-#         - kind: Service
-#           name: network-adguard-adguard-home
-#           namespace: network
-#           port: 3000
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik
+  namespace: kube-system
+spec:
+  routes:
+    - kind: Rule
+      match: Host(`longhorn.k.lanquarden.com`)
+      services:
+        - kind: Service
+          name: longhorn-frontend
+          namespace: storage
+          port: 80
+    - kind: Rule
+      match: Host(`traefik.k.lanquarden.com`)
+      services:
+        - kind: TraefikService
+          name: api@internal
+    - kind: Rule
+      match: Host(`grafana.k.lanquarden.com`)
+      services:
+        - kind: Service
+          name: kube-prometheus-stack-grafana
+          namespace: monitoring
+          port: 80
+    - kind: Rule
+      match: Host(`prometheus.k.lanquarden.com`)
+      services:
+        - kind: Service
+          name: kube-prometheus-stack-prometheus
+          namespace: monitoring
+          port: 9090
+    - kind: Rule
+      match: Host(`alert.k.lanquarden.com`)
+      services:
+        - kind: Service
+          name: kube-prometheus-stack-alertmanager
+          namespace: monitoring
+          port: 9093
+    - kind: Rule
+      match: Host(`kibana.k.lanquarden.com`)
+      services:
+        - kind: Service
+          name: kibana-kibana
+          namespace: monitoring
+          port: 5601
+    - kind: Rule
+      match: Host(`adguard.k.lanquarden.com`)
+      services:
+        - kind: Service
+          name: network-adguard-adguard-home
+          namespace: network
+          port: 3000
