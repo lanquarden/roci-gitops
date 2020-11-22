@@ -1,34 +1,35 @@
----
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
-kind: HelmRelease
-metadata:
-  name: cilium
-  namespace: flux-system
-spec:
-  targetNamespace: network
-  chart:
-    spec:
-      chart: cilium
-      sourceRef:
-        kind: HelmRepository
-        name: cilium-charts
-      version: 1.9.x
-  interval: 10m0s
-  values:
-    containerRuntime:
-      integration: containerd
-      socketPath: /var/run/k3s/containerd/containerd.sock
-    kubeProxyReplacement: strict  
-    hubble:
-      metrics:
-        enabled: 
-          - dns:query;ignoreAAAA
-          - drop
-          - tcp
-          - flow
-          - icmp
-          - http
-      relay:
-        enabled: true
-      ui:
-        enabled: true
+# Disabling, can't seem to get it to work with flux
+# ---
+# apiVersion: helm.toolkit.fluxcd.io/v2beta1
+# kind: HelmRelease
+# metadata:
+#   name: cilium
+#   namespace: flux-system
+# spec:
+#   targetNamespace: network
+#   chart:
+#     spec:
+#       chart: cilium
+#       sourceRef:
+#         kind: HelmRepository
+#         name: cilium-charts
+#       version: 1.9.x
+#   interval: 10m0s
+#   values:
+#     containerRuntime:
+#       integration: containerd
+#       socketPath: /var/run/k3s/containerd/containerd.sock
+#     kubeProxyReplacement: strict  
+#     hubble:
+#       metrics:
+#         enabled: 
+#           - dns:query;ignoreAAAA
+#           - drop
+#           - tcp
+#           - flow
+#           - icmp
+#           - http
+#       relay:
+#         enabled: true
+#       ui:
+#         enabled: true
