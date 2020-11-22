@@ -15,8 +15,6 @@ spec:
       version: 9.10.x
   interval: 1h0m0s
   values:
-    nodeSelector:
-      kubernetes.io/hostname: beast
     logs:
       general:
         level: INFO
