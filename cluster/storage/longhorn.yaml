@@ -14,4 +14,9 @@ spec:
         name: longhorn-charts
       version: 1.0.x
   interval: 1h0m0s
+  values:
+    # workaround for bug in longhorn
+    # https://github.com/longhorn/longhorn/issues/1861
+    csi:
+      kubeletRootDir: /var/lib/kubelet
 
