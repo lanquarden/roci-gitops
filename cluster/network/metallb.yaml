@@ -20,7 +20,7 @@ spec:
         - name: default
           protocol: layer2
           addresses:
-            - 192.168.2.10-192.168.2.30
+            - 192.168.1.15-192.168.1.39
     prometheus:
       enabled: true
       serviceMonitor:
