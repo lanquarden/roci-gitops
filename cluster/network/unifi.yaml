@@ -5,7 +5,7 @@ metadata:
   name: unifi
   namespace: flux-system
 spec:
-	targetNamespace: network
+  targetNamespace: network
   interval: 5m
   chart:
     spec:
