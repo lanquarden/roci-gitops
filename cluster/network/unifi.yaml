@@ -25,7 +25,7 @@ spec:
       enabled: true
       size: 20Gi
       storageClass: longhorn
-    timezone: "Europoe/Madird"
+    timezone: "Europoe/Madrid"
     runAsRoot: false
     guiService:
       type: LoadBalancer
