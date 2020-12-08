@@ -34,40 +34,40 @@ metadata:
 spec:
   routes:
     - kind: Rule
-      match: Host(`longhorn.lanquarden.com`)
+      match: Host(`longhorn.k.lanquarden.com`)
       services:
         - kind: Service
           name: longhorn-frontend
           namespace: storage
           port: 80
     - kind: Rule
-      match: Host(`traefik.lanquarden.com`)
+      match: Host(`traefik.k.lanquarden.com`)
       services:
         - kind: TraefikService
           name: api@internal
     - kind: Rule
-      match: Host(`grafana.lanquarden.com`)
+      match: Host(`grafana.k.lanquarden.com`)
       services:
         - kind: Service
           name: kube-prometheus-stack-grafana
           namespace: monitoring
           port: 80
     - kind: Rule
-      match: Host(`prometheus.lanquarden.com`)
+      match: Host(`prometheus.k.lanquarden.com`)
       services:
         - kind: Service
           name: kube-prometheus-stack-prometheus
           namespace: monitoring
           port: 9090
     - kind: Rule
-      match: Host(`alert.lanquarden.com`)
+      match: Host(`alert.k.lanquarden.com`)
       services:
         - kind: Service
           name: kube-prometheus-stack-alertmanager
           namespace: monitoring
           port: 9093
     - kind: Rule
-      match: Host(`adguard.lanquarden.com`)
+      match: Host(`adguard.k.lanquarden.com`)
       services:
         - kind: Service
           name: network-adguard-adguard-home
