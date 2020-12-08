@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: bitnami-charts
       version: 1.0.x
-  interval: 1h0m0s
+  interval: 10m0s
   values:
     configInline:
       address-pools:
