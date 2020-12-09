@@ -17,7 +17,7 @@ spec:
         namespace: flux-system
       interval: 5m
   dependsOn:
-    - name: sealed-secrets
+    - name: kube-system-sealed-secrets
       namespace: kube-system
   values:
     installCRDs: true
@@ -38,6 +38,7 @@ apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
   name: letsencrypt-staging
+  namespace: network
 spec:
   acme:
     server: https://acme-staging-v02.api.letsencrypt.org/directory
