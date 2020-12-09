@@ -34,21 +34,21 @@ spec:
         - "1.1.1.1"
         - "8.8.8.8"
 ---
-#apiVersion: cert-manager.io/v1
-#kind: ClusterIssuer
-#metadata:
-#  name: letsencrypt-staging
-#  namespace: network
-#spec:
-#  acme:
-#    server: https://acme-staging-v02.api.letsencrypt.org/directory
-#    email: lanquarden@gmail.com
-#    privateKeySecretRef:
-#      name: letsencrypt-staging
-#    solvers:
-#    - dns01:
-#        cloudflare:
-#          email: lanquarden@gmail.com
-#          apiKeySecretRef:
-#            name: cloudflare-api-key
-#            key: api-key
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-staging
+  namespace: network
+spec:
+  acme:
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    email: lanquarden@gmail.com
+    privateKeySecretRef:
+      name: letsencrypt-staging
+    solvers:
+    - dns01:
+        cloudflare:
+          email: lanquarden@gmail.com
+          apiKeySecretRef:
+            name: cloudflare-api-key
+            key: api-key
