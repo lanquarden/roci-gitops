@@ -41,8 +41,8 @@ spec:
         enabled: true
         entryPoint: metrics
     ports:
-      web:
-        redirectTo: websecure
+      #web:
+      #  redirectTo: websecure
       metrics:
         port: 8082
         expose: true
