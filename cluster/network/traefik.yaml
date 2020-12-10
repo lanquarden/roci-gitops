@@ -74,27 +74,6 @@ spec:
         - kind: TraefikService
           name: api@internal
     - kind: Rule
-      match: Host(`grafana.k.lanquarden.com`)
-      services:
-        - kind: Service
-          name: kube-prometheus-stack-grafana
-          namespace: monitoring
-          port: 80
-    - kind: Rule
-      match: Host(`prometheus.k.lanquarden.com`)
-      services:
-        - kind: Service
-          name: kube-prometheus-stack-prometheus
-          namespace: monitoring
-          port: 9090
-    - kind: Rule
-      match: Host(`alert.k.lanquarden.com`)
-      services:
-        - kind: Service
-          name: kube-prometheus-stack-alertmanager
-          namespace: monitoring
-          port: 9093
-    - kind: Rule
       match: Host(`adguard.k.lanquarden.com`)
       services:
         - kind: Service

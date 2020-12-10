@@ -32,6 +32,14 @@ spec:
           sourceLabels:
           - node
           targetLabel: instance
+    grafana:
+      ingress:
+        enabled: true
+        hosts:
+          - "grafana.k.lanquarden.com"
+        tls:
+          - hosts:
+            - "grafana.k.lanquarden.com"
     prometheus:
       prometheusSpec:
         storageSpec:
