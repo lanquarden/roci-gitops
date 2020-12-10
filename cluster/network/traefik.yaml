@@ -62,21 +62,7 @@ metadata:
 spec:
   routes:
     - kind: Rule
-      match: Host(`longhorn.k.lanquarden.com`)
-      services:
-        - kind: Service
-          name: longhorn-frontend
-          namespace: storage
-          port: 80
-    - kind: Rule
       match: Host(`traefik.k.lanquarden.com`)
       services:
         - kind: TraefikService
           name: api@internal
-    - kind: Rule
-      match: Host(`adguard.k.lanquarden.com`)
-      services:
-        - kind: Service
-          name: network-adguard-adguard-home
-          namespace: network
-          port: 3000

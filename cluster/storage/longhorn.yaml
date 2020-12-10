@@ -19,4 +19,13 @@ spec:
     # https://github.com/longhorn/longhorn/issues/1861
     csi:
       kubeletRootDir: /var/lib/kubelet
+    ingress:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
+      hosts:
+        - "longhorn.k.lanquarden.com"
+      tls:
+        - hosts:
+          - "longhorn.k.lanquarden.com"
 

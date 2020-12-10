@@ -32,6 +32,17 @@ spec:
           sourceLabels:
           - node
           targetLabel: instance
+
+    alertmanager:
+      ingress:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-production
+        hosts:
+          - "alert-manager.k.lanquarden.com"
+        tls:
+          - hosts:
+            - "alert-manager.k.lanquarden.com"
     grafana:
       ingress:
         enabled: true
@@ -44,6 +55,15 @@ spec:
             hosts:
             - "grafana.k.lanquarden.com"
     prometheus:
+      ingress:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-production
+        hosts:
+          - "prometheus.k.lanquarden.com"
+        tls:
+          - hosts:
+            - "prometheus.k.lanquarden.com"
       prometheusSpec:
         storageSpec:
           volumeClaimTemplate:
