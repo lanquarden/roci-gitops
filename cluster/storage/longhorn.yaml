@@ -24,5 +24,6 @@ spec:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-production
       host: "longhorn.k.lanquarden.com"
+      tls: true
       tlsSecret: longhorn-cert
 
