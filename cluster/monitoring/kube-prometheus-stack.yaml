@@ -36,7 +36,7 @@ spec:
       ingress:
         enabled: true
         annotations:
-          certmanager.k8s.io/cluster-issuer: letsencrypt-staging
+          cert-manager.io/cluster-issuer: letsencrypt-staging
         hosts:
           - "grafana.k.lanquarden.com"
         tls:
