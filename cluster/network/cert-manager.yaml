@@ -46,6 +46,6 @@ spec:
     - dns01:
         cloudflare:
           email: lanquarden@gmail.com
-          apiKeySecretRef:
+          apiTokenSecretRef:
             name: cloudflare-api-key
             key: api-key
