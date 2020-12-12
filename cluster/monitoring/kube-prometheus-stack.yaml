@@ -43,6 +43,14 @@ spec:
         tls:
           - hosts:
             - "alert-manager.k.lanquarden.com"
+      alertmanagerSpec:
+        storage:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: rook-ceph-block
+              resources:
+                requests:
+                  storage: 10Gi
     grafana:
       ingress:
         enabled: true
@@ -64,13 +72,13 @@ spec:
         tls:
           - hosts:
             - "prometheus.k.lanquarden.com"
-#      prometheusSpec:
-#        storageSpec:
-#          volumeClaimTemplate:
-#            spec:
-#              storageClassName: longhorn
-#              accessModes: ['ReadWriteOnce']
-#              resources:
-#                requests:
-#                  storage: 10Gi
+      prometheusSpec:
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: rook-ceph-block
+              accessModes: ['ReadWriteOnce']
+              resources:
+                requests:
+                  storage: 10Gi
 

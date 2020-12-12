@@ -15,18 +15,18 @@ spec:
       version: 2.2.x
   interval: 1h0m0s
   values:
-#    persistence:
-#      config:
-#        enabled: true
-#        size: 10Mi
-#        storageClass: longhorn
-#        skipuninstall: true
-#      work:
-#        enabled: true
-#        size: 10Gi
-#        skipUninstall: true
-#        storageClass: longhorn
-#        skipuninstall: true
+    persistence:
+      config:
+        enabled: true
+        size: 10Mi
+        storageClass: rook-ceph-block
+        skipuninstall: true
+      work:
+        enabled: true
+        size: 10Gi
+        skipUninstall: true
+        storageClass: rook-ceph-block
+        skipuninstall: true
     # Expose DNS service on fixed IP
     serviceUDP:
       enabled: true
