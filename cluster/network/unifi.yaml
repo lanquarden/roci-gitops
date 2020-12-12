@@ -32,6 +32,11 @@ spec:
       loadBalancerIP: 192.168.1.17
       annotations:
         metallb.universe.tf/allow-shared-ip: unifi
+    captivePortalService:
+      type: LoadBalancer
+      loadBalancerIP: 192.168.1.17
+      annotations:
+        metallb.universe.tf/allow-shared-ip: unifi
     controllerService:
       type: LoadBalancer
       loadBalancerIP: 192.168.1.17
