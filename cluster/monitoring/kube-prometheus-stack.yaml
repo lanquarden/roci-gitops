@@ -64,13 +64,13 @@ spec:
         tls:
           - hosts:
             - "prometheus.k.lanquarden.com"
-      prometheusSpec:
-        storageSpec:
-          volumeClaimTemplate:
-            spec:
-              storageClassName: longhorn
-              accessModes: ['ReadWriteOnce']
-              resources:
-                requests:
-                  storage: 10Gi
+#      prometheusSpec:
+#        storageSpec:
+#          volumeClaimTemplate:
+#            spec:
+#              storageClassName: longhorn
+#              accessModes: ['ReadWriteOnce']
+#              resources:
+#                requests:
+#                  storage: 10Gi
 
