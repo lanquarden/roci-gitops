@@ -21,7 +21,7 @@ spec:
     image:
       repository: jacobalberty/unifi
       tag: 6.0.41
-   persistence:
+    persistence:
       enabled: true
       size: 20Gi
       storageClass: rook-ceph-block
