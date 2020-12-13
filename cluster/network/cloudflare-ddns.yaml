@@ -18,34 +18,28 @@ spec:
     spec:
       containers:
         - name: cloudflare-ddns
-          image: "hotio/cloudflare-ddns:latest"
+          image: "oznu/cloudflare-ddns:latest"
           imagePullPolicy: Always
           env:
-            - name: CF_USER
+            - name: EMAIL
               valueFrom:
                 secretKeyRef:
                   name: cloudflare-ddns
                   key: cloudflare-ddns-user
-            - name: CF_APITOKEN
+            - name: API_KEY
               valueFrom:
                 secretKeyRef:
                   name: cloudflare-ddns
                   key: cloudflare-ddns-token
-            - name: CF_ZONES
+            - name: ZONE
               valueFrom:
                 secretKeyRef:
                   name: cloudflare-ddns
                   key: cloudflare-ddns-zones
-            - name: CF_HOSTS
+            - name: SUBDOMAIN
               valueFrom:
                 secretKeyRef:
                   name: cloudflare-ddns
                   key: cloudflare-ddns-hosts
-            - name: CF_RECORDTYPES
-              value: "A;A"
-            - name: DETECTION_MODE
-              value: dig-google.com
-            - name: LOG_LEVEL
-              value: "1"
-            - name: SLEEP_INTERVAL
-              value: "300"
+            - name: PROXIED
+              value: "false"
