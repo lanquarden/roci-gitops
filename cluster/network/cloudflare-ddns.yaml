@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -45,6 +46,6 @@ spec:
             - name: DETECTION_MODE
               value: dig-google.com
             - name: LOG_LEVEL
-              value: 1
+              value: "1"
             - name: SLEEP_INTERVAL
-              value: 300
+              value: "300"
