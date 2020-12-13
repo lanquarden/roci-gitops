@@ -21,6 +21,11 @@ spec:
       tag: 0.118.5
     extraEnv:
       TZ: "Europe/Madrid"
+    service:
+      additionalPorts:
+        - name: homematic
+          port: 2001
+          targetPort: 2001
     ingress:
       enabled: true
       annotations:
