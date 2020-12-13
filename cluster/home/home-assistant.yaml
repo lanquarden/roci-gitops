@@ -1,0 +1,77 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: home-assistant
+  namespace: home
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: home-assistant
+      version: 4.0.0
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    image:
+      repository: homeassistant/home-assistant
+      tag: 0.118.5
+    extraEnv:
+      TZ: "Europe/Madrid"
+    ingress:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
+      hosts:
+      - "hass.k.lanquarden.com"
+      tls:
+      - secretName: hass-cert
+        hosts:
+        - "hass.k.lanquarden.com"
+    persistence:
+      enabled: true
+      size: 10Gi
+      storageClass: "rook-ceph-block"
+    monitoring:
+      enabled: false
+    probes:
+      liveness:
+        enabled: false
+      readiness:
+        enabled: false
+    resources:
+      requests:
+        cpu: 500m
+        memory: 1000Mi
+      limits:
+        memory: 2500Mi
+    influxdb:
+      enabled: true
+      architecture: standalone
+      database: home_assistant
+      authEnabled: false
+      updateStrategy: Recreate
+      persistence:
+        enabled: true
+        storageClass: "rook-ceph-block"
+        size: 10Gi
+    vscode:
+      enabled: true
+      image:
+        repository: codercom/code-server
+        tag: 3.7.4
+      extraEnv:
+        HASS_SERVER: "http://localhost:8123"
+      ingress:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-production
+        hosts:
+        - "hass-editor.k.lanquarden.com"
+        tls:
+        - secretName: hass-editor-cert
+          hosts:
+          - "hass-editor.k.lanquarden.com"
