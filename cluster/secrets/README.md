@@ -10,6 +10,7 @@ On the other hand if it is a collection of key value pairs you can do this inste
 
 ```console
 $ kubectl create secret generic <secret-name> -n <secret-namespace> --dry-run=client --from-literal=<key1>=<secret1> --from-literal=<key2>=<secret2> -o yaml > secret_encoded.yaml
+```
 
 Then seal the secret with `kubeseal`:
 
