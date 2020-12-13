@@ -26,7 +26,7 @@ spec:
                 secretKeyRef:
                   name: cloudflare-ddns
                   key: cloudflare-ddns-user
-            - name: CF_APIKEY
+            - name: CF_APITOKEN
               valueFrom:
                 secretKeyRef:
                   name: cloudflare-ddns
