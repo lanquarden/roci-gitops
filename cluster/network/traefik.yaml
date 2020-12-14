@@ -81,9 +81,7 @@ spec:
   entryPoints:
     - homematic
   routes:
-    - kind: Rule
-      match: HostSNI(`*`)
+    - match: HostSNI(`*`)
       services:
-        - kind: ClusterIP
-          name: home-assistant
+        - name: home-assistant
           port: 2001
