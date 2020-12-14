@@ -31,8 +31,8 @@ spec:
     additionalArguments:
       - "--ping"
       - "--entrypoints.websecure.http.tls"
-        #- "--entrypoints.web.http.redirections.entryPoint.to=:443"
-        #- "--entrypoints.web.http.redirections.entryPoint.scheme=https"
+      - "--entrypoints.web.http.redirections.entryPoint.to=:443"
+      - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
       - "--api.dashboard=true"
       - "--metrics=true"
       - "--metrics.prometheus.entryPoint=metrics"
@@ -41,12 +41,17 @@ spec:
         enabled: true
         entryPoint: metrics
     ports:
-      #web:
-      #  redirectTo: websecure
+      web:
+        redirectTo: websecure
       metrics:
         port: 8082
         expose: true
         exposedPort: 8082
+      homematic:
+        port: 2001
+        expose: true
+        exposedPort: 2001
+        protocol: TCP
     service:
       enabled: true
       type: LoadBalancer
@@ -66,3 +71,19 @@ spec:
       services:
         - kind: TraefikService
           name: api@internal
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: traefik-routes-tcp
+  namespace: network
+spec:
+  entryPoints:
+    - homematic
+  routes:
+    - kind: Rule
+      match: HostSNI(`*`)
+      services:
+        - kind: ClusterIP
+          name: home-assistant
+          port: 2001
