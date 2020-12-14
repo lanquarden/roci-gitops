@@ -47,11 +47,6 @@ spec:
         port: 8082
         expose: true
         exposedPort: 8082
-      homematic:
-        port: 2001
-        expose: true
-        exposedPort: 2001
-        protocol: TCP
     service:
       enabled: true
       type: LoadBalancer
@@ -71,31 +66,3 @@ spec:
       services:
         - kind: TraefikService
           name: api@internal
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRouteTCP
-metadata:
-  name: traefik-routes-tcp
-  namespace: network
-spec:
-  entryPoints:
-    - homematic
-  routes:
-    - match: HostSNI(`*`)
-      services:
-        - name: traefik-homematic-service
-          port: 2001
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: TraefikService
-metadata:
-  name: traefik-homematic-service
-  namespace: network
-spec:
-  weighted:
-    services:
-      - name: home-assistant
-        weight: 1
-        port: 2001
-        kind: ClusterIP
-        namespace: home
