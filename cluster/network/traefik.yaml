@@ -83,5 +83,19 @@ spec:
   routes:
     - match: HostSNI(`*`)
       services:
-        - name: home-assistant
+        - name: traefik-homematic-service
           port: 2001
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: TraefikService
+metadata:
+  name: traefik-homematic-service
+  namespace: network
+spec:
+  weighted:
+    services:
+      - name: home-assistant
+        weight: 1
+        port: 2001
+        kind: ClusterIP
+        namespace: home
