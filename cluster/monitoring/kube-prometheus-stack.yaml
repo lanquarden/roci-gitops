@@ -63,12 +63,12 @@ spec:
             hosts:
             - "grafana.k.lanquarden.com"
       plugins:
-		- natel-discrete-panel
-		- pr0ps-trackmap-panel
-		- grafana-piechart-panel
-		- vonage-status-panel
-		- grafana-worldmap-panel
-		- grafana-clock-panel
+        - natel-discrete-panel
+        - pr0ps-trackmap-panel
+        - grafana-piechart-panel
+        - vonage-status-panel
+        - grafana-worldmap-panel
+        - grafana-clock-panel
       dashboardProviders:
         dashboardproviders.yaml:
           apiVersion: 1
