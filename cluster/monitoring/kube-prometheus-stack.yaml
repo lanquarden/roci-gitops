@@ -108,6 +108,11 @@ spec:
         access: proxy
         url: http://home-assistant-influxdb.home.svc.cluster.local:8086
         database: home_assistant
+      sidecar:
+        dashboards:
+          enabled: true
+        datasources:
+          enabled: true
     prometheus:
       ingress:
         enabled: true
