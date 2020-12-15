@@ -106,7 +106,7 @@ spec:
       - name: HomeAssitant
         type: influxdb
         access: proxy
-        url: http://home-assistant-influxdb:8086
+        url: http://home-assistant-influxdb.home.svc.cluster.local:8086
         database: home_assistant
     prometheus:
       ingress:
@@ -127,4 +127,3 @@ spec:
               resources:
                 requests:
                   storage: 10Gi
-
