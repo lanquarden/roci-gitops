@@ -63,12 +63,24 @@ spec:
             hosts:
             - "grafana.k.lanquarden.com"
       plugins:
-      - natel-discrete-panel
-      - pr0ps-trackmap-panel
-      - grafana-piechart-panel
-      - vonage-status-panel
-      - grafana-worldmap-panel
-      - grafana-clock-panel
+		- natel-discrete-panel
+		- pr0ps-trackmap-panel
+		- grafana-piechart-panel
+		- vonage-status-panel
+		- grafana-worldmap-panel
+		- grafana-clock-panel
+      dashboardProviders:
+        dashboardproviders.yaml:
+          apiVersion: 1
+          providers:
+          - name: "default"
+            orgId: 1
+            folder: ""
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/default
       dashboards:
         default:
           # Ref: https://grafana.com/grafana/dashboards/2842
@@ -91,6 +103,11 @@ spec:
         type: loki
         access: proxy
         url: http://monitoring-loki:3100
+      - name: HomeAssitant
+        type: influxdb
+        access: proxy
+        url: http://home-assistant-influxdb:8086
+		database: home_assistant
     prometheus:
       ingress:
         enabled: true
