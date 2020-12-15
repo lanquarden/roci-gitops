@@ -107,7 +107,7 @@ spec:
         type: influxdb
         access: proxy
         url: http://home-assistant-influxdb:8086
-		database: home_assistant
+        database: home_assistant
     prometheus:
       ingress:
         enabled: true
