@@ -81,9 +81,9 @@ spec:
             editable: true
             options:
               path: /var/lib/grafana/dashboards/default
-          - name: "Home"
+          - name: "home"
             orgId: 1
-            folder: ""
+            folder: "Home"
             type: file
             disableDeletion: false
             editable: true
