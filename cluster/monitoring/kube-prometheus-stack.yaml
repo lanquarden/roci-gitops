@@ -106,6 +106,9 @@ spec:
             gnetId: 5342
             revision: 5
             datasource: Prometheus
+          vernemq:
+            url: https://raw.githubusercontent.com/vernemq/vernemq/master/metrics_scripts/grafana/VerneMQ%20Node%20Metrics.json
+            datasource: Prometheus
         home:
           # custom dashboards
           home-climate:
