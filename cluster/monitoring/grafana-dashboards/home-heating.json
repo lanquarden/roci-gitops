@@ -23,7 +23,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "HomeAssistant",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -149,7 +149,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "HomeAssistant",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -672,7 +672,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "HomeAssistant",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1195,7 +1195,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "HomeAssistant",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
