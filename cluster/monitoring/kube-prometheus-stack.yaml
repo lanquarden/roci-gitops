@@ -140,8 +140,7 @@ spec:
           - hosts:
             - "prometheus.k.lanquarden.com"
       prometheusSpec:
-        serviceMonitorNamespaceSelector:
-          any: true
+        serviceMonitorSelectorNilUsesHelmValues: false
         storageSpec:
           volumeClaimTemplate:
             spec:
