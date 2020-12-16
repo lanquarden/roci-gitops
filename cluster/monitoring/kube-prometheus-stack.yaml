@@ -81,6 +81,14 @@ spec:
             editable: true
             options:
               path: /var/lib/grafana/dashboards/default
+          - name: "Home"
+            orgId: 1
+            folder: ""
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/home
       dashboards:
         default:
           # Ref: https://grafana.com/grafana/dashboards/2842
@@ -98,7 +106,7 @@ spec:
             gnetId: 5342
             revision: 5
             datasource: Prometheus
-        Home:
+        home:
           # custom dashboards
           home-climate:
             url: https://github.com/lanquarden/roci-gitops/raw/main/cluster/monitoring/grafana-dashboards/home-climate.json
