@@ -27,6 +27,17 @@ spec:
         skipUninstall: true
         storageClass: rook-ceph-block
         skipuninstall: true
+    timezone: "Europe/Madrid"
+    ingress:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
+      hosts:
+        - "adguard.k.lanquarden.com"
+      tls:
+        - secretName: adguard-cert
+          hosts:
+          - "adguard.k.lanquarden.com"
     # Expose DNS service on fixed IP
     serviceUDP:
       enabled: true
