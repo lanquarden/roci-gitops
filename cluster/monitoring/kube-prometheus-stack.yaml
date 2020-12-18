@@ -146,6 +146,7 @@ spec:
       prometheusSpec:
         serviceMonitorNamespaceSelector: {}
         serviceMonitorSelector: {}
+        serviceMonitorSelectorNilUsesHelmValues: false
         storageSpec:
           volumeClaimTemplate:
             spec:
