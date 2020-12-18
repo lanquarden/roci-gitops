@@ -140,7 +140,8 @@ spec:
         hosts:
           - "prometheus.k.lanquarden.com"
         tls:
-          - hosts:
+          - secretName: prometheus-cert
+            hosts:
             - "prometheus.k.lanquarden.com"
       prometheusSpec:
         serviceMonitorNamespaceSelector: {}
