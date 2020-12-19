@@ -1,0 +1,22 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: internal
+  namespace: network
+spec:
+  chain:
+    middlewares:
+    - name: known-ips
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: known-ips
+  namespace: network
+spec:
+  ipWhiteList:
+    sourceRange:
+    - 192.168.1.0/24
+    - 127.0.0.1/32
+    - 10.43.0.0/16
+    - 10.42.0.0/16

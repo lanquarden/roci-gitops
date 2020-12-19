@@ -38,6 +38,7 @@ spec:
         enabled: true
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-production
+          traefik.ingress.kubernetes.io/router.middlewares: network-internal@kubernetescrd
         hosts:
           - "alert-manager.k.lanquarden.com"
         tls:
