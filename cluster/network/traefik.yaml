@@ -36,6 +36,7 @@ spec:
       - "--api.dashboard=true"
       - "--metrics=true"
       - "--metrics.prometheus.entryPoint=metrics"
+      - "--serverstransport.insecureskipverify=true"
     metrics:
       prometheus:
         enabled: true
