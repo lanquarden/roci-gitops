@@ -41,7 +41,8 @@ spec:
         hosts:
           - "alert-manager.k.lanquarden.com"
         tls:
-          - hosts:
+          - secretName: alert-manager-cert
+            hosts:
             - "alert-manager.k.lanquarden.com"
       alertmanagerSpec:
         storage:
