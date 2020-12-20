@@ -1,0 +1,21 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-data-pv
+spec:
+  storageClassName: nfs-data
+  capacity:
+    storage: 1Mi
+  accessModes:
+  - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    server: microserver.lanquarden.com
+    path: /exports/data
+  mountOptions:
+  - tcp
+  - intr
+  - hard
+  - noatime
+  - nodiratime
