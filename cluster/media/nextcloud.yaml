@@ -5,7 +5,8 @@ metadata:
   name: nextcloud
   namespace: media
 spec:
-  releaseName: nextcloud
+  targetNamespace: media
+  interval: 5m
   chart:
     spec:
       chart: nextcloud
