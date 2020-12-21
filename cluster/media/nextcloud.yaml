@@ -31,7 +31,7 @@ spec:
           - "nextcloud.k.lanquarden.com"
     persistence:
       enabled: true
-      storageClass: rook-ceph
+      storageClass: rook-ceph-block
     mariadb:
       enabled: true
       master:
@@ -40,7 +40,7 @@ spec:
       slave:
         replicas: 0
       global:
-        storageClass: rook-ceph
+        storageClass: rook-ceph-block
     metrics:
       enabled: true
       # resources:
