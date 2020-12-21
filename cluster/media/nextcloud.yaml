@@ -1,0 +1,74 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: nextcloud
+  namespace: media
+spec:
+  releaseName: nextcloud
+  chart:
+    spec:
+      chart: nextcloud
+      sourceRef:
+        kind: HelmRepository
+        name: nextcloud-charts
+      version: 2.3.2
+  values:
+    image:
+      repository: nextcloud
+      tag: 19.0.6-apache
+    ingress:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
+        traefik.ingress.kubernetes.io/router.middlewares: nextcloud@kubernetescrd
+      hosts:
+        - "nextcloud.k.lanquarden.com"
+      tls:
+        - secretName: nextcloud-cert
+          hosts:
+          - "nextcloud.k.lanquarden.com"
+    persistence:
+      enabled: true
+      storageClass: rook-ceph
+    mariadb:
+      enabled: true
+      master:
+        persistence:
+          enabled: true
+      slave:
+        replicas: 0
+      global:
+        storageClass: rook-ceph
+    metrics:
+      enabled: true
+      # resources:
+      #   limits:
+      #     cpu: 11m
+      #     memory: 83Mi
+      #   requests:
+      #     cpu: 11m
+      #     memory: 83Mi
+    nextcloud:
+      host: nextcloud.k.lanquarden.com
+      username: admin
+      extraVolumeMounts:
+        - name: nfs-data-pvc
+          mountPath: /nfs/data
+    internalDatabase:
+      enabled: false
+    # resources:
+    #   limits:
+    #     cpu: 23m
+    #     memory: 283Mi
+    #   requests:
+    #     cpu: 23m
+    #     memory: 283Mi
+    # livenessProbe:
+    #   enabled: false
+    # readinessProbe:
+    #   enabled: false
+  valuesFrom:
+  - kind: Secret
+    name: "nextcloud-helm-values"
+      
