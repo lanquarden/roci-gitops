@@ -54,7 +54,7 @@ spec:
       host: nextcloud.k.lanquarden.com
       username: admin
       extraVolumeMounts:
-        - name: nfs-data-pvc
+        - name: nfs-data
           mountPath: /nfs/data
     internalDatabase:
       enabled: false
