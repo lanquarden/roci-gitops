@@ -57,9 +57,14 @@ spec:
         - name: nfs-data
           persistentVolumeClaim:
             claimName: nfs-data-pvc
+        - name: nfs-media
+          persistentVolumeClaim:
+            claimName: nfs-media-pvc
       extraVolumeMounts:
         - name: nfs-data
           mountPath: /nfs/data
+        - name: nfs-media
+          mountPath: /nfs/media
     internalDatabase:
       enabled: false
     # resources:
