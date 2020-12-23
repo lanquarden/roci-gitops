@@ -1,0 +1,50 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: photoprism
+  namespace: flux-system
+spec:
+  targetNamespace: media
+  interval: 5m
+  chart:
+    spec:
+      chart: nextcloud
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+      version: 2.2.1
+  values:
+    env:
+      PHOTOPRISM_SITE_URL: "https://photos.k.lanquarden.com"
+      PHOTOPRISM_SITE_TITLE: "Home Pictures"
+      PHOTOPRISM_SITE_AUTHOR: "@lanquarden"
+      PHOTOPRISM_ORIGINALS_PATH: /photoprism/media/pictures/
+      PHOTOPRISM_STORAGE_PATH: /photoprism/storage/
+      PHOTOPRISM_IMPORT_PATH: /photoprism/media/unsorted/pictures/
+    ingress:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-production"
+      hosts:
+      - host: photos.k.lanquarden.com
+        paths:
+        - path: /
+          pathType: Prefix
+      tls:
+      - hosts:
+        - photos.k.lanquarden.com
+        secretName: photoprism-cert
+    persistence:
+      config:
+        enabled: true
+        size: 40Gi
+        storageClass: "rook-ceph-block"
+        mountPath: /photoprism/storage
+      media:
+        enabled: true
+        mountPath: /photoprism/media
+        existingClaim: nfs-media-pvc
+  valuesFrom:
+  - kind: Secret
+    name: "photoprism-helm-values"
