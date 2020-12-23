@@ -9,7 +9,7 @@ spec:
   interval: 5m
   chart:
     spec:
-      chart: nextcloud
+      chart: photoprism
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
