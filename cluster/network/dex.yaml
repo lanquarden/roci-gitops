@@ -48,6 +48,8 @@ spec:
         create: false
     ingress:
       enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
       hosts:
         - dex.k.lanquarden.com
       tls:
