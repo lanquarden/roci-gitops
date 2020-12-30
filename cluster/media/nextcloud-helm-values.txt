@@ -1,0 +1,5 @@
+mariadb:
+  db:
+    password: ${NEXTCLOUD_DB_PASSWORD}
+nextcloud:
+  password: ${NEXTCLOUD_ADMIN_PASSWORD}

@@ -1,0 +1,10 @@
+loki:
+  config:
+    storage_config:
+      aws:
+        bucketnames: ${LOKI_BUCKET}
+        endpoint: 10.43.118.216:80
+        access_key_id: ${LOKI_KEY_ID}
+        secret_access_key: ${LOKI_KEY_SECRET}
+        insecure: true
+        s3forcepathstyle: true

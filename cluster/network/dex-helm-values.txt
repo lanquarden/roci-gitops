@@ -1,0 +1,10 @@
+config:
+  connectors:
+    - type: oidc
+      id: google
+      name: Google
+      config:
+        issuer: https://accounts.google.com
+        redirectUri: https://dex.k.lanquarden.com/callback
+        clientID: ${DEX_GOOGLE_CLIENT_ID}
+        clientSecret: ${DEX_GOOGLE_CLIENT_SECRET}
