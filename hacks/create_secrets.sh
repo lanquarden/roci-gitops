@@ -38,7 +38,7 @@ then
         # Create secret
         envsubst < "$file" |
             # Create the Kubernetes secret
-            kubectl -n "${namespace}" create secret generic "${secret_name}-helm-values" \
+            kubectl -n "${namespace}" create secret generic "${secret_name}" \
                 --from-file=/dev/stdin --dry-run=client -o json |
             # Seal the Kubernetes secret
             kubeseal --format=yaml --cert="${PUB_CERT}" |
