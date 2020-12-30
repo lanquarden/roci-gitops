@@ -34,4 +34,6 @@ file "${SECRETS_ENV}" | grep "ASCII text" >/dev/null 2>&1 || {
 }
 
 # Export environment variables
-. "${SECRETS_ENV}"
+set -a
+source "${SECRETS_ENV}"
+set +a
