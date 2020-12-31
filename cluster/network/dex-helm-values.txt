@@ -8,3 +8,10 @@ config:
         redirectUri: https://dex.k.lanquarden.com/callback
         clientID: ${DEX_GOOGLE_CLIENT_ID}
         clientSecret: ${DEX_GOOGLE_CLIENT_SECRET}
+  staticClients:
+    - id: nextcloud
+      name: nextcloud
+      secret: ${DEX_NEXTCLOUD_CLIENT_SECRET}
+      redirectURIs:
+        - https://nextcloud.k.lanquarden.com/apps/user_oidc/code
+        - https://nextcloud.k.lanquarden.com/apps/oidc_login/oidc
