@@ -4,6 +4,13 @@ mariadb:
 nextcloud:
   password: ${NEXTCLOUD_ADMIN_PASSWORD}
   configs:
+    generic.config.php: |-
+      <?php
+      $NEXTCLOUD_CONFIG_ARRAY = array (
+        'overwriteprotocol' => 'https',
+        'loglevel'          => 0,
+      );
+
     oidc_config.config.php: |-
       <?php
       ${NEXTCLOUD_CONFIG_ARRAY} = array (
