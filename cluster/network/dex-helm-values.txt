@@ -10,8 +10,14 @@ config:
         clientSecret: ${DEX_GOOGLE_CLIENT_SECRET}
   staticClients:
     - id: nextcloud
-      name: nextcloud
+      name: Nextcloud
       secret: ${DEX_NEXTCLOUD_CLIENT_SECRET}
       redirectURIs:
         - https://nextcloud.k.lanquarden.com/apps/user_oidc/code
         - https://nextcloud.k.lanquarden.com/apps/oidc_login/oidc
+    - id: forward-auth
+      name: Traefik Forward Auth
+      secret: ${DEX_FORWARD_AUTH_CLIENT_SECRET}
+      redirectURIs:
+        - http://auth.k.lanquarden.com/_oauth
+        - https://auth.k.lanquarden.com/_oauth

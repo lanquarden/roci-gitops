@@ -1,0 +1,19 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: lanquarden-com
+  namespace: network
+  annotations:
+    reflector.v1.k8s.emberstack.com/secret-reflection-allowed: "true"
+    reflector.v1.k8s.emberstack.com/secret-reflection-auto-enabled: "true"
+    reflector.v1.k8s.emberstack.com/secret-reflection-auto-namespaces: "home, media, network, rook-ceph, monitoring"
+spec:
+  secretName: lanquarden-com-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "*.lanquarden.com"
+  dnsNames:
+  - "*.lanquarden.com"
+  - "*.k.lanquarden.com"
