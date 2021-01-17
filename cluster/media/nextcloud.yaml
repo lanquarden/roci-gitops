@@ -13,11 +13,8 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: nextcloud-charts
-      version: 2.3.2
+      version: 2.5.0j
   values:
-    image:
-      repository: nextcloud
-      tag: 19.0.6-apache
     ingress:
       enabled: true
       annotations:
