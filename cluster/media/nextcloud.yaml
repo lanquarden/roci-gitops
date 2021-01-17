@@ -34,10 +34,9 @@ spec:
       master:
         persistence:
           enabled: true
-      slave:
-        replicas: 0
-      global:
-        storageClass: rook-ceph-block
+          storageClass: rook-ceph-block
+      replication:
+        enabled: false
     metrics:
       enabled: true
       # resources:
