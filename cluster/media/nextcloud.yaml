@@ -13,7 +13,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: nextcloud-charts
-      version: 2.5.0j
+      version: 2.5.0
   values:
     ingress:
       enabled: true
