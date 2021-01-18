@@ -37,7 +37,7 @@ spec:
             - "--checkers"
             - "8"
             - "--bwlimit"
-            - "3M"
+            - "375"
             - "/nfs/media/pictures"
             - "b2-backup-photos:/"
             volumeMounts:
