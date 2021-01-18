@@ -1,0 +1,54 @@
+---
+#
+# Cronjob to for photos backup
+#
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  namespace: media
+  name: backup-photos
+spec:
+  schedule: "0 */12 * * *"
+  failedJobsHistoryLimit: 3
+  successfulJobsHistoryLimit: 3
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: rclone
+            image: rclone/rclone:1.53
+            env:
+            - name: TZ
+              value: "Europe/New_York"
+            command: ["rclone"]
+            args:
+            - "-v"
+            - "--config"
+            - "/nfs/media/rclone.conf"
+            - "sync"
+            - "--ignore-errors"
+            - "--fast-list"
+            - "--b2-hard-delete"
+            - "--transfers"
+            - "4"
+            - "--checkers"
+            - "8"
+            - "--bwlimit"
+            - "3M"
+            - "/nfs/media/pictures"
+            - "b2-backup-photos:/"
+            volumeMounts:
+            - name: nfs-data
+              mountPath: /nfs/data
+            - name: nfs-media
+              mountPath: /nfs/media
+          volumes:
+            - name: nfs-data
+              persistentVolumeClaim:
+                claimName: nfs-data-pvc
+            - name: nfs-media
+              persistentVolumeClaim:
+                claimName: nfs-media-pvc
