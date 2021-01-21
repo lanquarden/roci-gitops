@@ -45,6 +45,8 @@ spec:
         enabled: true
         mountPath: /photoprism/media
         existingClaim: nfs-media-pvc
+    podAnnotations:
+      backup.velero.io/backup-volumes: config
   valuesFrom:
   - kind: Secret
     name: "photoprism-helm-values"
