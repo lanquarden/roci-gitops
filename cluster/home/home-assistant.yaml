@@ -65,6 +65,8 @@ spec:
         enabled: true
         storageClass: "rook-ceph-block"
         size: 10Gi
+      podAnnotations:
+        backup.velero.io/backup-volumes: data
     vscode:
       enabled: true
       image:
