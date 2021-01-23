@@ -25,7 +25,7 @@ jobs:
         curl -sL https://taskfile.dev/install.sh | sh
         chmod +x ${GITHUB_WORKSPACE}/bin/task
     - name: Create HelmRelease annotations
-      run: ./hack/create-helmrelease-annotations.sh
+      run: echo "$(pwd)"; echo "$GITHUB_WORKSPACE}"; echo "GITHUB_PATH"; ./hack/create-helmrelease-annotations.sh
 
     - name: Create pull request for HelmRelease annotations
       uses: peter-evans/create-pull-request@v3
