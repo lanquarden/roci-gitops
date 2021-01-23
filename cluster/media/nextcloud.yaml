@@ -33,7 +33,7 @@ spec:
       enabled: true
       master:
         annotations:
-          - backup.velero.io/backup-volumes: data
+          backup.velero.io/backup-volumes: data
         persistence:
           enabled: true
       replication:
