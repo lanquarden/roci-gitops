@@ -18,6 +18,7 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    controllerType: deployment
     image:
       repository: homeassistant/home-assistant
       tag: 2021.1.5
@@ -102,3 +103,6 @@ spec:
             - secretName: hass-editor-cert
               hosts:
                 - "hass-editor.k.lanquarden.com"
+        volumeMounts:
+        - name: config
+          mountPath: /config
