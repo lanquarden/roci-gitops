@@ -32,8 +32,8 @@ spec:
     mariadb:
       enabled: true
       master:
-        podAnnotations:
-          backup.velero.io/backup-volumes: data
+        annotations:
+          - backup.velero.io/backup-volumes: data
         persistence:
           enabled: true
       replication:
