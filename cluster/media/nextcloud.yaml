@@ -32,6 +32,8 @@ spec:
     mariadb:
       enabled: true
       master:
+        podAnnotations:
+          backup.velero.io/backup-volumes: data
         persistence:
           enabled: true
       replication:
@@ -62,6 +64,8 @@ spec:
           mountPath: /nfs/data
         - name: nfs-media
           mountPath: /nfs/media
+    podAnnotations:
+      backup.velero.io/backup-volumes: nextcloud-data
     internalDatabase:
       enabled: false
     # resources:
@@ -78,4 +82,3 @@ spec:
   valuesFrom:
   - kind: Secret
     name: "nextcloud-helm-values"
-      
