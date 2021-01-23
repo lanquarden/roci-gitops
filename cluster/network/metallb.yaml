@@ -8,6 +8,7 @@ spec:
   targetNamespace: network
   chart:
     spec:
+      # renovate: registryUrl=https://charts.bitnami.com/bitnami
       chart: metallb
       sourceRef:
         kind: HelmRepository

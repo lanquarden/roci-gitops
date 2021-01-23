@@ -8,6 +8,7 @@ spec:
   targetNamespace: network
   chart:
     spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: adguard-home
       sourceRef:
         kind: HelmRepository
