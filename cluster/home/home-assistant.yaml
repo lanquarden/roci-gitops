@@ -71,25 +71,34 @@ spec:
         enabled: true
         storageClass: "rook-ceph-block"
         size: 10Gi
-      podAnnotations:
+      podannotations:
         backup.velero.io/backup-volumes: data
-    vscode:
-      enabled: true
-      image:
-        repository: codercom/code-server
-        tag: 3.8.0
-      extraEnv:
-        HASS_SERVER: "http://localhost:8123"
-      ingress:
+    podannotations:
+      backup.velero.io/backup-volumes: config
+    addons:
+      codeserver:
         enabled: true
-        annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-production
-        hosts:
-          - host: "hass-editor.k.lanquarden.com"
-            paths:
-              - path: /
-                pathType: Prefix
-        tls:
-          - secretName: hass-editor-cert
-            hosts:
-              - "hass-editor.k.lanquarden.com"
+        image:
+          repository: codercom/code-server
+          tag: 3.7.4
+        workingDir: "/config"
+        args:
+        - --auth
+        - "none"
+        - --user-data-dir
+        - "/config/.vscode"
+        - --extensions-dir
+        - "/config/.vscode"
+        ingress:
+          enabled: true
+          annotations:
+            cert-manager.io/cluster-issuer: letsencrypt-production
+          hosts:
+            - host: "hass-editor.k.lanquarden.com"
+              paths:
+                - path: /
+                  pathType: Prefix
+          tls:
+            - secretName: hass-editor-cert
+              hosts:
+                - "hass-editor.k.lanquarden.com"
