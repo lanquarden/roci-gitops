@@ -35,11 +35,14 @@ spec:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-production
       hosts:
-      - "hass.k.lanquarden.com"
+        - host: "hass.k.lanquarden.com"
+          paths:
+            - path: /
+              pathType: Prefix
       tls:
-      - secretName: hass-cert
-        hosts:
-        - "hass.k.lanquarden.com"
+        - secretName: hass-editor-cert
+          hosts:
+            - "hass.k.lanquarden.com"
     persistence:
       config:
         enabled: true
@@ -82,8 +85,11 @@ spec:
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-production
         hosts:
-        - "hass-editor.k.lanquarden.com"
+          - host: "hass-editor.k.lanquarden.com"
+            paths:
+              - path: /
+                pathType: Prefix
         tls:
-        - secretName: hass-editor-cert
-          hosts:
-          - "hass-editor.k.lanquarden.com"
+          - secretName: hass-editor-cert
+            hosts:
+              - "hass-editor.k.lanquarden.com"
