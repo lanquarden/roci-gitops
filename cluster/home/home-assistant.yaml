@@ -41,9 +41,10 @@ spec:
         hosts:
         - "hass.k.lanquarden.com"
     persistence:
-      enabled: true
-      size: 10Gi
-      storageClass: "rook-ceph-block"
+      config:
+        enabled: true
+        size: 10Gi
+        storageClass: "rook-ceph-block"
     monitoring:
       enabled: false
     probes:
