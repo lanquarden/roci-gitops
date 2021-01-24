@@ -3,7 +3,6 @@
   "timezone": "Europe/Madrid",
   "dependencyDashboard": true,
   "dependencyDashboardTitle": "Renovate Dashboard",
-  "commitMessageSuffix": "[ci-skip]",
   "commitBody": "Signed-off-by: lanquarden <lanquarden@users.noreply.github.com>",
   // Do not notify on closed unmerged PRs
   "suppressNotifications": ["prIgnoreNotification"],
@@ -20,6 +19,7 @@
       "datasourceTemplate": "helm"
     }
   ],
+  "enabledManagers": ["helm-values", "regex", "github-actions", "pre-commit"],
   "packageRules": [
     // Setup datasources
     {
