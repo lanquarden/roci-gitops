@@ -46,7 +46,7 @@ for helm_release in "${CLUSTER_ROOT}"/**/*.yaml; do
     done
 done
 
-if [ $RENOVATE_FAIL ]; then
+if [ "$RENOVATE_FAIL" = true ]; then
     echo "One or more HelmReleases did not match the renovate regex, see details above."
     exit 1
 fi
