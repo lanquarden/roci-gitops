@@ -8,6 +8,7 @@ spec:
   targetNamespace: network
   chart:
     spec:
+      # renovate: registryUrl=https://helm.traefik.io/traefik
       chart: traefik
       sourceRef:
         kind: HelmRepository
