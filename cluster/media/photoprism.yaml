@@ -11,10 +11,10 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: photoprism
+      version: 2.2.1
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
-      version: 2.2.1
   values:
     env:
       PHOTOPRISM_SITE_URL: "https://photos.k.lanquarden.com"
