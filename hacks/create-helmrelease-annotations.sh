@@ -5,6 +5,8 @@ shopt -s globstar
 REPO_ROOT=$(git rev-parse --show-toplevel)
 CLUSTER_ROOT="${REPO_ROOT}/cluster"
 HELM_REPOSITORIES="${CLUSTER_ROOT}/flux-system/helm-chart-repositories"
+RENOVATE_REGEX="registryUrl=(?<registryUrl>.*?)\n *chart: (?<depName>.*?)\n *version: (?<currentValue>.*)\n"
+RENOVATE_FAIL=false
 
 # Ensure yq exist
 command -v yq >/dev/null 2>&1 || {
@@ -33,7 +35,18 @@ for helm_release in "${CLUSTER_ROOT}"/**/*.yaml; do
             # insert "renovate: registryUrl=" line
             sed -i "/.*chart: .*/i \ \ \ \ \ \ # renovate: registryUrl=${chart_url}" "${helm_release}"
             echo "Annotated $(basename "${helm_release%.*}") with ${chart_name} for renovatebot..."
+            # check if it can be picked up by renovate regex
+            grep -Pz "${RENOVATE_REGEX}" ${helm_release} > /dev/null
+            if [ $? -ne 0 ]; then
+                echo "ERROR: renovate regex does not match this HelmRelease: ${helm_release}"
+                RENOVATE_FAIL=true
+            fi
             break
         fi
     done
 done
+
+if [ $RENOVATE_FAIL ]; then
+    echo "One or more HelmReleases did not match the renovate regex, see details above."
+    exit 1
+fi
