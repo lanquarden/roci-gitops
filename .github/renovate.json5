@@ -9,7 +9,7 @@
   "assignees": ["@lanquarden"],
   "regexManagers": [
     {
-      "fileMatch": ["cluster/(?!(flux-system|secrets)).+\\.yaml$"],
+      "fileMatch": ["cluster/\(?!flux-system|secrets\).+\\.yaml$"],
       "matchStrings": [
         "registryUrl=(?<registryUrl>.*?)\n *chart: (?<depName>.*?)\n *version: (?<currentValue>.*)\n"
       ],
