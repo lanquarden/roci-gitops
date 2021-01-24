@@ -33,12 +33,12 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: helm-release-annotations
         delete-branch: true
-        title: "Update HelmRelease annotations for Renovate [ci-skip]"
+        title: "Update HelmRelease annotations for Renovate"
         signoff: true
         committer: "lanquarden <lanquarden@users.noreply.github.com>"
         author: "lanquarden <lanquarden@users.noreply.github.com>"
         assignees: "lanquarden"
-        commit-message: "Update HelmRelease annotations for Renovate [ci-skip]"
+        commit-message: "Update HelmRelease annotations for Renovate"
         body: |
           Add comment annotations to HelmReleases inorder for Renovate to pick up new versions of Helm charts
         labels: renovate/helm-release-annotations
