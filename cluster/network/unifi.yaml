@@ -25,7 +25,7 @@ spec:
       enabled: true
       size: 20Gi
       storageClass: rook-ceph-block
-    timezone: "Europoe/Madrid"
+    timezone: "Europe/Madrid"
     runAsRoot: false
     ingress:
       enabled: true
