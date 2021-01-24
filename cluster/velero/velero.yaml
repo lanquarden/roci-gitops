@@ -30,7 +30,7 @@ spec:
           region: us-east-1
           s3ForcePathStyle: true
           s3Url: http://microserver.lanquarden.com:9000
-          publicUrl: https://microserver.lanquarden.com
+          publicUrl: https://microserver.lanquarden.com:9000
       volumeSnapshotLocation:
         name: aws
         config:
