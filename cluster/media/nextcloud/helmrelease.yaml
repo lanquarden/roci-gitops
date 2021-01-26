@@ -71,6 +71,9 @@ spec:
       backup.velero.io/backup-volumes: nextcloud-data
     internalDatabase:
       enabled: false
+    externalDatabase:
+      enabled: true
+      type: postgresql
   #    resources:
   #      limits:
   #        cpu: 23m
