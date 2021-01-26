@@ -38,7 +38,6 @@ spec:
       global:
         postgresql:
           postgresqlUsername: nextcloud
-          postgresqlPassword: nextcloud
           postgresqlDatabase: nextcloud
       persistence:
         enabled: true
