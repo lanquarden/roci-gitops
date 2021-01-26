@@ -17,7 +17,7 @@ need() {
 
 need "kubectl"
 need "kubeseal"
-need "yq" 
+need "yq"
 need "envsubst"
 need "sed"
 need "tee"

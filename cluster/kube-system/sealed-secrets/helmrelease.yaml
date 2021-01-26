@@ -20,4 +20,3 @@ spec:
   values:
     ingress:
       enabled: false
-

@@ -26,7 +26,7 @@ spec:
       tls:
         - secretName: nextcloud-cert
           hosts:
-          - "nextcloud.k.lanquarden.com"
+            - "nextcloud.k.lanquarden.com"
     persistence:
       enabled: true
       storageClass: rook-ceph-block
@@ -69,17 +69,17 @@ spec:
       backup.velero.io/backup-volumes: nextcloud-data
     internalDatabase:
       enabled: false
-    # resources:
-    #   limits:
-    #     cpu: 23m
-    #     memory: 283Mi
-    #   requests:
-    #     cpu: 23m
-    #     memory: 283Mi
-    # livenessProbe:
-    #   enabled: false
-    # readinessProbe:
-    #   enabled: false
+  #    resources:
+  #      limits:
+  #        cpu: 23m
+  #        memory: 283Mi
+  #      requests:
+  #        cpu: 23m
+  #        memory: 283Mi
+  #    livenessProbe:
+  #      enabled: false
+  #    readinessProbe:
+  #      enabled: false
   valuesFrom:
-  - kind: Secret
-    name: "nextcloud-helm-values"
+    - kind: Secret
+      name: "nextcloud-helm-values"

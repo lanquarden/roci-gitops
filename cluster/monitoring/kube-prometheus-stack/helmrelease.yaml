@@ -20,19 +20,19 @@ spec:
     nodeExporter:
       serviceMonitor:
         relabelings:
-        - action: replace
-          regex: (.*)
-          replacement: $1
-          sourceLabels:
-          - __meta_kubernetes_pod_node_name
-          targetLabel: kubernetes_node
+          - action: replace
+            regex: (.*)
+            replacement: $1
+            sourceLabels:
+              - __meta_kubernetes_pod_node_name
+            targetLabel: kubernetes_node
     kubelet:
       serviceMonitor:
         metricRelabelings:
-        - action: replace
-          sourceLabels:
-          - node
-          targetLabel: instance
+          - action: replace
+            sourceLabels:
+              - node
+            targetLabel: instance
 
     alertmanager:
       ingress:
@@ -45,7 +45,7 @@ spec:
         tls:
           - secretName: alert-manager-cert
             hosts:
-            - "alert-manager.k.lanquarden.com"
+              - "alert-manager.k.lanquarden.com"
       alertmanagerSpec:
         storage:
           volumeClaimTemplate:
@@ -64,7 +64,7 @@ spec:
         tls:
           - secretName: grafana-cert
             hosts:
-            - "grafana.k.lanquarden.com"
+              - "grafana.k.lanquarden.com"
       plugins:
         - natel-discrete-panel
         - pr0ps-trackmap-panel
@@ -76,22 +76,22 @@ spec:
         dashboardproviders.yaml:
           apiVersion: 1
           providers:
-          - name: "default"
-            orgId: 1
-            folder: ""
-            type: file
-            disableDeletion: false
-            editable: true
-            options:
-              path: /var/lib/grafana/dashboards/default
-          - name: "home"
-            orgId: 1
-            folder: "Home"
-            type: file
-            disableDeletion: false
-            editable: true
-            options:
-              path: /var/lib/grafana/dashboards/home
+            - name: "default"
+              orgId: 1
+              folder: ""
+              type: file
+              disableDeletion: false
+              editable: true
+              options:
+                path: /var/lib/grafana/dashboards/default
+            - name: "home"
+              orgId: 1
+              folder: "Home"
+              type: file
+              disableDeletion: false
+              editable: true
+              options:
+                path: /var/lib/grafana/dashboards/home
       dashboards:
         default:
           # Ref: https://grafana.com/grafana/dashboards/2842
@@ -121,15 +121,15 @@ spec:
             url: https://raw.githubusercontent.com/lanquarden/roci-gitops/main/cluster/monitoring/grafana-dashboards/home-heating.json
             datasource: HomeAssistant
       additionalDataSources:
-      - name: Loki
-        type: loki
-        access: proxy
-        url: http://monitoring-loki:3100
-      - name: HomeAssistant
-        type: influxdb
-        access: proxy
-        url: http://home-home-assistant-influxdb.home.svc.cluster.local:8086
-        database: home_assistant
+        - name: Loki
+          type: loki
+          access: proxy
+          url: http://monitoring-loki:3100
+        - name: HomeAssistant
+          type: influxdb
+          access: proxy
+          url: http://home-home-assistant-influxdb.home.svc.cluster.local:8086
+          database: home_assistant
       sidecar:
         dashboards:
           enabled: true
@@ -145,7 +145,7 @@ spec:
         tls:
           - secretName: prometheus-cert
             hosts:
-            - "prometheus.k.lanquarden.com"
+              - "prometheus.k.lanquarden.com"
       prometheusSpec:
         serviceMonitorNamespaceSelector: {}
         serviceMonitorSelector: {}

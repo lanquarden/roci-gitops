@@ -25,13 +25,3 @@ spec:
     bucket:
       disabled: false
       interval: 60s
----
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-   name: rook-ceph-bucket
-provisioner: rook-ceph.ceph.rook.io/bucket
-reclaimPolicy: Retain
-parameters:
-  objectStoreName: ceph-object-store
-  objectStoreNamespace: rook-ceph

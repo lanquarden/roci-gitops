@@ -22,13 +22,13 @@ spec:
           protocol: layer2
           addresses:
             - 192.168.1.15-192.168.1.39
-      #controller:
-      #  prometheus:
-      #    serviceMonitor:
-      #      enabled: true
-      #speaker:
-      #  prometheus:
-      #    serviceMonitor:
-      #      enabled: true
-      #prometheusRule:
-      #  enabled: true
+#      controller:
+#        prometheus:
+#          serviceMonitor:
+#            enabled: true
+#      speaker:
+#        prometheus:
+#          serviceMonitor:
+#            enabled: true
+#      prometheusRule:
+#        enabled: true

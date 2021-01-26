@@ -7,16 +7,26 @@
   // Do not notify on closed unmerged PRs
   "suppressNotifications": ["prIgnoreNotification"],
   "assignees": ["@lanquarden"],
+  "kubernetes": {
+    "fileMatch": ["cluster/.+\\.yaml$"],
+    "ignorePaths": [
+      "cluster/flux-system/",
+      "cluster/actions-runner-system/"
+    ]
+  },
+  "helm-values": {
+    "fileMatch": ["cluster/.+helmrelease\\.yaml$"]
+  },
   "regexManagers": [
     {
-      "fileMatch": ["cluster/.+\\.yaml$"],
+      "fileMatch": ["cluster/.+helmrelease\\.yaml$"],
       "matchStrings": [
         "registryUrl=(?<registryUrl>.*?)\n *chart: (?<depName>.*?)\n *version: (?<currentValue>.*)\n"
       ],
       "datasourceTemplate": "helm"
     }
   ],
-  "enabledManagers": ["regex", "github-actions", "pre-commit"],
+  "enabledManagers": ["kubernetes", "helm-values", "regex", "github-actions", "pre-commit"],
   "packageRules": [
     // Setup datasources
     {

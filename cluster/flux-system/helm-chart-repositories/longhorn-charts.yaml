@@ -8,4 +8,3 @@ spec:
   interval: 1h0m0s
   timeout: 1m0s
   url: https://charts.longhorn.io
-

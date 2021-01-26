@@ -38,7 +38,7 @@ spec:
       tls:
         - secretName: adguard-cert
           hosts:
-          - "adguard.k.lanquarden.com"
+            - "adguard.k.lanquarden.com"
     # Expose DNS service on fixed IP
     serviceUDP:
       enabled: true
