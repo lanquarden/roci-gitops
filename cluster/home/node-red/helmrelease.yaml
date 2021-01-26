@@ -43,9 +43,7 @@ spec:
       data:
         enabled: true
         mountPath: /data
-        storageClass: "rook-ceph-block"
-        accessMode: ReadWriteOnce
-        size: "5Gi"
+        existingClaim: node-red-data
     resources:
       requests:
         memory: 250Mi
