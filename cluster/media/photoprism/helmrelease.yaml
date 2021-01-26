@@ -39,9 +39,8 @@ spec:
     persistence:
       config:
         enabled: true
-        size: 250Gi
-        storageClass: "rook-ceph-block"
         mountPath: /photoprism/storage
+        existingClaim: photoprism-config
       media:
         enabled: true
         mountPath: /photoprism/media
