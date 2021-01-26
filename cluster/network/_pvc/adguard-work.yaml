@@ -10,6 +10,6 @@ spec:
 
   resources:
     requests:
-      storage: 5G0i
+      storage: 5Gi
 
   storageClassName: rook-ceph-block
