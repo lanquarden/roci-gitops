@@ -29,17 +29,20 @@ spec:
             - "nextcloud.k.lanquarden.com"
     persistence:
       enabled: true
-      storageClass: rook-ceph-block
-    mariadb:
+      existingClaim: nextcloud-data
+    postgresql:
       enabled: true
       master:
-        annotations:
+        podAnnotations:
           backup.velero.io/backup-volumes: data
-        persistence:
-          enabled: true
-      replication:
-        enabled: false
       global:
+        postgresql:
+          postgresqlUsername: nextcloud
+          postgresqlPassword: nextcloud
+          postgresqlDatabase: nextcloud
+      persistence:
+        enabled: true
+        existingClaim: postgresql-data
         storageClass: rook-ceph-block
     metrics:
       enabled: true
