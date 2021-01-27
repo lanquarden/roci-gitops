@@ -115,10 +115,10 @@ spec:
         home:
           # custom dashboards
           home-climate:
-            url: https://raw.githubusercontent.com/lanquarden/roci-gitops/main/cluster/monitoring/grafana-dashboards/home-climate.json
+            url: https://raw.githubusercontent.com/lanquarden/roci-gitops/main/cluster/monitoring/kube-prometheus-stack/grafana-dashboards/home-climate.json
             datasource: HomeAssistant
           home-heating:
-            url: https://raw.githubusercontent.com/lanquarden/roci-gitops/main/cluster/monitoring/grafana-dashboards/home-heating.json
+            url: https://raw.githubusercontent.com/lanquarden/roci-gitops/main/cluster/monitoring/kube-prometheus-stack/grafana-dashboards/home-heating.json
             datasource: HomeAssistant
       additionalDataSources:
         - name: Loki
