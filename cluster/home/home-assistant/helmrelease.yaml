@@ -3,9 +3,8 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: home-assistant
-  namespace: flux-system
+  namespace: home
 spec:
-  targetNamespace: home
   interval: 5m
   chart:
     spec:
@@ -47,8 +46,7 @@ spec:
     persistence:
       config:
         enabled: true
-        size: 10Gi
-        storageClass: "rook-ceph-block"
+        existingClaim: home-assistant-data
     monitoring:
       enabled: false
     probes:
@@ -62,18 +60,6 @@ spec:
         memory: 1000Mi
       limits:
         memory: 2500Mi
-    influxdb:
-      enabled: true
-      architecture: standalone
-      database: home_assistant
-      authEnabled: false
-      updateStrategy: Recreate
-      persistence:
-        enabled: true
-        storageClass: "rook-ceph-block"
-        size: 10Gi
-      podannotations:
-        backup.velero.io/backup-volumes: data
     podannotations:
       backup.velero.io/backup-volumes: config
     addons:
