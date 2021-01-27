@@ -3,9 +3,8 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: vernemq
-  namespace: flux-system
+  namespace: home
 spec:
-  targetNamespace: home
   interval: 5m
   chart:
     spec:
