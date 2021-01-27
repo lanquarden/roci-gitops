@@ -38,6 +38,8 @@ spec:
             - /
       tls:
         - secretName: auth-cert
+          hosts:
+            - "auth.k.lanquarden.com"
     middleware:
       enabled: true
       name: forward-auth
