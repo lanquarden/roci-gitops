@@ -3,9 +3,8 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: loki
-  namespace: flux-system
+  namespace: monitoring
 spec:
-  targetNamespace: monitoring
   interval: 5m
   chart:
     spec:

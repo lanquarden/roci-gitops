@@ -34,7 +34,7 @@ then
         # e.g. "pihole"
         secret_name=$(basename "${secret_path}")
         # Get the namespace (based on folder path of manifest)
-        namespace=flux-system
+        namespace=$(basename "$(dirname "${secret_path}")")
         echo "[*] Generating helm secret '${secret_name}' in namespace '${namespace}'..."
         # Create secret
         envsubst < "$file" |

@@ -3,9 +3,8 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: adguard
-  namespace: flux-system
+  namespace: network
 spec:
-  targetNamespace: network
   chart:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
@@ -19,15 +18,12 @@ spec:
     persistence:
       config:
         enabled: true
-        size: 10Mi
-        storageClass: rook-ceph-block
+        existingClaim: adguard-config
         skipuninstall: true
       work:
         enabled: true
-        size: 10Gi
+        existingClaim: adguard-work
         skipUninstall: true
-        storageClass: rook-ceph-block
-        skipuninstall: true
     timezone: "Europe/Madrid"
     ingress:
       enabled: true
