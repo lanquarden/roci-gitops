@@ -14,6 +14,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
+        namespace: flux-system
   values:
     env:
       PHOTOPRISM_SITE_URL: "https://photos.k.lanquarden.com"
