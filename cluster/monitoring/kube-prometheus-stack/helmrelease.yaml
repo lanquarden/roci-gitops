@@ -3,8 +3,9 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: kube-prometheus-stack
-  namespace: monitoring
+  namespace: flux-system
 spec:
+  targetNamespace: monitoring
   interval: 1h
   chart:
     spec:
@@ -49,7 +50,10 @@ spec:
         storage:
           volumeClaimTemplate:
             spec:
-              claimName: alertmanager-db
+              storageClassName: rook-ceph-block
+              resources:
+                requests:
+                  storage: 10Gi
     grafana:
       ingress:
         enabled: true
@@ -149,4 +153,8 @@ spec:
         storageSpec:
           volumeClaimTemplate:
             spec:
-              claimName: prometheus-db
+              storageClassName: rook-ceph-block
+              accessModes: ['ReadWriteOnce']
+              resources:
+                requests:
+                  storage: 20Gi
