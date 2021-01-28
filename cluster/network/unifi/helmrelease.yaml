@@ -22,7 +22,7 @@ spec:
       tag: 6.0.43
     persistence:
       enabled: true
-      exisitingClaim: unifi-data
+      existingClaim: unifi-data
     timezone: "Europe/Madrid"
     runAsRoot: false
     ingress:
