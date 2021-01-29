@@ -48,3 +48,6 @@ spec:
         bucketName: influxdb
     podAnnotations:
       backup.velero.io/backup-volumes: influxdb-data
+  valuesFrom:
+  - kind: Secret
+    name: "influxdb-helm-values"
