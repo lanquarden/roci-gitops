@@ -59,7 +59,7 @@ fi
 #
 # Generic Secrets
 #
-create_generic_secret () {
+create_generic_literal_secret () {
     secret_name=$1
     namespace=$2
     literals="${@:3}"
@@ -85,19 +85,45 @@ create_generic_secret () {
         tee -a "${GENERATED_SECRETS}" >/dev/null 2>&1
 }
 
+create_generic_file_secret () {
+    secret_name=$1
+    namespace=$2
+    key=$3
+    file=$4
+
+    echo "[*] Generating generic secret '${secret_name}' in namespace '${namespace}'..."
+
+    # Create secret
+    envsubst < "$file" |
+        kubectl create secret generic $secret_name --namespace $namespace \
+            --from-file=$key=/dev/stdin --dry-run=client -o json |
+            kubeseal --format yaml --cert="${PUB_CERT}" |
+            # remove null keys
+            yq eval 'del(.metadata.creationTimestamp)' - |
+            yq eval 'del(.spec.template.metadata.creationTimestamp)' - |
+            # Format yaml file
+            sed -e '1s/^/---\n/' |
+            # Write secret
+            tee -a "${GENERATED_SECRETS}" >/dev/null 2>&1
+}
+
 # shellcheck disable=SC2129
 printf "%s\n%s\n%s\n" "#" "# Auto-generated generic secrets -- DO NOT EDIT." "#" >> "${GENERATED_SECRETS}"
 
 # cert manager cloudflare api key
-create_generic_secret "cloudflare-api-key" "network" \
+create_generic_literal_secret "cloudflare-api-key" "network" \
     "api-key=${CERT_MANAGER_CLOUDFLARE_API_KEY}"
 
 # cloudflare dynamic dns
-create_generic_secret "cloudflare-ddns" "network" \
+create_generic_literal_secret "cloudflare-ddns" "network" \
     "cloudflare-ddns-hosts=${CLOUDFLARE_DDNS_HOSTS}" \
     "cloudflare-ddns-token=${CLOUDFLARE_DDNS_TOKEN}" \
     "cloudflare-ddns-user=${CLOUDFLARE_DDNS_USER}" \
     "cloudflare-ddns-zones=${CLOUDFLARE_DDNS_ZONES}"
+
+# influxdb minio access key
+create_generic_file_secret influxdb-minio monitoring credentials \
+    cluster/monitoring/influxdb/influxdb-minio-secret.txt
 
 # Remove empty new-lines
 sed -i '/^[[:space:]]*$/d' "${GENERATED_SECRETS}"

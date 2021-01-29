@@ -39,6 +39,7 @@ spec:
       s3:
         endpointUrl: http://microserver.lanquarden.com:9000
         destination: s3://influxdb/
+        credentialsSecret: influxdb-minio
     backupRetention:
       enabled: true
       schedule: "0 5,17 * * *"
@@ -46,8 +47,6 @@ spec:
       s3:
         endpointUrl: http://microserver.lanquarden.com:9000
         bucketName: influxdb
+        credentialsSecret: influxdb-minio
     podAnnotations:
       backup.velero.io/backup-volumes: influxdb-data
-  valuesFrom:
-  - kind: Secret
-    name: "influxdb-helm-values"
