@@ -81,3 +81,37 @@ Get the details for the bucket
 ```bash
 ./hacks/get-bucket-details.sh
 ```
+
+## Cleaning up
+
+List current PV csi images in use
+
+```bash
+kubectl get pv | grep rook-ceph-block | awk '{print $1}' | xargs -I % bash -c "kubectl get pv -o jsonpath='{.spec.csi.volumeAttributes.imageName}{\"\n\"}' %"
+```
+
+Use the `rook-ceph-tools` pod to list all current rados block devices
+
+```bash
+rbd list --pool replicapool
+```
+
+Get a list of rados block devices to remove and run
+
+```bash
+rbd trash mv -p replicapool <rados block device>
+```
+
+Double check the list
+
+```bash
+rbd trash ls replicapool
+```
+
+Purge trash to free space
+```bash
+rbd trash purge replicapool
+```
+
+When purgeing only those images that expired as specified in the purgeing schedule
+`rbd trash purge schedule list replicapool` will be deleted.
