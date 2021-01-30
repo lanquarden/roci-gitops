@@ -16,6 +16,9 @@ spec:
         name: nextcloud-charts
         namespace: flux-system
   values:
+    image:
+      repository: nextcloud
+      tag: 19.0.3-apache
     ingress:
       enabled: true
       annotations:
