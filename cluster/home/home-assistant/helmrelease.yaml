@@ -40,7 +40,7 @@ spec:
             - path: /
               pathType: Prefix
       tls:
-        - secretName: hass-editor-cert
+        - secretName: hass-cert
           hosts:
             - "hass.k.lanquarden.com"
     persistence:

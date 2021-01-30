@@ -30,6 +30,7 @@ spec:
     ingress:
       enabled: true
       annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
         traefik.ingress.kubernetes.io/router.middlewares: traefik-forward-auth@kubernetescrd
       hosts:
         - host: auth.k.lanquarden.com
