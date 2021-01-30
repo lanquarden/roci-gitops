@@ -59,3 +59,25 @@ umount /mnt/tmp
 rbd unmap -p replicapool csi-vol-e4a2e40f-2795-11eb-80c7-2298c6796a25
 ```
 
+## Buckets
+
+Create a `BucketObjectClaim` with following details
+
+```yaml
+---
+apiVersion: objectbucket.io/v1alpha1
+kind: ObjectBucketClaim
+metadata:
+  name: loki-bucket
+  namespace: rook-ceph
+spec:
+  generateBucketName: loki-bucket
+  storageClassName: rook-ceph-bucket
+```
+
+Get the details for the bucket
+
+
+```bash
+./hacks/get-bucket-details.sh
+```
