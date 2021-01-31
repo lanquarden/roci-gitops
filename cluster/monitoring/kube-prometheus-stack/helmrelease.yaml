@@ -131,6 +131,11 @@ spec:
             gnetId: 11312
             revision: 8
             datasource: Prometheus
+          # Ref: https://grafana.com/grafana/dashboards/11313
+          unifi-usg-insights:
+            gnetId: 11313
+            revision: 8
+            datasource: Prometheus
         home:
           # custom dashboards
           home-climate:
