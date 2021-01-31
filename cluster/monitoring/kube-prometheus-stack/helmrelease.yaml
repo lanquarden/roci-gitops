@@ -146,6 +146,9 @@ spec:
             hosts:
               - "prometheus.k.lanquarden.com"
       prometheusSpec:
+        image:
+          repository: quay.io/prometheus/prometheus
+          tag: v2.24.0
         serviceMonitorNamespaceSelector: {}
         serviceMonitorSelector: {}
         serviceMonitorSelectorNilUsesHelmValues: false
@@ -157,3 +160,9 @@ spec:
               resources:
                 requests:
                   storage: 20Gi
+        resources:
+          requests:
+            cpu: 500m
+            memory: 1500Mi
+          limits:
+            memory: 3000Mi
