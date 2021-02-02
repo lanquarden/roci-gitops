@@ -49,9 +49,7 @@ spec:
     persistence:
       config:
         enabled: true
-        storageClass: "rook-ceph-block"
-        accessMode: ReadWriteOnce
-        size: "5Gi"
+        existingClaim: qbittorrent-config
     podAnnotations:
       backup.velero.io/backup-volumes: config
     additionalVolumeMounts:
