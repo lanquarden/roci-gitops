@@ -19,14 +19,14 @@ spec:
     configInline:
       address-pools:
         - name: default
-#          protocol: bgp
-          protocol: layer2
+          protocol: bgp
+#          protocol: layer2
           addresses:
             - 192.168.1.15-192.168.1.39
       peers:
         - peer-address: 192.168.1.1
-          peer-asn: 64501
-          my-asn: 64500
+          peer-asn: 64512
+          my-asn: 64512
 #      controller:
 #        prometheus:
 #          serviceMonitor:
