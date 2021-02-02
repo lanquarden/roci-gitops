@@ -19,7 +19,7 @@ spec:
           restartPolicy: OnFailure
           containers:
             - name: rclone
-              image: rclone/rclone:1.53
+              image: rclone/rclone:1.54
               env:
                 - name: TZ
                   value: "Europe/New_York"
