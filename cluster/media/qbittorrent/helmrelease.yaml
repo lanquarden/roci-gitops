@@ -56,9 +56,9 @@ spec:
       - name: nfs-media
         mountPath: "/media"
     additionalVolumes:
-      - name: nfs-data
+      - name: nfs-media
         persistentVolumeClaim:
-          claimName: nfs-data-pvc
+          claimName: nfs-media-pvc
     resources:
       requests:
         memory: 250Mi
