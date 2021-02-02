@@ -19,8 +19,8 @@ spec:
     configInline:
       address-pools:
         - name: default
-          protocol: bgp
-#          protocol: layer2
+#          protocol: bgp
+          protocol: layer2
           addresses:
             - 192.168.1.15-192.168.1.39
       peers:
