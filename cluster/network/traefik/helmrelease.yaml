@@ -19,6 +19,8 @@ spec:
     logs:
       general:
         level: DEBUG
+      access:
+        enabled: true
     deployment:
       podAnnotations:
         prometheus.io/scrape: "true"
