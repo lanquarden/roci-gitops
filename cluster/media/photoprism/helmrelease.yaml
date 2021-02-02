@@ -16,6 +16,9 @@ spec:
         name: k8s-at-home-charts
         namespace: flux-system
   values:
+    image:
+      repository: photoprism/photoprism
+      tag: "20210128"
     env:
       PHOTOPRISM_SITE_URL: "https://photos.k.lanquarden.com"
       PHOTOPRISM_SITE_TITLE: "Home Pictures"
