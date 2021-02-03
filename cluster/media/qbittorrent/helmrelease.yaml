@@ -44,7 +44,8 @@ spec:
             - path: /
               pathType: Prefix
       tls:
-        - hosts:
+        - secretName: qbittorrent-cert
+          hosts:
             - "torrent.k.lanquarden.com"
     persistence:
       config:
