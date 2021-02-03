@@ -1,0 +1,66 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: lidarr
+  namespace: media
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: lidarr
+      version: 6.3.1
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    controllerType: deployment
+    image:
+      repository: k8sathome/lidarr
+      tag: v0.8.0.2042
+    env:
+      TZ: "Europe/Madrid"
+    ingress:
+      enabled: true
+      hosts:
+        - host: lidarr.k.lanquarden.com
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - secretName: lidarr-cert
+          hosts:
+            - "lidarr.k.lanquarden.com"
+      additionalIngresses:
+        - enabled: true
+          nameSuffix: "api"
+          hosts:
+            - host: lidarr.k.lanquarden.com
+              paths:
+                - path: /api
+                  pathType: Prefix
+          tls:
+            - hosts:
+                - "lidarr.k.lanquarden.com"
+    persistence:
+      config:
+        enabled: true
+        existingClaim: lidarr-config
+    podAnnotations:
+      backup.velero.io/backup-volumes: config
+    additionalVolumeMounts:
+      - name: nfs-media
+        mountPath: "/media"
+    additionalVolumes:
+      - name: nfs-media
+        persistentVolumeClaim:
+          claimName: nfs-media-pvc
+    resources:
+      requests:
+        memory: 250Mi
+        cpu: 500m
+      limits:
+        memory: 1500Mi
