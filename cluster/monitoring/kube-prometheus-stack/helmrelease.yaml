@@ -173,7 +173,7 @@ spec:
       prometheusSpec:
         image:
           repository: quay.io/prometheus/prometheus
-          tag: v2.24.0
+          tag: v2.24.1
         serviceMonitorNamespaceSelector: {}
         serviceMonitorSelector: {}
         serviceMonitorSelectorNilUsesHelmValues: false
