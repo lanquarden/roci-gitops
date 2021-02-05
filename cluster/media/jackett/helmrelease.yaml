@@ -31,7 +31,8 @@ spec:
             - path: /
               pathType: Prefix
       tls:
-        - hosts:
+        - secretName: jackett-cert
+          hosts:
             - "jackett.k.lanquarden.com"
     persistence:
       config:
