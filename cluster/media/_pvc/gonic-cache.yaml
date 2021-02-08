@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: gonic-data
+  name: gonic-cache
   namespace: media
 spec:
   accessModes:
