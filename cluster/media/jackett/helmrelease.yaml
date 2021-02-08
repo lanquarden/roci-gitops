@@ -20,7 +20,7 @@ spec:
     controllerType: deployment
     image:
       repository: k8sathome/jackett
-      tag: v0.17.456
+      tag: v0.17.474
     env:
       TZ: "Europe/Madrid"
     ingress:
