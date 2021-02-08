@@ -1,0 +1,63 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: gonic
+  namespace: media
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: gonic
+      version: 2.1.0
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    controllerType: deployment
+    image:
+      repository: sentriz/gonic
+      tag: v0.12.0
+    env:
+      TZ: "Europe/Madrid"
+      GONIC_MUSIC_PATH: "/media/music"
+      GONIC_CACHE_PATH: "/cache"
+      GONIC_SCAN_INTERVAL: "120"
+    ingress:
+      enabled: true
+      hosts:
+        - host: music.k.lanquarden.com
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - secretName: gonic-cert
+          hosts:
+            - "music.k.lanquarden.com"
+    persistence:
+      data:
+        enabled: true
+        mountPath: "/data"
+        existingClaim: gonic-data
+      cache:
+        enabled: true
+        mountPath: "/cache"
+        existingClaim: gonic-cache
+    podAnnotations:
+      backup.velero.io/backup-volumes: data
+    additionalVolumeMounts:
+      - name: nfs-media
+        mountPath: "/media"
+    additionalVolumes:
+      - name: nfs-media
+        persistentVolumeClaim:
+          claimName: nfs-media-pvc
+    resources:
+      requests:
+        memory: 250Mi
+        cpu: 500m
+      limits:
+        memory: 1500Mi
