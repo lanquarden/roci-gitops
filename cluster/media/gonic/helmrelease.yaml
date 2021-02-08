@@ -24,6 +24,7 @@ spec:
     env:
       TZ: "Europe/Madrid"
       GONIC_MUSIC_PATH: "/media/music"
+      GONIC_PODCAST_PATH: "/media/podcasts"
       GONIC_CACHE_PATH: "/cache"
       GONIC_SCAN_INTERVAL: "120"
     ingress:
