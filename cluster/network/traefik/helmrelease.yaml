@@ -55,5 +55,5 @@ spec:
       enabled: true
       type: LoadBalancer
       spec:
-        loadBalancerIP: 192.168.0.1
+        loadBalancerIP: 192.168.1.15
         externalTrafficPolicy: Local
