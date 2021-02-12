@@ -20,7 +20,7 @@ spec:
       general:
         level: DEBUG
       access:
-        enabled: true
+        enabled: false
     deployment:
       podAnnotations:
         prometheus.io/scrape: "true"
