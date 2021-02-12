@@ -41,6 +41,6 @@ spec:
       enabled: true
       type: LoadBalancer
       externalTrafficPolicy: Local
-      loadBalancerIP: 192.168.0.2
+      loadBalancerIP: 192.168.1.16
     podAnnotations:
       backup.velero.io/backup-volumes: config
