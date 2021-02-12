@@ -29,6 +29,8 @@ spec:
       GONIC_SCAN_INTERVAL: "120"
     ingress:
       enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
       hosts:
         - host: music.k.lanquarden.com
           paths:

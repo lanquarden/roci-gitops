@@ -25,6 +25,8 @@ spec:
       TZ: "Europe/Madrid"
     ingress:
       enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
       hosts:
         - host: lidarr.k.lanquarden.com
           paths:
