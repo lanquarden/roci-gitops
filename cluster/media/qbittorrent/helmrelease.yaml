@@ -38,6 +38,8 @@ spec:
           externalTrafficPolicy: Local
     ingress:
       enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
       hosts:
         - host: torrent.k.lanquarden.com
           paths:
