@@ -54,6 +54,8 @@ spec:
           externalTrafficPolicy: Local
           loadBalancerIP: 192.168.1.16
           nameSuffix: dns-udp
+          annotations:
+            metallb.universe.tf/allow-shared-ip: unifi
           port:
             port: 53
             name: dns-udp
