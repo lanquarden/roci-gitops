@@ -45,18 +45,19 @@ spec:
             - "adguard.k.lanquarden.com"
     # Expose DNS service on fixed IP
     service:
+      enabled: true
       port:
         port: 3000
-        additionalServices:
-          - enabled: true
-            type: LoadBalancer
-            externalTrafficPolicy: Local
-            loadBalancerIP: 192.168.1.16
-            nameSuffix: dns-udp
-            port:
-              port: 53
-              name: dns-udp
-              protocol: UDP
-              targetPort: 53
+      additionalServices:
+        - enabled: true
+          type: LoadBalancer
+          externalTrafficPolicy: Local
+          loadBalancerIP: 192.168.1.16
+          nameSuffix: dns-udp
+          port:
+            port: 53
+            name: dns-udp
+            protocol: UDP
+            targetPort: 53
     podAnnotations:
       backup.velero.io/backup-volumes: config
