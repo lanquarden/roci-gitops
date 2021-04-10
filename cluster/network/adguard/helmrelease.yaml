@@ -9,23 +9,27 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: adguard-home
-      version: 2.2.3
+      version: 3.1.0
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
         namespace: flux-system
   interval: 1h0m0s
   values:
+    image:
+      repository: adguard/adguardhome
+      tag: v0.105.2
     persistence:
       config:
         enabled: true
         existingClaim: adguard-config
         skipuninstall: true
-      work:
+      data:
         enabled: true
         existingClaim: adguard-work
-        skipUninstall: true
-    timezone: "Europe/Madrid"
+        skipuninstall: true
+    env:
+      TZ: "Europe/Madrid"
     ingress:
       enabled: true
       annotations:
@@ -37,10 +41,19 @@ spec:
           hosts:
             - "adguard.k.lanquarden.com"
     # Expose DNS service on fixed IP
-    serviceUDP:
-      enabled: true
-      type: LoadBalancer
-      externalTrafficPolicy: Local
-      loadBalancerIP: 192.168.1.16
+    service:
+      port:
+        port: 3000
+        additionalServices:
+          - enabled: true
+            type: LoadBalancer
+            externalTrafficPolicy: Local
+            loadBalancerIP: 192.168.1.16
+            nameSuffix: dns-udp
+            port:
+              port: 53
+              name: dns-udp
+              protocol: UDP
+              targetPort: 53
     podAnnotations:
       backup.velero.io/backup-volumes: config
