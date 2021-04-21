@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: lidarr
-      version: 8.3.1
+      version: 9.0.0
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -19,8 +19,8 @@ spec:
   values:
     controllerType: deployment
     image:
-      repository: k8sathome/lidarr
-      tag: v0.8.0.2062
+      repository: ghcr.io/k8s-at-home/lidarr
+      tag: v0.8.1.2134
     env:
       TZ: "Europe/Madrid"
     ingress:
