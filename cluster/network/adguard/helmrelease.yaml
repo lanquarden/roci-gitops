@@ -35,7 +35,7 @@ spec:
             mountPath: /opt/adguardhome/conf
         securityContext:
           runAsUser: 0
-        pullPolicy: IfNotPresent
+        imagePullPolicy: IfNotPresent
     image:
       repository: adguard/adguardhome
       tag: v0.105.2
