@@ -19,8 +19,8 @@ spec:
   values:
     controllerType: deployment
     image:
-      repository: k8sathome/lidarr
-      tag: v0.8.0.2062
+      repository: ghcr.io/k8s-at-home/lidarr
+      tag: v0.8.1.2134
     env:
       TZ: "Europe/Madrid"
     ingress:
