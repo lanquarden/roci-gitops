@@ -77,7 +77,7 @@ spec:
     externalDatabase:
       enabled: true
       type: postgresql
-      host: nextcloud-postgresql
+      host: nextcloud-postgresql-headless
   #    resources:
   #      limits:
   #        cpu: 23m
