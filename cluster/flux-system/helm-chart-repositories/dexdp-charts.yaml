@@ -2,9 +2,9 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
 metadata:
-  name: dexdp-charts
+  name: dex-charts
   namespace: flux-system
 spec:
   interval: 10m
-  url: https://charts.dexdp.io
+  url: https://charts.dexidp.io
   timeout: 3m

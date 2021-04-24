@@ -13,7 +13,7 @@ spec:
       version: 0.0.7
       sourceRef:
         kind: HelmRepository
-        name: dexdp-charts
+        name: dex-charts
         namespace: flux-system
       interval: 10m
   test:
