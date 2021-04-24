@@ -8,12 +8,12 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://wiremind.github.com/wiremind-helm-charts
+      # renovate: registryUrl=https://charts.dexidp.io
       chart: dex
-      version: 2.15.3
+      version: 0.0.7
       sourceRef:
         kind: HelmRepository
-        name: wiremind-charts
+        name: dexdp-charts
         namespace: flux-system
       interval: 10m
   test:

@@ -2,9 +2,9 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
 metadata:
-  name: wiremind-charts
+  name: dexdp-charts
   namespace: flux-system
 spec:
   interval: 10m
-  url: https://wiremind.github.com/wiremind-helm-charts
+  url: https://charts.dexdp.io
   timeout: 3m
