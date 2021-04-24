@@ -31,21 +31,29 @@ spec:
     cleanupOnFail: true
     recreate: true
   values:
-    livenessProbe:
-      initialDelaySeconds: 5
-    grpc: false
-    replicas: 2
-    image: docker.io/dexidp/dex
-    imageTag: "v2.26.0"
-    ports:
+    image:
+      repository: docker.io/dexidp/dex
+      tag: v2.28.1
+    env:
+      KUBERNETES_POD_NAMESPACE: network
+    config:
+      issuer: https://dex.k.lanquarden.com
+      storage:
+        type: kubernetes
+        config:
+          inCluster: true
+      oauth2:
+        alwaysShowLoginScreen: false
+        responseTypes: ['code', 'token', 'id_token']
+        skipApprovalScreen: true
       web:
-        servicePort: 5556
-    certs:
-      image: gcr.io/google_containers/kubernetes-dashboard-init-arm
-      grpc:
-        create: false
-      web:
-        create: false
+        http: 0.0.0.0:5556
+      frontend:
+        theme: 'tecktonic'
+        issuer: 'Lanquarden'
+        issuerUrl: 'https://dex.k.lanquarden.com'
+        logoURL: https://raw.githubusercontent.com/raspbernetes/docs/master/website/static/img/logo.png
+      enablePasswordDB: false
     ingress:
       enabled: true
       annotations:
@@ -56,15 +64,6 @@ spec:
         - secretName: dex-cert
           hosts:
             - dex.k.lanquarden.com
-    config:
-      issuer: https://dex.k.lanquarden.com
-      enablePasswordDB: false
-      oauth2:
-        responseTypes: ["code", "token", "id_token"]
-        skipApprovalScreen: true
-      frontend:
-        logoURL: https://raw.githubusercontent.com/raspbernetes/docs/master/website/static/img/logo.png
-        theme: 'tectonic'
   valuesFrom:
     - kind: Secret
       name: "dex-helm-values"
