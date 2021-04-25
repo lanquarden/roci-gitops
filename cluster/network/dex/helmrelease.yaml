@@ -49,7 +49,7 @@ spec:
       web:
         http: 0.0.0.0:5556
       frontend:
-        theme: 'tecktonic'
+        theme: 'tectonic'
         issuer: 'Lanquarden'
         issuerUrl: 'https://dex.k.lanquarden.com'
         logoURL: https://raw.githubusercontent.com/raspbernetes/docs/master/website/static/img/logo.png
