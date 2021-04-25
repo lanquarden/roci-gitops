@@ -59,7 +59,10 @@ spec:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-production
       hosts:
-        - dex.k.lanquarden.com
+        - host: dex.k.lanquarden.com
+          paths:
+            - path: /
+              pathType: ImplementationSpecific
       tls:
         - secretName: dex-cert
           hosts:
