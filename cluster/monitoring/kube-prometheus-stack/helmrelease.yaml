@@ -163,6 +163,7 @@ spec:
     prometheus:
       ingress:
         enabled: true
+        pathType: ImplementationSpecific
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-production
         hosts:
