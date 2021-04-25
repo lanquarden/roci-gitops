@@ -36,6 +36,7 @@ spec:
     alertmanager:
       ingress:
         enabled: true
+        pathType: ImplementationSpecific
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-production
           traefik.ingress.kubernetes.io/router.middlewares: network-internal@kubernetescrd
