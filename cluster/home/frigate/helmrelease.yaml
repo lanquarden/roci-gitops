@@ -118,3 +118,7 @@ spec:
       limits:
         gpu.intel.com/i915: 1
         memory: 1000Mi
+  valuesFrom:
+    - kind: Secret
+      name: "frigate-helm-values"
+      optional: false
