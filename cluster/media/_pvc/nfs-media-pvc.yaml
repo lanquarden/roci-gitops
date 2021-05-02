@@ -1,34 +1,13 @@
 ---
 apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: home-nfs-media-pv
-spec:
-  storageClassName: home-nfs-media
-  capacity:
-    storage: 1Mi
-  accessModes:
-  - ReadWriteMany
-  persistentVolumeReclaimPolicy: Retain
-  nfs:
-    server: microserver.lanquarden.com
-    path: /exports/media
-  mountOptions:
-  - tcp
-  - intr
-  - hard
-  - noatime
-  - nodiratime
----
-apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: nfs-media-pvc
-  namespace: media
+  namespace: home
 spec:
   accessModes:
   - ReadWriteMany
-  storageClassName: home-nfs-media
+  storageClassName: nfs-media
   resources:
     requests:
       storage: 1Mi
