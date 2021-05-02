@@ -92,7 +92,7 @@ spec:
                   - record
                   - rtmp
           width: 320
-          height: 240
+          height: 180
           fps: 5
           clips:
             enabled: True
