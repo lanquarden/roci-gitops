@@ -23,7 +23,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: nfs-media-pvc
+  name: home-nfs-media-pvc
   namespace: home
 spec:
   accessModes:

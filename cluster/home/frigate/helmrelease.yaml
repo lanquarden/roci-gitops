@@ -36,7 +36,7 @@ spec:
     extraVolumes:
       - name: frigate-media
         persistentVolumeClaim:
-          claimName: nfs-media-pvc
+          claimName: home-nfs-media-pvc
       - name: cache
         emptyDir:
           medium: Memory
