@@ -38,7 +38,7 @@ spec:
         imagePullPolicy: IfNotPresent
     image:
       repository: adguard/adguardhome
-      tag: v0.106.1
+      tag: v0.106.2
     persistence:
       config:
         enabled: true
