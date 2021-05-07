@@ -47,7 +47,7 @@ spec:
       media:
         enabled: true
         mountPath: /photoprism/media
-        existingClaim: nfs-media-pvc
+        existingClaim: media-nfs-media-pvc
     podAnnotations:
       backup.velero.io/backup-volumes: config
   valuesFrom:

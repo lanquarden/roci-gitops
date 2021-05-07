@@ -57,7 +57,7 @@ spec:
     additionalVolumes:
       - name: nfs-media
         persistentVolumeClaim:
-          claimName: nfs-media-pvc
+          claimName: media-nfs-media-pvc
     resources:
       requests:
         memory: 250Mi

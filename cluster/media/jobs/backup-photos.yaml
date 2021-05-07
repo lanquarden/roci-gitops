@@ -48,7 +48,7 @@ spec:
           volumes:
             - name: nfs-data
               persistentVolumeClaim:
-                claimName: nfs-data-pvc
+                claimName: media-nfs-data-pvc
             - name: nfs-media
               persistentVolumeClaim:
-                claimName: nfs-media-pvc
+                claimName: media-nfs-media-pvc
