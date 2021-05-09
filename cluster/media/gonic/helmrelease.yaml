@@ -20,7 +20,7 @@ spec:
     controllerType: deployment
     image:
       repository: sentriz/gonic
-      tag: v0.12.3
+      tag: v0.13.1
     env:
       TZ: "Europe/Madrid"
       GONIC_MUSIC_PATH: "/media/music"
