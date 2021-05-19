@@ -41,14 +41,9 @@ spec:
                 - "/nfs/media/pictures"
                 - "b2-backup-photos:/"
               volumeMounts:
-                - name: nfs-data
-                  mountPath: /nfs/data
                 - name: nfs-media
                   mountPath: /nfs/media
           volumes:
-            - name: nfs-data
-              persistentVolumeClaim:
-                claimName: media-nfs-data-pvc
             - name: nfs-media
               persistentVolumeClaim:
                 claimName: media-nfs-media-pvc

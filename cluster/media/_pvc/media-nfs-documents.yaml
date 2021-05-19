@@ -2,9 +2,9 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: media-nfs-data-pv
+  name: media-nfs-documents-pv
 spec:
-  storageClassName: media-nfs-data
+  storageClassName: media-nfs-documents
   capacity:
     storage: 1Mi
   accessModes:
@@ -24,12 +24,12 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: media-nfs-data-pvc
+  name: media-nfs-documents-pvc
   namespace: media
 spec:
   accessModes:
   - ReadWriteMany
-  storageClassName: media-nfs-data
+  storageClassName: media-nfs-documents
   resources:
     requests:
       storage: 1Mi

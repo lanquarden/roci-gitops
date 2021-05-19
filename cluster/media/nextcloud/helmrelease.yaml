@@ -59,17 +59,17 @@ spec:
       host: nextcloud.k.lanquarden.com
       username: admin
       extraVolumes:
-        - name: nfs-data
+        - name: nfs-documents
           persistentVolumeClaim:
-            claimName: media-nfs-data-pvc
-        - name: nfs-media
+            claimName: media-nfs-documents-pvc
+        - name: nfs-unsorted
           persistentVolumeClaim:
-            claimName: media-nfs-media-pvc
+            claimName: media-nfs-unsorted-pvc
       extraVolumeMounts:
-        - name: nfs-data
-          mountPath: /nfs/data
-        - name: nfs-media
-          mountPath: /nfs/media
+        - name: nfs-documents
+          mountPath: /nfs/documents
+        - name: nfs-unsorted
+          mountPath: /nfs/unsorted
     podAnnotations:
       backup.velero.io/backup-volumes: nextcloud-data
     internalDatabase:

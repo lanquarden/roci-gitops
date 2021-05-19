@@ -34,15 +34,15 @@ spec:
         existingClaim: frigate-data
 
     extraVolumes:
-      - name: frigate-media
+      - name: nfs-frigate
         persistentVolumeClaim:
-          claimName: home-nfs-media-pvc
+          claimName: home-nfs-frigate-pvc
       - name: cache
         emptyDir:
           medium: Memory
 
     extraVolumeMounts:
-      - name: frigate-media
+      - name: nfs-frigate
         mountPath: /media
       - mountPath: /tmp/cache
         name: cache

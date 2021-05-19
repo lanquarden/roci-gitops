@@ -25,7 +25,7 @@ spec:
       PHOTOPRISM_SITE_AUTHOR: "@lanquarden"
       PHOTOPRISM_ORIGINALS_PATH: /photoprism/media/pictures/
       PHOTOPRISM_STORAGE_PATH: /photoprism/storage/
-      PHOTOPRISM_IMPORT_PATH: /photoprism/media/unsorted/pictures/
+      PHOTOPRISM_IMPORT_PATH: /photoprism/unsorted/pictures/
     ingress:
       enabled: true
       annotations:
@@ -48,6 +48,10 @@ spec:
         enabled: true
         mountPath: /photoprism/media
         existingClaim: media-nfs-media-pvc
+      unsorted:
+        enabled: true
+        mountPath: /photoprism/unsorted
+        existingClaim: media-nfs-unsorted-pvc
     podAnnotations:
       backup.velero.io/backup-volumes: config
   valuesFrom:
