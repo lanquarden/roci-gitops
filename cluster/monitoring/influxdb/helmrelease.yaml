@@ -37,16 +37,16 @@ spec:
       enabled: true
       schedule: "0 4,16 * * *"
       s3:
-        endpointUrl: http://microserver.lanquarden.com:9000
-        destination: s3://influxdb/
-        credentialsSecret: influxdb-minio
+        endpointUrl: http://storone.lanquarden.com
+        destination: s3://backup-influxdb/
+        credentialsSecret: influxdb-ceph
     backupRetention:
       enabled: true
       schedule: "0 5,17 * * *"
       daysToRetain: 5
       s3:
-        endpointUrl: http://microserver.lanquarden.com:9000
-        bucketName: influxdb
-        credentialsSecret: influxdb-minio
+        endpointUrl: http://storone.lanquarden.com
+        bucketName: backup-influxdb
+        credentialsSecret: influxdb-ceph
     podAnnotations:
       backup.velero.io/backup-volumes: influxdb-data

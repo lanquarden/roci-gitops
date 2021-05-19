@@ -24,16 +24,16 @@ spec:
       provider: aws
       backupStorageLocation:
         name: default
-        bucket: velero
+        bucket: backup-velero
         config:
-          region: us-east-1
+          region: home
           s3ForcePathStyle: true
-          s3Url: http://microserver.lanquarden.com:9000
-          publicUrl: http://microserver.lanquarden.com:9000
+          s3Url: http://storone.lanquarden.com
+          publicUrl: http://storone.lanquarden.com
       volumeSnapshotLocation:
         name: aws
         config:
-          region: us-east-1
+          region: home
       resticTimeout: 6h
     initContainers:
     # - name: velero-plugin-for-csi

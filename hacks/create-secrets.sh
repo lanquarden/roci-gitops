@@ -122,8 +122,8 @@ create_generic_literal_secret "cloudflare-ddns" "network" \
     "cloudflare-ddns-zones=${CLOUDFLARE_DDNS_ZONES}"
 
 # influxdb minio access key
-create_generic_file_secret influxdb-minio monitoring credentials \
-    cluster/monitoring/influxdb/influxdb-minio-secret.txt
+create_generic_file_secret influxdb-ceph monitoring credentials \
+    cluster/monitoring/influxdb/influxdb-ceph-secret.txt
 
 # Remove empty new-lines
 sed -i '/^[[:space:]]*$/d' "${GENERATED_SECRETS}"
