@@ -56,10 +56,15 @@ spec:
     additionalVolumeMounts:
       - name: nfs-media
         mountPath: "/media"
+      - name: nfs-unsorted
+        mountPath: "/unsorted"
     additionalVolumes:
       - name: nfs-media
         persistentVolumeClaim:
           claimName: media-nfs-media-pvc
+      - name: nfs-unsorted
+        persistentVolumeClaim:
+          claimName: media-nfs-unsorted-pvc
     resources:
       requests:
         memory: 250Mi
