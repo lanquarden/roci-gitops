@@ -57,11 +57,11 @@ spec:
       backup.velero.io/backup-volumes: config
     additionalVolumeMounts:
       - name: nfs-media
-        mountPath: "/media"
+        mountPath: "/unsorted"
     additionalVolumes:
       - name: nfs-media
         persistentVolumeClaim:
-          claimName: media-nfs-media-pvc
+          claimName: media-nfs-unsorted-pvc
     resources:
       requests:
         memory: 250Mi
