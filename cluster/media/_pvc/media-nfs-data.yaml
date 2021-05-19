@@ -11,8 +11,8 @@ spec:
   - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   nfs:
-    server: microserver.lanquarden.com
-    path: /exports/data
+    server: storone.lanquarden.com
+    path: /data
   mountOptions:
   - tcp
   - intr
