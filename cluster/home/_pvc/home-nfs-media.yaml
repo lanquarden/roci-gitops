@@ -14,6 +14,7 @@ spec:
     server: storone.lanquarden.com
     path: /media
   mountOptions:
+  - nfsvers=4.1
   - tcp
   - intr
   - hard

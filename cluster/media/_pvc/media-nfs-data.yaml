@@ -12,8 +12,9 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   nfs:
     server: storone.lanquarden.com
-    path: /data
+    path: /documents
   mountOptions:
+  - nfsvers=4.1
   - tcp
   - intr
   - hard
