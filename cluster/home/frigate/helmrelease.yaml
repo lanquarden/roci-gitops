@@ -43,7 +43,7 @@ spec:
 
     extraVolumeMounts:
       - name: nfs-frigate
-        mountPath: /media
+        mountPath: /media/frigate
       - mountPath: /tmp/cache
         name: cache
 
