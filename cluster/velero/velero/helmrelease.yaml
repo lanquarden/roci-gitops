@@ -58,6 +58,13 @@ spec:
     restic:
       podVolumePath: /var/lib/kubelet/pods
       privileged: false
+      resources:
+        requests:
+          cpu: 500m
+          memory: 512Mi
+        limits:
+          cpu: 1000m
+          memory: 1524Mi
     schedules:
       bi-daily-backup:
         schedule: "0 6,18 * * *"
