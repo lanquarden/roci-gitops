@@ -2493,7 +2493,7 @@ spec:
       - args:
         - --events-addr=http://notification-controller/
         - --watch-all-namespaces=true
-        - --log-level=debug
+        - --log-level=info
         - --log-encoding=json
         - --enable-leader-election
         env:
@@ -2566,7 +2566,7 @@ spec:
       - args:
         - --events-addr=http://notification-controller/
         - --watch-all-namespaces=true
-        - --log-level=debug
+        - --log-level=info
         - --log-encoding=json
         - --enable-leader-election
         env:
