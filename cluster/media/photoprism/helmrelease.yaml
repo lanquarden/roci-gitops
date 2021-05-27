@@ -26,6 +26,7 @@ spec:
       PHOTOPRISM_ORIGINALS_PATH: /photoprism/media/pictures/
       PHOTOPRISM_STORAGE_PATH: /photoprism/storage/
       PHOTOPRISM_IMPORT_PATH: /photoprism/unsorted/pictures/
+      PHOTOPRISM_ORIGINALS_LIMIT: 5000
     ingress:
       enabled: true
       annotations:
