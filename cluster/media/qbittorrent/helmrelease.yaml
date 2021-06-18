@@ -24,44 +24,41 @@ spec:
     env:
       TZ: "Europe/Madrid"
     service:
-      additionalServices:
-        - enabled: true
-          nameSuffix: bittorrent
-          type: LoadBalancer
-          externalIPs:
-            - 192.168.1.21
-          port:
+      bittorrent:
+        enabled: true
+        type: LoadBalancer
+        externalIPs:
+          - 192.168.1.21
+        ports:
+          bittorrent:
             port: 50413
-            name: bittorrent
             protocol: TCP
             targetPort: 6881
-          externalTrafficPolicy: Local
+        externalTrafficPolicy: Local
     ingress:
-      enabled: true
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-production
-      hosts:
-        - host: torrent.k.lanquarden.com
-          paths:
-            - path: /
-              pathType: Prefix
-      tls:
-        - secretName: qbittorrent-cert
-          hosts:
-            - "torrent.k.lanquarden.com"
+      main:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-production
+        hosts:
+          - host: torrent.k.lanquarden.com
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - secretName: qbittorrent-cert
+            hosts:
+              - "torrent.k.lanquarden.com"
     persistence:
       config:
         enabled: true
         existingClaim: qbittorrent-config
+      unsorted:
+        enabled: true
+        mountPath: "/unsorted"
+        existingClaim: media-nfs-unsorted-pvc
     podAnnotations:
       backup.velero.io/backup-volumes: config
-    additionalVolumeMounts:
-      - name: nfs-media
-        mountPath: "/unsorted"
-    additionalVolumes:
-      - name: nfs-media
-        persistentVolumeClaim:
-          claimName: media-nfs-unsorted-pvc
     resources:
       requests:
         memory: 250Mi
