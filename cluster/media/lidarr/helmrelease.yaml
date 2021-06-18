@@ -24,47 +24,43 @@ spec:
     env:
       TZ: "Europe/Madrid"
     ingress:
-      enabled: true
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-production
-      hosts:
-        - host: lidarr.k.lanquarden.com
-          paths:
-            - path: /
-              pathType: Prefix
-      tls:
-        - secretName: lidarr-cert
-          hosts:
-            - "lidarr.k.lanquarden.com"
-      additionalIngresses:
-        - enabled: true
-          nameSuffix: "api"
-          hosts:
-            - host: lidarr.k.lanquarden.com
-              paths:
-                - path: /api
-                  pathType: Prefix
-          tls:
-            - hosts:
-                - "lidarr.k.lanquarden.com"
+      main:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-production
+        hosts:
+          - host: lidarr.k.lanquarden.com
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - secretName: lidarr-cert
+            hosts:
+              - "lidarr.k.lanquarden.com"
+      api:
+        enabled: true
+        hosts:
+          - host: lidarr.k.lanquarden.com
+            paths:
+              - path: /api
+                pathType: Prefix
+        tls:
+          - hosts:
+              - "lidarr.k.lanquarden.com"
     persistence:
       config:
         enabled: true
         existingClaim: lidarr-config
+      media:
+        enabled: true
+        mountPath: "/media"
+        existingClaim: media-nfs-media-pvc
+      unsorted:
+        enabled: true
+        mountPath: "/unsorted"
+        existingClaim: media-nfs-unsorted-pvc
     podAnnotations:
       backup.velero.io/backup-volumes: config
-    additionalVolumeMounts:
-      - name: nfs-media
-        mountPath: "/media"
-      - name: nfs-unsorted
-        mountPath: "/unsorted"
-    additionalVolumes:
-      - name: nfs-media
-        persistentVolumeClaim:
-          claimName: media-nfs-media-pvc
-      - name: nfs-unsorted
-        persistentVolumeClaim:
-          claimName: media-nfs-unsorted-pvc
     resources:
       requests:
         memory: 250Mi
