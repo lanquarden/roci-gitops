@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: photoprism
-      version: 4.4.0
+      version: 5.2.0
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -28,18 +28,19 @@ spec:
       PHOTOPRISM_IMPORT_PATH: /photoprism/unsorted/pictures/
       PHOTOPRISM_ORIGINALS_LIMIT: 5000
     ingress:
-      enabled: true
-      annotations:
-        cert-manager.io/cluster-issuer: "letsencrypt-production"
-      hosts:
-        - host: photos.k.lanquarden.com
-          paths:
-            - path: /
-              pathType: Prefix
-      tls:
-        - secretName: photoprism-cert
-          hosts:
-            - photos.k.lanquarden.com
+      main:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+        hosts:
+          - host: photos.k.lanquarden.com
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - secretName: photoprism-cert
+            hosts:
+              - photos.k.lanquarden.com
     persistence:
       config:
         enabled: true
