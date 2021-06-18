@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: gonic
-      version: 4.4.0
+      version: 5.2.0
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -28,18 +28,19 @@ spec:
       GONIC_CACHE_PATH: "/cache"
       GONIC_SCAN_INTERVAL: "120"
     ingress:
-      enabled: true
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-production
-      hosts:
-        - host: music.k.lanquarden.com
-          paths:
-            - path: /
-              pathType: Prefix
-      tls:
-        - secretName: gonic-cert
-          hosts:
-            - "music.k.lanquarden.com"
+      main:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-production
+        hosts:
+          - host: music.k.lanquarden.com
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - secretName: gonic-cert
+            hosts:
+              - "music.k.lanquarden.com"
     persistence:
       data:
         enabled: true
@@ -49,15 +50,12 @@ spec:
         enabled: true
         mountPath: "/cache"
         existingClaim: gonic-cache
+      media:
+        enabled: true
+        mountPath: "/media"
+        existingClaim: media-nfs-media-pvc
     podAnnotations:
       backup.velero.io/backup-volumes: data
-    additionalVolumeMounts:
-      - name: nfs-media
-        mountPath: "/media"
-    additionalVolumes:
-      - name: nfs-media
-        persistentVolumeClaim:
-          claimName: media-nfs-media-pvc
     resources:
       requests:
         memory: 250Mi
