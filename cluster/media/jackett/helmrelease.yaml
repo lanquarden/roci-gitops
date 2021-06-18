@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: jackett
-      version: 9.1.0
+      version: 10.2.0
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -24,18 +24,19 @@ spec:
     env:
       TZ: "Europe/Madrid"
     ingress:
-      enabled: true
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-production
-      hosts:
-        - host: jackett.k.lanquarden.com
-          paths:
-            - path: /
-              pathType: Prefix
-      tls:
-        - secretName: jackett-cert
-          hosts:
-            - "jackett.k.lanquarden.com"
+      main:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-production
+        hosts:
+          - host: jackett.k.lanquarden.com
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - secretName: jackett-cert
+            hosts:
+              - "jackett.k.lanquarden.com"
     persistence:
       config:
         enabled: true
