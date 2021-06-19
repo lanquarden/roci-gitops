@@ -21,6 +21,8 @@ spec:
       repository: intel/intel-gpu-plugin
       tag: 0.20.0
       pullPolicy: IfNotPresent
-    sharedDeviceNumber: 2
+    args:
+      - -shared-dev-num
+      - "2"
     securityContext:
       readOnlyRootFilesystem: true
