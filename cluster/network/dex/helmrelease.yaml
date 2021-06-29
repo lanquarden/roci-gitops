@@ -33,7 +33,7 @@ spec:
   values:
     image:
       repository: docker.io/dexidp/dex
-      tag: v2.28.1
+      tag: v2.29.0
     env:
       KUBERNETES_POD_NAMESPACE: network
     config:
