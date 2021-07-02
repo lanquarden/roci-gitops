@@ -26,18 +26,19 @@ spec:
       NODE_RED_ENABLE_PROJECTS: "true"
       NODE_RED_ENABLE_SAFE_MODE: "false"
     ingress:
-      enabled: true
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-production
-      hosts:
-      - host: node-red.k.lanquarden.com
-        paths:
-        - path: /
-          pathType: Prefix
-      tls:
-      - secretName: node-red-cert
+      main:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-production
         hosts:
-        - "node-red.k.lanquarden.com"
+        - host: node-red.k.lanquarden.com
+          paths:
+          - path: /
+            pathType: Prefix
+        tls:
+        - secretName: node-red-cert
+          hosts:
+          - "node-red.k.lanquarden.com"
     persistence:
       data:
         enabled: true
