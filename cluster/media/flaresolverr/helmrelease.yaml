@@ -20,7 +20,7 @@ spec:
     controllerType: deployment
     image:
       repository: flaresolverr/flaresolverr
-      tag: v1.2.8
+      tag: v1.2.9
     env:
       TZ: "Europe/Madrid"
       LOG_LEVEL: "info"
