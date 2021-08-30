@@ -17,7 +17,7 @@ spec:
   interval: 1h0m0s
   values:
     initContainers:
-      - name: copy-configmap
+      copy-configmap:
         image: busybox
         command:
           - "sh"
