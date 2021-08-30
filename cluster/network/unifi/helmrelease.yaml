@@ -31,9 +31,12 @@ spec:
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-production
         hosts:
-          - "unifi.k.lanquarden.com"
+          - host: "unifi.k.lanquarden.com"
+            paths:
+              - path: /
+                type: Prefix
         tls:
-          - secretName: alert-manager-cert
+          - secretName: unifi-cert
             hosts:
               - "unifi.k.lanquarden.com"
     service:
