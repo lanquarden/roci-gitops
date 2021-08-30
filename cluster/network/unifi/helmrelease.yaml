@@ -21,8 +21,10 @@ spec:
       repository: jacobalberty/unifi
       tag: v6.2.26
     persistence:
-      enabled: true
-      existingClaim: unifi-data
+      unifi:
+        enabled: true
+        mounthPath: /unifi
+        existingClaim: unifi-data
     timezone: "Europe/Madrid"
     runAsRoot: false
     ingress:
