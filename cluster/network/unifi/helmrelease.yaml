@@ -21,48 +21,54 @@ spec:
       repository: jacobalberty/unifi
       tag: v6.2.26
     persistence:
-      unifi:
+      data:
         enabled: true
-        mounthPath: /unifi
         existingClaim: unifi-data
     timezone: "Europe/Madrid"
-    runAsRoot: false
     ingress:
-      enabled: true
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-production
-      hosts:
-        - "unifi.k.lanquarden.com"
-      tls:
-        - secretName: alert-manager-cert
-          hosts:
-            - "unifi.k.lanquarden.com"
-    guiService:
-      type: LoadBalancer
-      loadBalancerIP: 192.168.1.17
-      annotations:
-        metallb.universe.tf/allow-shared-ip: unifi
-    captivePortalService:
-      enabled: true
-      type: LoadBalancer
-      loadBalancerIP: 192.168.1.17
-      annotations:
-        metallb.universe.tf/allow-shared-ip: unifi
-    controllerService:
-      type: LoadBalancer
-      loadBalancerIP: 192.168.1.17
-      annotations:
-        metallb.universe.tf/allow-shared-ip: unifi
-    stunService:
-      type: LoadBalancer
-      loadBalancerIP: 192.168.1.17
-      annotations:
-        metallb.universe.tf/allow-shared-ip: unifi
-    discoveryService:
-      type: LoadBalancer
-      loadBalancerIP: 192.168.1.17
-      annotations:
-        metallb.universe.tf/allow-shared-ip: unifi
+      main:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-production
+        hosts:
+          - "unifi.k.lanquarden.com"
+        tls:
+          - secretName: alert-manager-cert
+            hosts:
+              - "unifi.k.lanquarden.com"
+    service:
+      main:
+        type: LoadBalancer
+        annotations:
+          metallb.universe.tf/allow-shared-ip: unifi
+        loadBalancerIP: 192.168.1.17
+        externalTrafficPolicy: Local
+        ports:
+          stun:
+            enabled: false
+          syslog:
+            enabled: false
+          discovery:
+            enabled: false
+      udp:
+        type: LoadBalancer
+        annotations:
+          metallb.universe.tf/allow-shared-ip: unifi
+        loadBalancerIP: 192.168.1.17
+        externalTrafficPolicy: Local
+        ports:
+          stun:
+            enabled: true
+            port: 3478
+            protocol: UDP
+          syslog:
+            enabled: true
+            port: 5514
+            protocol: UDP
+          discovery:
+            enabled: true
+            port: 10001
+            protocol: UDP
     podAnnotations:
       backup.velero.io/backup-volumes: unifi-data
     resources:
