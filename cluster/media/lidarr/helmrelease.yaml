@@ -39,13 +39,16 @@ spec:
               - "lidarr.k.lanquarden.com"
       api:
         enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-production
         hosts:
           - host: lidarr.k.lanquarden.com
             paths:
               - path: /api
                 pathType: Prefix
         tls:
-          - hosts:
+          - secretName: lidarr-api-cert
+            hosts:
               - "lidarr.k.lanquarden.com"
     persistence:
       config:

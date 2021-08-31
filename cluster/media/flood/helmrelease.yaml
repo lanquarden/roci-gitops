@@ -28,13 +28,16 @@ spec:
     ingress:
       main:
         enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-production
         hosts:
           - host: flood.k.lanquarden.com
             paths:
               - path: /
                 pathType: Prefix
         tls:
-          - hosts:
+          - secretName: flood-cert
+            hosts:
               - "flood.k.lanquarden.com"
     persistence:
       data:
