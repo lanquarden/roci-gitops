@@ -21,10 +21,6 @@ spec:
         level: DEBUG
       access:
         enabled: false
-    deployment:
-      podAnnotations:
-        prometheus.io/scrape: "true"
-        prometheus.io/port: "8082"
     ingressClass:
       enabled: true
       isDefaultClass: true
