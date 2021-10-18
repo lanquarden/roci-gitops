@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: photoprism/photoprism
-      tag: "20210523"
+      tag: "20211018"
     env:
       PHOTOPRISM_SITE_URL: "https://photos.k.lanquarden.com"
       PHOTOPRISM_SITE_TITLE: "Home Pictures"
