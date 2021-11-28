@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://grafana.github.io/helm-charts
       chart: loki-stack
-      version: 2.4.1
+      version: 2.5.0
       sourceRef:
         kind: HelmRepository
         name: loki-charts
@@ -20,7 +20,7 @@ spec:
     loki:
       image:
         repository: grafana/loki
-        tag: 2.3.0
+        tag: 2.4.1
       replicas: 3
       persistence:
         enabled: false

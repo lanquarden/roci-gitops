@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: home-assistant
-      version: 10.0.0
+      version: 11.2.0
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -20,7 +20,7 @@ spec:
     controllerType: deployment
     image:
       repository: homeassistant/home-assistant
-      tag: 2021.10.7
+      tag: 2021.11.5
     extraEnv:
       TZ: "Europe/Madrid"
     service:
@@ -70,7 +70,7 @@ spec:
         enabled: true
         image:
           repository: codercom/code-server
-          tag: 3.11.1
+          tag: 3.12.0
         workingDir: "/config"
         args:
           - --auth
@@ -92,6 +92,11 @@ spec:
             - secretName: hass-editor-cert
               hosts:
                 - "hass-editor.k.lanquarden.com"
+        # needs k8s v1.20
+        service:
+          ipFamilyPolicy: ""
+          ipFamilies: {}
+        # end
         volumeMounts:
           - name: config
             mountPath: /config
