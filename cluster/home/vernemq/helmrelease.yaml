@@ -37,4 +37,5 @@ spec:
         value: "yes"
       - name: DOCKER_VERNEMQ_ALLOW_ANONYMOUS
         value: "on"
+    envFrom: []
     podAntiAffinity: hard
