@@ -30,6 +30,7 @@ spec:
         enabled: true
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-production
+          traefik.ingress.kubernetes.io/service.serversscheme: https
         hosts:
           - host: "unifi.k.lanquarden.com"
             paths:
@@ -44,7 +45,6 @@ spec:
         type: LoadBalancer
         annotations:
           metallb.universe.tf/allow-shared-ip: unifi
-          traefik.ingress.kubernetes.io/service.serversscheme: https
         loadBalancerIP: 192.168.1.17
         externalTrafficPolicy: Local
         ports:
