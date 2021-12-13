@@ -32,6 +32,5 @@ spec:
       UP_INFLUXDB_DISABLE: true
       UP_PROMETHEUS_DISABLE: false
       UP_PROMETHEUS_NAMESPACE: "unifipoller"
-    prometheus:
-      serviceMonitor:
-        enabled: true
+    metrics:
+      enabled: true
