@@ -94,8 +94,8 @@ spec:
                 - "hass-editor.k.lanquarden.com"
         # needs k8s v1.20
         service:
-          ipFamilyPolicy: ""
-          ipFamilies: {}
+          ipFamilyPolicy:
+          ipFamilies:
         # end
         volumeMounts:
           - name: config
