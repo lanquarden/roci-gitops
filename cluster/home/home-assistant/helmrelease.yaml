@@ -20,7 +20,7 @@ spec:
     controllerType: deployment
     image:
       repository: homeassistant/home-assistant
-      tag: 2021.11.5
+      tag: 2021.12.10
     extraEnv:
       TZ: "Europe/Madrid"
     service:
