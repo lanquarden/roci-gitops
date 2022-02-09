@@ -66,9 +66,24 @@ spec:
               - "adguard.k.lanquarden.com"
     # Expose DNS service on fixed IP
     service:
+      dns-tcp:
+        enabled: true
+        type: LoadBalancer
+        annotations:
+          metallb.universe.tf/allow-shared-ip: adguard
+        externalTrafficPolicy: Local
+        loadBalancerIP: 192.168.1.16
+        ports:
+          dns-tcp:
+            enable: true
+            port: 53
+            protocol: TCP
+            targetPort: 53
       dns-udp:
         enabled: true
         type: LoadBalancer
+        annotations:
+          metallb.universe.tf/allow-shared-ip: adguard
         externalTrafficPolicy: Local
         loadBalancerIP: 192.168.1.16
         ports:
