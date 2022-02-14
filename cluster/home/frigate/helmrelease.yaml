@@ -21,42 +21,57 @@ spec:
       repository: blakeblackshear/frigate
       tag: 0.9.4-amd64
 
-    timezone: Europe/Madrid
-
-    coral:
-      enabled: false
-
-    shmSize: 512Mi
+    env:
+      TZ: Europe/Madrid
 
     persistence:
       data:
         enabled: true
         existingClaim: frigate-data
-
-    extraVolumes:
-      - name: nfs-frigate
-        persistentVolumeClaim:
-          claimName: home-nfs-frigate-pvc
-      - name: cache
-        emptyDir:
-          medium: Memory
-
-    extraVolumeMounts:
-      - name: nfs-frigate
+      media:
+        enabled: true
         mountPath: /media/frigate
-      - mountPath: /tmp/cache
-        name: cache
+        existingClaim: home-nfs-frigate-pvc
+      usb:
+        enabled: true
+        type: hostPath
+        hostPath: /dev/bus/usb
+      cache:
+        enabled: true
+        type: emptyDir
+        medium: Memory
+        sizeLimit: 512Mi
+        mountPath: /dev/shm
 
     ingress:
       enabled: true
       annotations:
         cert-manager.io/cluster-issuer: "letsencrypt-production"
       hosts:
-        - frigate.k.lanquarden.com
+        - host: frigate.k.lanquarden.com
+          paths:
+            - path: /
       tls:
         - secretName: frigate-cert
           hosts:
             - frigate.k.lanquarden.com
+
+    securityContext:
+      privileged: true
+
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: feature.node.kubernetes.io/custom-coral-tpu
+                  operator: In
+                  values:
+                    - "true"
+                - key: feature.node.kubernetes.io/custom-intel-gpu
+                  operator: In
+                  values:
+                    - "true"
 
     config: |
       mqtt:
@@ -66,8 +81,9 @@ spec:
       database:
         path: /data/frigate.db
       detectors:
-        cpu1:
-          type: cpu
+        coral:
+          type: edgetpu
+          device: usb
       objects:
         track:
           - person
@@ -111,6 +127,7 @@ spec:
       limits:
         gpu.intel.com/i915: 1
         memory: 1000Mi
+
   valuesFrom:
     - kind: Secret
       name: "frigate-helm-values"
