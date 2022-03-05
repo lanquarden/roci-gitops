@@ -21,8 +21,14 @@ spec:
       repository: "influxdb"
       tag: "1.8.10"
     service:
-      type: LoadBalancer
-      loadBalancerIP: 192.168.1.22
+      type: ClusterIP
+    ingress:
+      enabled: true
+      tls: true
+      secretName: influxdb-cert
+      hostname: influxdb.k.lanquarden.com
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
     persistence:
       enabled: true
       existingClaim: influxdb-data
