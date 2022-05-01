@@ -42,6 +42,12 @@ spec:
         medium: Memory
         sizeLimit: 512Mi
         mountPath: /dev/shm
+    
+    service:
+      main:
+        ports:
+          rtmp:
+            enabled: true
 
     ingress:
       main:
