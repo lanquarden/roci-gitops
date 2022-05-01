@@ -126,6 +126,8 @@ spec:
               - -avoid_negative_ts
               - make_zero
               - -fflags
+              - nobuffer+genpts+discardcorrupt
+              - -flags  
               - low_delay
               - -strict
               - experimental
@@ -162,6 +164,8 @@ spec:
               - -avoid_negative_ts
               - make_zero
               - -fflags
+              - nobuffer+genpts+discardcorrupt
+              - -flags  
               - low_delay
               - -strict
               - experimental
