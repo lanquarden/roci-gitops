@@ -120,6 +120,78 @@ spec:
           objects:
             track:
               - person
+        garden:
+          ffmpeg:
+            input_args:
+              - -avoid_negative_ts
+              - make_zero
+              - -fflags
+              - low_delay
+              - -strict
+              - experimental
+              - -analyzeduration
+              - 1000M
+              - -probesize
+              - 1000M
+              - -rw_timeout
+              - "5000000"
+            inputs:
+              - path: http://192.168.30.50/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+                roles:
+                  - detect
+              - path: http://192.168.30.50/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+                roles:
+                  - record
+                  - rtmp
+          detect:
+            width: 896
+            height: 672
+            fps: 7
+          snapshots:
+            enabled: True
+            timestamp: True
+            retain:
+              # Required: Default retention days (default: shown below)
+              default: 5
+          objects:
+            track:
+              - person
+        living-room:
+          ffmpeg:
+            input_args:
+              - -avoid_negative_ts
+              - make_zero
+              - -fflags
+              - low_delay
+              - -strict
+              - experimental
+              - -analyzeduration
+              - 1000M
+              - -probesize
+              - 1000M
+              - -rw_timeout
+              - "5000000"
+            inputs:
+              - path: http://192.168.30.49/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+                roles:
+                  - detect
+              - path: http://192.168.30.49/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+                roles:
+                  - record
+                  - rtmp
+          detect:
+            width: 896
+            height: 672
+            fps: 7
+          snapshots:
+            enabled: True
+            timestamp: True
+            retain:
+              # Required: Default retention days (default: shown below)
+              default: 5
+          objects:
+            track:
+              - person
     resources:
       requests:
         memory: 300Mi
