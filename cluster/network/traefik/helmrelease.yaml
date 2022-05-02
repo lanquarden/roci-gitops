@@ -47,6 +47,11 @@ spec:
         port: 8082
         expose: true
         exposedPort: 8082
+      rtmp:
+        port: 1935
+        expose: true
+        exposedPort: 1935
+        protocol: TCP
     service:
       enabled: true
       type: LoadBalancer
