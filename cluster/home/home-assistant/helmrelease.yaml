@@ -32,6 +32,10 @@ spec:
             enabled: true
             port: 2001
             targetPort: 2001
+          webrtc:
+            enabled: true
+            port: 8083
+            targetPort: 8083
     ingress:
       main:
         enabled: true
