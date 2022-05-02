@@ -1,0 +1,15 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: frigate-rtmp-route
+  namespace: home
+spec:
+  entryPoints:
+    - rtmp
+  routes:
+    - match: HostSNI(`*`)
+      services:
+        - name: frigate
+          port: 1935
+          weight: 10

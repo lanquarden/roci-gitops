@@ -126,6 +126,13 @@ spec:
           objects:
             track:
               - person
+          record:
+            enabled: True
+            retain:
+              days: 5
+            events:
+              retain:
+                default: 14
         garden:
           ffmpeg:
             input_args:
@@ -164,6 +171,13 @@ spec:
           objects:
             track:
               - person
+          record:
+            enabled: True
+            retain:
+              days: 2
+            events:
+              retain:
+                default: 5
         living-room:
           ffmpeg:
             input_args:
@@ -202,6 +216,13 @@ spec:
           objects:
             track:
               - person
+          record:
+            enabled: True
+            retain:
+              days: 2
+            events:
+              retain:
+                default: 5
     resources:
       requests:
         memory: 300Mi
