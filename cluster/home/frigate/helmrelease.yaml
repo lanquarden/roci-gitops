@@ -91,6 +91,10 @@ spec:
         coral:
           type: edgetpu
           device: usb
+      detect:
+        stationary:
+          interval: 420
+          threshold: 50
       objects:
         track:
           - person
@@ -205,9 +209,6 @@ spec:
             width: 896
             height: 672
             fps: 7
-            stationary:
-              interval: 420
-              threshold: 50
           snapshots:
             enabled: True
             timestamp: True
