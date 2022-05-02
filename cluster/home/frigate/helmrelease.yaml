@@ -128,8 +128,7 @@ spec:
               - person
           record:
             enabled: True
-            retain:
-              days: 5
+            retain_days: 5
             events:
               retain:
                 default: 14
@@ -173,8 +172,7 @@ spec:
               - person
           record:
             enabled: True
-            retain:
-              days: 2
+            retain_days: 2
             events:
               retain:
                 default: 5
@@ -218,8 +216,7 @@ spec:
               - person
           record:
             enabled: True
-            retain:
-              days: 2
+            retain_days: 2
             events:
               retain:
                 default: 5
