@@ -205,12 +205,27 @@ spec:
             width: 896
             height: 672
             fps: 7
+            stationary:
+              interval: 420
+              threshold: 50
           snapshots:
             enabled: True
             timestamp: True
             retain:
               # Required: Default retention days (default: shown below)
               default: 5
+          motion:
+            mask:
+              - 657,95,655,165,598,181,603,101
+              - 896,0,896,51,492,50,494,0
+            zones:
+              kitchen:
+                coordinates: 0,602,181,581,554,346,439,221,216,52,0,81
+              sofa:
+                coordinates: 896,0,896,394,545,256,559,0
+              passage:
+                coordinates: 0,672,896,672,896,369,555,257,563,23,403,21,398,205,564,333,153,573,59,549,0,574
+
           objects:
             track:
               - person
