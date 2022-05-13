@@ -397,6 +397,11 @@ spec:
           motion:
             mask:
               - 642,0,643,53,252,45,254,0
+         zones:
+           stairs:
+             coordinates: 426,672,561,511,477,204,346,0,0,0,0,270,192,384
+           door:
+             coordinates: 896,409,783,634,634,463,694,193,720,21,896,63
           objects:
             track:
               - person
