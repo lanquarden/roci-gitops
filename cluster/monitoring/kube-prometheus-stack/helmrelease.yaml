@@ -145,6 +145,9 @@ spec:
           home-heating:
             url: https://raw.githubusercontent.com/lanquarden/roci-gitops/main/cluster/monitoring/kube-prometheus-stack/grafana-dashboards/home-heating.json
             datasource: HomeAssistant
+          solar-pv:
+            url: https://raw.githubusercontent.com/lanquarden/roci-gitops/main/cluster/monitoring/kube-prometheus-stack/grafana-dashboards/solar-pv.json
+            datasource: Energy
       additionalDataSources:
         - name: Loki
           type: loki
