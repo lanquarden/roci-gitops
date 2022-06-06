@@ -158,6 +158,11 @@ spec:
           access: proxy
           url: http://influxdb:8086
           database: home_assistant
+        - name: Energy
+          type: influxdb
+          access: proxy
+          url: http://influxdb:8086
+          database: energy
       sidecar:
         dashboards:
           enabled: true
