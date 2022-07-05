@@ -41,6 +41,10 @@ spec:
         enabled: true
         nameOverride: snapcast-streams
         ports:
+          stream1:
+            enabled: false
+          stream2:
+            enabled: false
           mopidy:
             enabled: true
             port: 4953
