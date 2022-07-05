@@ -58,7 +58,7 @@ spec:
       data_dir = /var/lib/mopidy
 
       [audio]
-      output = audioresample ! audioconvert ! audio/x-raw,rate=48000,channels=2,format=S16LE ! tcpclientsink host=snapcast port=4953
+      output = audioresample ! audioconvert ! audio/x-raw,rate=48000,channels=2,format=S16LE ! tcpclientsink host=snapcast-streams port=4953
 
       [http]
       hostname = 0.0.0.0
