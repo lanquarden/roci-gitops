@@ -21,7 +21,7 @@ metadata:
   namespace: media
 spec:
   entryPoints:
-    - snapcast-clients
+    - snapclients
   routes:
     - match: HostSNI(`snapcast.k.lanquarden.com`)
       services:
@@ -36,7 +36,7 @@ metadata:
   namespace: media
 spec:
   entryPoints:
-    - snapcast-control
+    - snapcontrol
   routes:
     - match: HostSNI(`snapcast.k.lanquarden.com`)
       services:

@@ -52,12 +52,12 @@ spec:
         expose: true
         exposedPort: 1935
         protocol: TCP
-      snapcast-clients:
+      snapclients:
         port: 1704
         expose: true
         exposedPort: 1704
         protocol: TCP
-      snapcast-control:
+      snapcontrol:
         port: 1705
         expose: true
         exposedPort: 1705
