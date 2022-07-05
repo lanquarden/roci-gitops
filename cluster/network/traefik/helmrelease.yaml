@@ -52,6 +52,16 @@ spec:
         expose: true
         exposedPort: 1935
         protocol: TCP
+      snapcast-clients:
+        port: 1704
+        expose: true
+        exposedPort: 1704
+        protocol: TCP
+      snapcast-control:
+        port: 1705
+        expose: true
+        exposedPort: 1705
+        protocol: TCP
     service:
       enabled: true
       type: LoadBalancer

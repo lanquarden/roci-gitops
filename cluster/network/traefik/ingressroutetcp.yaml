@@ -13,3 +13,33 @@ spec:
         - name: frigate
           port: 1935
           weight: 10
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: snapcast-clients-route
+  namespace: media
+spec:
+  entryPoints:
+    - snapcast-clients
+  routes:
+    - match: HostSNI(`snapcast.k.lanquarden.com`)
+      services:
+        - name: snapcast
+          port: 1704
+          weight: 10
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: snapcast-control-route
+  namespace: media
+spec:
+  entryPoints:
+    - snapcast-control
+  routes:
+    - match: HostSNI(`snapcast.k.lanquarden.com`)
+      services:
+        - name: snapcast
+          port: 1705
+          weight: 10
