@@ -43,9 +43,11 @@ spec:
           mopidy:
             enabled: true
             port: 4953
+            protocol: TCP
           bluetooth:
             enabled: true
             port: 4954
+            protocol: TCP
     ingress:
       main:
         enabled: true
