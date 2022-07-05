@@ -39,7 +39,6 @@ spec:
       # -- Configure stream ports when using TCP server sockets as snapserver input streams
       streams:
         enabled: true
-        nameOverride: snapcast-streams
         ports:
           stream1:
             enabled: false
