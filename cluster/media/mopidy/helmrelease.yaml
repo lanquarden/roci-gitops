@@ -1,0 +1,83 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: mopidy
+  namespace: media
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: mopidy
+      version: 0.0.1
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    image:
+      repository: jaedb/iris
+      tag: latest
+    env:
+      TZ: "Europe/Madrid"
+      PIP_PACKAGES: Mopidy-Mixcloud
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-production
+        hosts:
+          - host: mopidy.k.lanquarden.com
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - secretName: mopidy-cert
+            hosts:
+              - "mopidy.k.lanquarden.com"
+    persistence:
+      config:
+        enabled: true
+        mountPath: "/var/lib/mopidy"
+        existingClaim: mopidy-config
+      media:
+        enabled: true
+        mountPath: "/media"
+        existingClaim: media-nfs-media-pvc
+    resources:
+      requests:
+        memory: 250Mi
+        cpu: 500m
+      limits:
+        memory: 1500Mi
+    config: |
+      [core]
+      data_dir = /var/lib/mopidy
+
+      [audio]
+      output = audioresample ! audioconvert ! audio/x-raw,rate=48000,channels=2,format=S16LE ! tcpclientsink host=snapcast port=4953
+
+      [http]
+      hostname = 0.0.0.0
+      default_app = iris
+
+      [mpd]
+      hostname = 0.0.0.0
+
+      [tidal]
+      enabled = false
+
+      [local]
+      enabled = true
+      media_dir = /media/music
+
+      [mixcloud]
+      enabled = true
+
+      [spotify]
+      enabled = false
+      # Fast startup because we use the Spotify HTTP API to load these instead
+      # Makes playlists unavailable under Browse > Spotify.
+      allow_playlists = false
