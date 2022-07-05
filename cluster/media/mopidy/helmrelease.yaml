@@ -20,6 +20,7 @@ spec:
     image:
       repository: jaedb/iris
       tag: latest
+      command: mopidy --config /config/mopidy.conf
     env:
       TZ: "Europe/Madrid"
       PIP_PACKAGES: Mopidy-Mixcloud
