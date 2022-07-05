@@ -74,6 +74,14 @@ spec:
       enabled = true
       media_dir = /media/music
 
+      [file]
+      enabled = true
+      media_dirs = /media/music
+
+      [m3u]
+      enabled = true
+      playlists_dir = /media/playlists
+
       [mixcloud]
       enabled = true
 
