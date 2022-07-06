@@ -39,10 +39,14 @@ spec:
             hosts:
               - "mopidy.k.lanquarden.com"
     persistence:
-      config:
+      local:
         enabled: true
-        mountPath: "/var/lib/mopidy"
-        existingClaim: mopidy-config
+        mountPath: "/var/lib/mopidy/local"
+        existingClaim: mopidy-local
+      iris:
+        enabled: true
+        mountPath: "/var/lib/mopidy/iris"
+        existingClaim: mopidy-iris
       media:
         enabled: true
         mountPath: "/media"
