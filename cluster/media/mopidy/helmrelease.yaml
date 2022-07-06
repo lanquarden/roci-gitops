@@ -56,6 +56,8 @@ spec:
     config: |
       [core]
       data_dir = /var/lib/mopidy
+      cache_dir = /var/cache/mopidy
+      config_dir = /config
 
       [audio]
       output = audioresample ! audioconvert ! audio/x-raw,rate=48000,channels=2,format=S16LE ! tcpclientsink host=snapcast-streams port=4953
@@ -63,6 +65,14 @@ spec:
       [http]
       hostname = 0.0.0.0
       default_app = iris
+
+      [iris]
+      enabled = true
+      snapcast_enabled = true
+      snapcast_host = snapcast.k.lanquarden.com
+      snapcast_port = 443
+      snapcast_ssl = true
+      snapcast_stream = mopidy
 
       [mpd]
       hostname = 0.0.0.0
@@ -80,10 +90,14 @@ spec:
 
       [m3u]
       enabled = true
+      base_dir = /media/music
       playlists_dir = /media/playlists
 
       [mixcloud]
       enabled = true
+
+      [logging]
+      verbosity = 2
 
       [spotify]
       enabled = false
