@@ -23,7 +23,7 @@ spec:
   entryPoints:
     - snapclients
   routes:
-    - match: HostSNI(`snapcast.k.lanquarden.com`)
+    - match: HostSNI(`*`)
       services:
         - name: snapcast
           port: 1704
@@ -38,7 +38,7 @@ spec:
   entryPoints:
     - snapcontrol
   routes:
-    - match: HostSNI(`snapcast.k.lanquarden.com`)
+    - match: HostSNI(`*`)
       services:
         - name: snapcast
           port: 1705
