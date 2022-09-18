@@ -7,4 +7,4 @@ database:
   path: "./files/vikunja.db"
 auth:
   local:
-    enabled: false
+    enabled: true
