@@ -34,7 +34,7 @@ spec:
 
     ingress:
       main:
-        enabled: false
+        enabled: true
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-production"
         hosts:
