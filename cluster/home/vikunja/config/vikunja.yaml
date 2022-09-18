@@ -1,0 +1,10 @@
+service:
+  frontendurl: "https://vikunja.k.lanquarden.com"
+  enableregistration: false
+  timezone: "Europe/Madrid"
+database:
+  type: "sqlite"
+  path: "./files/vikunja.db"
+auth:
+  local:
+    enabled: false
