@@ -1,6 +1,6 @@
 service:
   frontendurl: "https://vikunja.k.lanquarden.com"
-  enableregistration: false
+  enableregistration: true
   timezone: "Europe/Madrid"
 database:
   type: "sqlite"
