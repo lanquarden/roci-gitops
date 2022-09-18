@@ -25,6 +25,12 @@ spec:
     env:
       TZ: Europe/Madrid
 
+    service:
+      main:
+        ports:
+          http:
+            port: 8080
+
     ingress:
       main:
         enabled: true
