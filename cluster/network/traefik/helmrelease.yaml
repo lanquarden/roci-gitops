@@ -20,7 +20,7 @@ spec:
       general:
         level: DEBUG
       access:
-        enabled: false
+        enabled: true
     ingressClass:
       enabled: true
       isDefaultClass: true
