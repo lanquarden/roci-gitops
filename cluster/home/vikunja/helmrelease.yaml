@@ -20,7 +20,7 @@ spec:
     image:
       repository: docker.io/library/caddy
       tag: 2.5.2-alpine
-      pullPolicy: IfNotPresent
+      imagePullPolicy: IfNotPresent
 
     env:
       TZ: Europe/Madrid
@@ -49,7 +49,7 @@ spec:
       api:
         image: docker.io/vikunja/api
         tag: 0.19.2
-        pullPolicy: IfNotPresent
+        imagePullPolicy: IfNotPresent
         volumeMounts:
           - name: data
             mountPath: /app/vikunja/files
@@ -59,7 +59,7 @@ spec:
       frontend:
         image: docker.io/vikunja/frontend
         tag: 0.19.1
-        pullPolicy: IfNotPresent
+        imagePullPolicy: IfNotPresent
 
     persistence:
       config:
