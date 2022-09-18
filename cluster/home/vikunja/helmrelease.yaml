@@ -16,6 +16,7 @@ spec:
         name: bjw-s-charts
         namespace: flux-system
       interval: 5m
+
   values:
     image:
       repository: docker.io/library/caddy
