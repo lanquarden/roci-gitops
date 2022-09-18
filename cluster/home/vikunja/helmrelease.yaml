@@ -37,7 +37,7 @@ spec:
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-production"
         hosts:
-          - host: &host "vikunja.k.lanquarden.com"
+          - host: &host "todo.k.lanquarden.com"
             paths:
               - path: /
         tls:
