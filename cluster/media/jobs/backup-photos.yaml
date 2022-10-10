@@ -2,7 +2,7 @@
 #
 # Cronjob to for photos backup
 #
-apiVersion: batch/v1beta1
+apiVersion: batch/v1
 kind: CronJob
 metadata:
   namespace: media
