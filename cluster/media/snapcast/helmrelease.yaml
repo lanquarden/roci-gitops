@@ -23,7 +23,6 @@ spec:
       tag: v0.26.0
     env:
       TZ: "Europe/Madrid"
-      GST_DEBUG: "5"
     service:
       main:
         ports:
@@ -243,5 +242,6 @@ spec:
       # log filter <tag>:<level>[,<tag>:<level>]*
       # with tag = * or <log tag> and level = [trace,debug,info,notice,warning,error,fatal]
       #filter = *:info
+      filter = *:info,PcmStream:debug,AsioStream:debug,TcpStream:debug
       #
       ###############################################################################
