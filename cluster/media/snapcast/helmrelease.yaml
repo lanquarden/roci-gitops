@@ -23,6 +23,7 @@ spec:
       tag: v0.26.0
     env:
       TZ: "Europe/Madrid"
+      GST_DEBUG: "5"
     service:
       main:
         ports:
