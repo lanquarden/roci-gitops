@@ -68,7 +68,7 @@ spec:
               - "snapcast.k.lanquarden.com"
     probes:
       liveness:
-        enabled: true
+        enabled: false
         custom: true
         spec:
           httpGet:
@@ -79,7 +79,7 @@ spec:
           successThreshold: 1
           failureThreshold: 3
       readiness:
-        enabled: true
+        enabled: false
         custom: true
         spec:
           httpGet:
@@ -90,7 +90,7 @@ spec:
           successThreshold: 1
           failureThreshold: 3
       startup:
-        enabled: true
+        enabled: false
         custom: true
         spec:
           httpGet:
