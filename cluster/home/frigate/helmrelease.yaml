@@ -506,7 +506,7 @@ spec:
               default: 5
           motion:
             mask:
-              - 642,0,643,53,252,45,254,0
+              - 385,0,388,46,0,49,0,0
           objects:
             track:
               - person
