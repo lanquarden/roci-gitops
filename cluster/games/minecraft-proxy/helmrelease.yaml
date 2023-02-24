@@ -22,9 +22,6 @@ spec:
       limits:
         memory: 2048Mi
         cpu: 1
-    securityContext:
-      runAsUser: 5506
-      fsGroup: 5506
     minecraftProxy:
       type: BUNGEECORD
       onlineMode: false
