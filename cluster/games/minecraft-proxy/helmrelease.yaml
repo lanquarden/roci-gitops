@@ -89,7 +89,7 @@ spec:
           - disabledcommandhere
         network_compression_threshold: 256
         groups:
-          lanquarden:
+          Bernum:
             - admin
         connection_throttle: 4000
         connection_throttle_limit: 3
