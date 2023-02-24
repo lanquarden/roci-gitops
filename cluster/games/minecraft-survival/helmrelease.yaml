@@ -50,7 +50,7 @@ spec:
       spawnMonsters: true
       spawnNPCs: true
       viewDistance: 10
-      gameMode: Survival
+      gameMode: survival
       motd: "Home - Survival"
       pvp: false
       levelType: DEFAULT
