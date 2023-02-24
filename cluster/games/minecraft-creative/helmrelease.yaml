@@ -41,7 +41,7 @@ spec:
       allowNether: true
       announcePlayerAchievements: true
       enableCommandBlock: true
-      forcegameMode: false
+      forcegameMode: true
       generateStructures: true
       hardcore: false
       maxBuildHeight: 256
