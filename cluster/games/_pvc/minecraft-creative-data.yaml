@@ -3,7 +3,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: minecraft-creative-data
-  namespace: home
+  namespace: games
 spec:
   accessModes:
   - ReadWriteOnce
