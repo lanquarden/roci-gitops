@@ -17,6 +17,7 @@ MetalLB has a configured pool of `192.168.1.15-192.168.1.39`
 |`192.168.1.20`| hass.lanquarden.com    | homeassistant               |
 |`192.168.1.21`|                        | bittorrent                  |
 |`192.168.1.22`|                        | minecraft proxy             |
+|`192.168.1.23`|                        | minecraft proxy             |
 
 ## Unifi cli command reference
 
