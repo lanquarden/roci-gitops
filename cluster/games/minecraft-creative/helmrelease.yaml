@@ -52,7 +52,7 @@ spec:
       spawnMonsters: true
       spawnNPCs: true
       viewDistance: 10
-      gameMode: creative
+      gameMode: 1
       motd: "Home - Creative"
       pvp: false
       levelType: DEFAULT
