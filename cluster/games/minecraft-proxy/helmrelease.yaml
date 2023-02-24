@@ -54,15 +54,15 @@ spec:
         servers:
           creative:
             motd: '&1Home - Creative'
-            address: minecraft-creative.games.svc.cluster.local:25565
+            address: minecraft-creative-minecraft.games.svc.cluster.local:25565
             restricted: false
           survival:
             motd: "&1Home - Survival"
-            address: minecraft-survival.games.svc.cluster.local:25565
+            address: minecraft-survival-minecraft.games.svc.cluster.local:25565
             restricted: false
           hardcore:
             motd: "&1Home - Hardcore"
-            address: minecraft-hardcore.games.svc.cluster.local:25565
+            address: minecraft-hardcore-minecraft.games.svc.cluster.local:25565
             restricted: false
         listeners:
           - query_port: 25577
