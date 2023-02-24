@@ -1,0 +1,123 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: minecraft-proxy
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: minecraft-proxy
+      version: 3.2.0
+      sourceRef:
+        kind: HelmRepository
+        name: itzg-minecraft-charts
+        namespace: flux-system
+  values:
+    resources:
+      requests:
+        memory: 512Mi
+        cpu: 500m
+      limits:
+        memory: 2048Mi
+        cpu: 1
+    securityContext:
+      runAsUser: 5506
+      fsGroup: 5506
+    minecraftProxy:
+      type: BUNGEECORD
+      onlineMode: false
+      memory: 1024M
+      serviceType: LoadBalancer
+      loadBalancerIP: 192.168.1.21
+      # loadBalancerSourceRanges: []
+      ## Set the externalTrafficPolicy in the Service to either Cluster or Local
+      # externalTrafficPolicy: Cluster
+      externalIPs:
+      # If set, this overrides the default config file path
+      configFilePath: /server/config.yml
+      # This can be set to the contents of your config file (only works with yaml currently)
+      config: |
+        player_limit: -1
+        ip_forward: true
+        permissions:
+          default:
+            - bungeecord.command.server
+            - bungeecord.command.list
+          admin:
+            - bungeecord.command.alert
+            - bungeecord.command.end
+            - bungeecord.command.ip
+            - bungeecord.command.reload
+        timeout: 30000
+        log_pings: true
+        log_commands: false
+        online_mode: false
+        servers:
+          creative:
+            motd: '&1Home - Creative'
+            address: minecraft-creative.games.svc.cluster.local:25565
+            restricted: false
+          survival:
+            motd: "&1Home - Survival"
+            address: minecraft-survival.games.svc.cluster.local:25565
+            restricted: false
+          hardcore:
+            motd: "&1Home - Hardcore"
+            address: minecraft-hardcore.games.svc.cluster.local:25565
+            restricted: false
+        listeners:
+          - query_port: 25577
+            motd: '&1Minecraft in K8s'
+            priorities:
+              - survival
+              - creative
+              - hardcore
+            bind_local_address: true
+            tab_list: GLOBAL_PING
+            query_enabled: false
+            host: 0.0.0.0:25577
+            forced_hosts:
+              mc-creative.lanquarden.com: creative
+              mc-survival.lanquarden.com: survival
+              mc-hardcore.lanquarden.com: hardcore
+            max_players: 20
+            tab_size: 60
+            ping_passthrough: false
+            force_default_server: true
+            proxy_protocol: false
+            default_server: survival
+        disabled_commands:
+          - disabledcommandhere
+        network_compression_threshold: 256
+        groups:
+          lanquarden:
+            - admin
+        connection_throttle: 4000
+        connection_throttle_limit: 3
+        stats: 44547878-b473-11ed-afa1-0242ac120002
+        forge_support: false
+        inject_commands: false
+      rcon:
+        # If you enable this, make SURE to change your password below.
+        enabled: false
+        # port: 25575
+        # password: "${MINECRAFT_BUNGEE_RCON_PASSWORD}"
+        # serviceType: LoadBalancer
+        # loadBalancerIP: ${CLUSTER_LB_MINECRAFT}
+        # loadBalancerSourceRanges: []
+        ## Set the externalTrafficPolicy in the Service to either Cluster or Local
+        # externalTrafficPolicy: Cluster
+      extraPorts: []
+    extraEnv: {}
+    persistence:
+      dataDir:
+        enabled: true
+        existingClaim: minecraft-proxy-data
+    podAnnotations: {}
+    deploymentAnnotations: {}
+    serviceAnnotations: {}
+    rconServiceAnnotations: {}
+    # Can allow plugins access to the kubernetes api using a service account
+    # https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
+    serviceAccountName:

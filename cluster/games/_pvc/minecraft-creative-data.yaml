@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: minecraft-creative-data
+  namespace: home
+spec:
+  accessModes:
+  - ReadWriteOnce
+
+  resources:
+    requests:
+      storage: 5Gi
+
+  storageClassName: rook-ceph-block
