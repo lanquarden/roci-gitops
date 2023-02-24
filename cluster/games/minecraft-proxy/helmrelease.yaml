@@ -27,7 +27,7 @@ spec:
       onlineMode: false
       memory: 1024M
       serviceType: LoadBalancer
-      loadBalancerIP: 192.168.1.21
+      loadBalancerIP: 192.168.1.22
       # loadBalancerSourceRanges: []
       ## Set the externalTrafficPolicy in the Service to either Cluster or Local
       # externalTrafficPolicy: Cluster
