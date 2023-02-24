@@ -29,6 +29,8 @@ spec:
     securityContext:
       runAsUser: 5506
       fsGroup: 5506
+    startupProbe:
+      enabled: true
     minecraftServer:
       eula: "TRUE"
       version: "1.16.5"
