@@ -67,8 +67,8 @@ spec:
         enabled: false
 
     podSecurityContext:
-      runAsUser: "1000"
-      runAsGroup: "1000"
+      runAsUser: 1000
+      runAsGroup: 1000
   
     persistence:
       config:
