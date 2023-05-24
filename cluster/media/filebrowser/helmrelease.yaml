@@ -25,7 +25,7 @@ spec:
 
     env:
       TZ: Europe/Madrid
-      FB_DATABASE: "/data/appdata/filebrowser/filebrowser.db"
+      FB_DATABASE: "/config/filebrowser.db"
       FB_ROOT: "/data"
       FB_LOG: "stdout"
       FB_NOAUTH: "true"
@@ -75,14 +75,14 @@ spec:
       config:
         enabled: true
         existingClaim: filebrowser-config
-        mountPath: /data/appdata
+        mountPath: /config
 
       documents:
         enabled: true
         existingClaim: media-nfs-unsorted-pvc
-        mountPath: /data/documents
+        mountPath: /data/unsorted
 
       unsorted:
         enabled: true
         existingClaim: media-nfs-documents-pvc
-        mountPath: /data/unsorted
+        mountPath: /data/documents
