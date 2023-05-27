@@ -57,12 +57,12 @@ spec:
         enabled: true
         existingClaim: media-nfs-media-pvc
         mountPath: /music
-        subPath: media/music
+        subPath: music/
       unsorted:
         enabled: true
         existingClaim: media-nfs-unsorted-pvc
         mountPath: /downloads
-        subPath: unsorted/music
+        subPath: music/
         
     resources:
       requests:
