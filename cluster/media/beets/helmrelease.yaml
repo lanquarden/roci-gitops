@@ -30,6 +30,7 @@ spec:
       cli:
         ports:
           ttyd:
+            enabled: true
             port: &port_cli 7681
 
     ingress:
