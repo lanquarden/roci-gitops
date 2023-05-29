@@ -56,6 +56,9 @@ spec:
           - host: &host_cli "beets-cli.k.lanquarden.com"
             paths:
               - path: /
+                service:
+                  name: beets-cli
+                  port: *port_cli
         tls:
           - secretName: beets-cli-cert
             hosts:
