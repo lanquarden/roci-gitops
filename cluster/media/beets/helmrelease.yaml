@@ -29,7 +29,7 @@ spec:
             port: &port_main 8337
       cli:
         ports:
-          http:
+          ttyd:
             port: &port_cli 7681
 
     ingress:
