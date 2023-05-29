@@ -60,6 +60,7 @@ spec:
 
     env:
       TZ: "Europe/Madrid"
+      BEETSDIR: "/config/beets"
     
     podSecurityContext:
       runAsUser: 1000
