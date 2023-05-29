@@ -28,9 +28,11 @@ spec:
           http:
             port: &port_main 8337
       cli:
+        enabled: true
         ports:
           ttyd:
             enabled: true
+            protocol: HTTP
             port: &port_cli 7681
 
     ingress:
