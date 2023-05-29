@@ -19,14 +19,18 @@ spec:
 
   values:
     image:
-      repository: ghcr.io/linuxserver/beets
-      tag: 1.6.0-ls172
+      repository: ghcr.io/lanquarden/beets
+      tag: 1.6.0
 
     service:
       main:
         ports:
           http:
-            port: &port 8337
+            port: &port_main 8337
+      cli:
+        ports:
+          http:
+            port: &port_cli 7681
 
     ingress:
       main:
@@ -34,19 +38,32 @@ spec:
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-production"
         hosts:
-          - host: &host "beets.k.lanquarden.com"
+          - host: &host_main "beets.k.lanquarden.com"
             paths:
               - path: /
         tls:
           - secretName: beets-cert
             hosts:
-              - *host
+              - *host_main
+      cli:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+        hosts:
+          - host: &host_cli "beets-cli.k.lanquarden.com"
+            paths:
+              - path: /
+        tls:
+          - secretName: beets-cli-cert
+            hosts:
+              - *host_cli
 
     env:
       TZ: "Europe/Madrid"
-      PUID: 1000
-      PGID: 1000
-      UMASK: 000
+    
+    podSecurityContext:
+      runAsUser: 1000
+      runAsGroup: 1000
 
     persistence:
       config:
@@ -56,12 +73,12 @@ spec:
       music:
         enabled: true
         existingClaim: media-nfs-media-pvc
-        mountPath: /music
+        mountPath: /media/music
         subPath: music/
       unsorted:
         enabled: true
         existingClaim: media-nfs-unsorted-pvc
-        mountPath: /downloads
+        mountPath: /unsorted/music
         subPath: music/
         
     resources:
