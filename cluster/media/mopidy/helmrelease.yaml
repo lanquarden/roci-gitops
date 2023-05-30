@@ -23,7 +23,7 @@ spec:
     command: ["mopidy", "--config", "/config/mopidy.conf"]
     env:
       TZ: "Europe/Madrid"
-      PIP_PACKAGES: Mopidy-Mixcloud
+      PIP_PACKAGES: Mopidy-Mixcloud Mopidy-Beets
     ingress:
       main:
         enabled: true
@@ -84,18 +84,18 @@ spec:
       [tidal]
       enabled = false
 
+      [beets]
+      hostname = 127.0.0.1
+      port = 8337
+
       [local]
-      enabled = true
-      media_dir = /media/music
+      enabled = false
 
       [file]
-      enabled = true
-      media_dirs = /media/music
+      enabled = false
 
       [m3u]
-      enabled = true
-      base_dir = /media/music
-      playlists_dir = /media/playlists
+      enabled = false
 
       [mixcloud]
       enabled = true
