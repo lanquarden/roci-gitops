@@ -23,7 +23,7 @@ spec:
     command: ["mopidy", "--config", "/config/mopidy.conf"]
     env:
       TZ: "Europe/Madrid"
-      PIP_PACKAGES: Mopidy-Mixcloud Mopidy-Beets
+      PIP_PACKAGES: Mopidy-Beets
     ingress:
       main:
         enabled: true
@@ -97,11 +97,11 @@ spec:
       [m3u]
       enabled = false
 
-      [mixcloud]
-      enabled = true
+      # [mixcloud]
+      # enabled = true
 
-      [logging]
-      verbosity = 2
+      # [logging]
+      # verbosity = 2
 
       [spotify]
       enabled = false
