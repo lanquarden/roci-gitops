@@ -20,7 +20,7 @@ spec:
   values:
     image:
       repository: ghcr.io/lanquarden/beets
-      tag: 1.6.0
+      tag: 1.6.0@sha256:b5d2eefd22170c0faca87e04cda72bc94b2d5d44c7dd3c44d20ec94959980f6e
 
     service:
       main:
