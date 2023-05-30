@@ -85,7 +85,7 @@ spec:
       enabled = false
 
       [beets]
-      hostname = 127.0.0.1
+      hostname = beets
       port = 8337
 
       [local]
