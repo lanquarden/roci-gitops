@@ -100,8 +100,8 @@ spec:
       # [mixcloud]
       # enabled = true
 
-      # [logging]
-      # verbosity = 2
+      [logging]
+      verbosity = 2
 
       [spotify]
       enabled = false
