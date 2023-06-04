@@ -227,6 +227,7 @@ spec:
                 roles:
                   - detect
               - path: rtsp://localhost:8554/living_room_lq?copy=video&audio=aac
+                input_args: preset-rtsp-restream
                 roles:
                   - record
           detect:
