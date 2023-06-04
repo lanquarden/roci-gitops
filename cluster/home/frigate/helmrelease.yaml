@@ -115,37 +115,37 @@ spec:
             - http://192.168.30.58/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
           garden_hq: 
             - http://192.168.30.58/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
-            - "ffmpeg:reolink#audio=opus"
+            - "ffmpeg:garden_hq#audio=opus"
           living_room_lq: 
             - http://192.168.30.57/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
           living_room_hq: 
             - http://192.168.30.57/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
-            - "ffmpeg:reolink#audio=opus"
+            - "ffmpeg:living_room_hq#audio=opus"
           porch_lq: 
             - http://192.168.30.48/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
           porch_hq: 
             - http://192.168.30.48/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
-            - "ffmpeg:reolink#audio=opus"
+            - "ffmpeg:porch_hq#audio=opus"
           garage_lq: 
             - http://192.168.30.51/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
           garage_hq: 
             - http://192.168.30.51/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
-            - "ffmpeg:reolink#audio=opus"
+            - "ffmpeg:garage_hq#audio=opus"
           entrance_lq: 
             - http://192.168.30.52/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
           entrance_hq: 
             - http://192.168.30.52/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
-            - "ffmpeg:reolink#audio=opus"
+            - "ffmpeg:entrance_hq#audio=opus"
           front_lq: 
             - http://192.168.30.53/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
           front_hq: 
             - http://192.168.30.53/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
-            - "ffmpeg:reolink#audio=opus"
+            - "ffmpeg:front_hq#audio=opus"
           office_lq: 
             - http://192.168.30.56/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
           office_hq: 
             - http://192.168.30.56/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
-            - "ffmpeg:reolink#audio=opus"
+            - "ffmpeg:office_hq#audio=opus"
 
       cameras:
         doorbell:
