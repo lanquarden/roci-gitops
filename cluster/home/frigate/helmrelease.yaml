@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: blakeblackshear/frigate
-      tag: 0.11.1
+      tag: 0.12.0
 
     env:
       TZ: Europe/Madrid
@@ -102,17 +102,61 @@ spec:
           - qsv
           - -qsv_device
           - /dev/dri/renderD128
+
+      go2rtc:
+        streams:
+          doorbell_lq: 
+            - rtsp://admin:{FRIGATE_DOORBELL_PASS}@192.168.30.11:554/Streaming/Channels/102/
+          doorbell_hq: 
+            - rtsp://admin:{FRIGATE_DOORBELL_PASS}@192.168.30.11:554/Streaming/Channels/101/
+          garden_lq: 
+            - http://192.168.30.58/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+          garden_hq: 
+            - http://192.168.30.58/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+            - "ffmpeg:reolink#audio=opus"
+          living_room_lq: 
+            - http://192.168.30.57/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+          living_room_hq: 
+            - http://192.168.30.57/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+            - "ffmpeg:reolink#audio=opus"
+          porch_lq: 
+            - http://192.168.30.48/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+          porch_hq: 
+            - http://192.168.30.48/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+            - "ffmpeg:reolink#audio=opus"
+          garage_lq: 
+            - http://192.168.30.51/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+          garage_hq: 
+            - http://192.168.30.51/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+            - "ffmpeg:reolink#audio=opus"
+          entrance_lq: 
+            - http://192.168.30.52/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+          entrance_hq: 
+            - http://192.168.30.52/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+            - "ffmpeg:reolink#audio=opus"
+          front_lq: 
+            - http://192.168.30.53/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+          front_hq: 
+            - http://192.168.30.53/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+            - "ffmpeg:reolink#audio=opus"
+          office_lq: 
+            - http://192.168.30.56/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+          office_hq: 
+            - http://192.168.30.56/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+            - "ffmpeg:reolink#audio=opus"
+
       cameras:
         doorbell:
           ffmpeg:
             inputs:
-              - path: rtsp://admin:{FRIGATE_DOORBELL_PASS}@192.168.30.11:554/Streaming/Channels/102/
+              - path: rtsp://localhost:8554/doorbell_lq?copy=video
+                input_args: preset-rtsp-restream
                 roles:
                   - detect
-              - path: rtsp://admin:{FRIGATE_DOORBELL_PASS}@192.168.30.11:554/Streaming/Channels/101/
+              - path: rtsp://localhost:8554/doorbell_hq?copy=video
+                input_args: preset-rtsp-restream
                 roles:
                   - record
-                  - rtmp
           detect:
             width: 704
             height: 576
@@ -138,29 +182,15 @@ spec:
                 default: 14
         garden:
           ffmpeg:
-            input_args:
-              - -avoid_negative_ts
-              - make_zero
-              - -fflags
-              - nobuffer+genpts+discardcorrupt
-              - -flags  
-              - low_delay
-              - -strict
-              - experimental
-              - -analyzeduration
-              - 1000M
-              - -probesize
-              - 1000M
-              - -rw_timeout
-              - "5000000"
             inputs:
-              - path: http://192.168.30.58/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+              - path: rtsp://localhost:8554/garden_lq?video=copy
+                input_args: preset-rtsp-restream
                 roles:
                   - detect
-              - path: http://192.168.30.58/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+              - path: rtsp://localhost:8554/garden_hq?video=copy&audio=aac
+                input_args: preset-rtsp-restream
                 roles:
                   - record
-                  - rtmp
           detect:
             width: 896
             height: 672
@@ -191,29 +221,14 @@ spec:
                 default: 5
         living-room:
           ffmpeg:
-            input_args:
-              - -avoid_negative_ts
-              - make_zero
-              - -fflags
-              - nobuffer+genpts+discardcorrupt
-              - -flags  
-              - low_delay
-              - -strict
-              - experimental
-              - -analyzeduration
-              - 1000M
-              - -probesize
-              - 1000M
-              - -rw_timeout
-              - "5000000"
             inputs:
-              - path: http://192.168.30.57/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+              - path: rtsp://localhost:8554/living_room_lq?copy=video
+                input_args: preset-rtsp-restream
                 roles:
                   - detect
-              - path: http://192.168.30.57/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+              - path: rtsp://localhost:8554/living_room_lq?copy=video&audio=aac
                 roles:
                   - record
-                  - rtmp
           detect:
             width: 896
             height: 672
@@ -252,29 +267,15 @@ spec:
                 default: 5
         porch:
           ffmpeg:
-            input_args:
-              - -avoid_negative_ts
-              - make_zero
-              - -fflags
-              - nobuffer+genpts+discardcorrupt
-              - -flags  
-              - low_delay
-              - -strict
-              - experimental
-              - -analyzeduration
-              - 1000M
-              - -probesize
-              - 1000M
-              - -rw_timeout
-              - "5000000"
             inputs:
-              - path: http://192.168.30.48/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+              - path: rtsp://localhost:8554/porch_lq?video=copy
+                input_args: preset-rtsp-restream
                 roles:
                   - detect
-              - path: http://192.168.30.48/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+              - path: rtsp://localhost:8554/porch_hq?video=copy&audio=aac
+                input_args: preset-rtsp-restream
                 roles:
                   - record
-                  - rtmp
           detect:
             width: 896
             height: 672
@@ -305,29 +306,15 @@ spec:
                 default: 5
         garage:
           ffmpeg:
-            input_args:
-              - -avoid_negative_ts
-              - make_zero
-              - -fflags
-              - nobuffer+genpts+discardcorrupt
-              - -flags  
-              - low_delay
-              - -strict
-              - experimental
-              - -analyzeduration
-              - 1000M
-              - -probesize
-              - 1000M
-              - -rw_timeout
-              - "5000000"
             inputs:
-              - path: http://192.168.30.51/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+              - path: rtsp://localhost:8554/garage_lq?video=copy
+                input_args: preset-rtsp-restream
                 roles:
                   - detect
-              - path: http://192.168.30.51/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+              - path: rtsp://localhost:8554/garage_hq?video=copy&audio=aac
+                input_args: preset-rtsp-restream
                 roles:
                   - record
-                  - rtmp
           detect:
             width: 896
             height: 672
@@ -358,29 +345,15 @@ spec:
                 default: 5
         entrance:
           ffmpeg:
-            input_args:
-              - -avoid_negative_ts
-              - make_zero
-              - -fflags
-              - nobuffer+genpts+discardcorrupt
-              - -flags  
-              - low_delay
-              - -strict
-              - experimental
-              - -analyzeduration
-              - 1000M
-              - -probesize
-              - 1000M
-              - -rw_timeout
-              - "5000000"
             inputs:
-              - path: http://192.168.30.52/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+              - path: rtsp://localhost:8554/entrance_lq?video=copy
+                input_args: preset-rtsp-restream
                 roles:
                   - detect
-              - path: http://192.168.30.52/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+              - path: rtsp://localhost:8554/entrance_hq?video=copy&audio=aac
+                input_args: preset-rtsp-restream
                 roles:
                   - record
-                  - rtmp
           detect:
             width: 896
             height: 672
@@ -415,29 +388,15 @@ spec:
                 default: 5
         front:
           ffmpeg:
-            input_args:
-              - -avoid_negative_ts
-              - make_zero
-              - -fflags
-              - nobuffer+genpts+discardcorrupt
-              - -flags  
-              - low_delay
-              - -strict
-              - experimental
-              - -analyzeduration
-              - 1000M
-              - -probesize
-              - 1000M
-              - -rw_timeout
-              - "5000000"
             inputs:
-              - path: http://192.168.30.53/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+              - path: rtsp://localhost:8554/front_lq?video=copy
+                input_args: preset-rtsp-restream
                 roles:
                   - detect
-              - path: http://192.168.30.53/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+              - path: rtsp://localhost:8554/front_hq?video=copy&audio=aac
+                input_args: preset-rtsp-restream
                 roles:
                   - record
-                  - rtmp
           detect:
             width: 896
             height: 672
@@ -468,29 +427,15 @@ spec:
                 default: 5
         office:
           ffmpeg:
-            input_args:
-              - -avoid_negative_ts
-              - make_zero
-              - -fflags
-              - nobuffer+genpts+discardcorrupt
-              - -flags  
-              - low_delay
-              - -strict
-              - experimental
-              - -analyzeduration
-              - 1000M
-              - -probesize
-              - 1000M
-              - -rw_timeout
-              - "5000000"
             inputs:
-              - path: http://192.168.30.56/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+              - path: rtsp://localhost:8554/office_lq?video=copy
+                input_args: preset-rtsp-restream
                 roles:
                   - detect
-              - path: http://192.168.30.56/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+              - path: rtsp://localhost:8554/office_hq?video=copy&audio=aac
+                input_args: preset-rtsp-restream
                 roles:
                   - record
-                  - rtmp
           detect:
             width: 896
             height: 672
