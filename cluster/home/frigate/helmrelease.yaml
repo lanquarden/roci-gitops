@@ -265,6 +265,7 @@ spec:
             enabled: True
             retain:
               days: 2
+              mode: motion
             events:
               retain:
                 default: 5
@@ -343,6 +344,7 @@ spec:
             enabled: True
             retain:
               days: 2
+              mode: motion
             events:
               retain:
                 default: 5
@@ -386,6 +388,7 @@ spec:
             enabled: True
             retain:
               days: 2
+              mode: motion
             events:
               retain:
                 default: 5
@@ -464,6 +467,7 @@ spec:
             enabled: True
             retain:
               days: 2
+              mode: motion
             events:
               retain:
                 default: 5
