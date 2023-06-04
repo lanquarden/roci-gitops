@@ -111,7 +111,7 @@ spec:
             - rtsp://admin:{FRIGATE_DOORBELL_PASS}@192.168.30.11:554/Streaming/Channels/102/
           doorbell_hq: 
             - rtsp://admin:{FRIGATE_DOORBELL_PASS}@192.168.30.11:554/Streaming/Channels/101/
-            - ffmpeg:doorbell_hq#audio=aac"
+            - ffmpeg:doorbell_hq#video=copy#audio=aac"
           garden_lq: 
             - http://192.168.30.58/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
           garden_hq: 
