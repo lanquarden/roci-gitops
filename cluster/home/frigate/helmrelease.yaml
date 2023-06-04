@@ -229,11 +229,11 @@ spec:
         living-room:
           ffmpeg:
             inputs:
-              - path: rtsp://localhost:8554/living_room_lq?copy=video
+              - path: rtsp://localhost:8554/living_room_lq?video=copy
                 input_args: preset-rtsp-restream
                 roles:
                   - detect
-              - path: rtsp://localhost:8554/living_room_hq?copy=video&audio=aac
+              - path: rtsp://localhost:8554/living_room_hq?video=copy&audio=aac
                 input_args: preset-rtsp-restream
                 roles:
                   - record
