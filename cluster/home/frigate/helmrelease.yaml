@@ -159,6 +159,8 @@ spec:
                 input_args: preset-rtsp-restream
                 roles:
                   - record
+          live:
+            stream_name: doorbell_hq
           detect:
             width: 704
             height: 576
@@ -193,6 +195,8 @@ spec:
                 input_args: preset-rtsp-restream
                 roles:
                   - record
+          live:
+            stream_name: garden_hq
           detect:
             width: 896
             height: 672
@@ -232,6 +236,8 @@ spec:
                 input_args: preset-rtsp-restream
                 roles:
                   - record
+          live:
+            stream_name: living_room_hq
           detect:
             width: 896
             height: 672
@@ -280,6 +286,8 @@ spec:
                 input_args: preset-rtsp-restream
                 roles:
                   - record
+          live:
+            stream_name: porch_hq
           detect:
             width: 896
             height: 672
@@ -319,6 +327,8 @@ spec:
                 input_args: preset-rtsp-restream
                 roles:
                   - record
+          live:
+            stream_name: garage_hq
           detect:
             width: 896
             height: 672
@@ -359,6 +369,8 @@ spec:
                 input_args: preset-rtsp-restream
                 roles:
                   - record
+          live:
+            stream_name: entrance_hq
           detect:
             width: 896
             height: 672
@@ -403,6 +415,8 @@ spec:
                 input_args: preset-rtsp-restream
                 roles:
                   - record
+          live:
+            stream_name: front_hq
           detect:
             width: 896
             height: 672
@@ -442,6 +456,8 @@ spec:
                 input_args: preset-rtsp-restream
                 roles:
                   - record
+          live:
+            stream_name: office_hq
           detect:
             width: 896
             height: 672
