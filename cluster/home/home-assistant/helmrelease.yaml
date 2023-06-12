@@ -38,8 +38,8 @@ spec:
             targetPort: 8083
           weather:
             enabled: true
-            port: 4199
-            targetPort: 4199
+            port: 8123
+            targetPort: 8123
 
     ingress:
       main:
