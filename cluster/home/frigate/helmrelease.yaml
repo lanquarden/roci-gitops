@@ -28,10 +28,10 @@ spec:
       data:
         enabled: true
         existingClaim: frigate-data
-      media:
-        enabled: true
-        mountPath: /media/frigate
-        existingClaim: home-nfs-frigate-pvc
+#      media:
+#        enabled: true
+#        mountPath: /media/frigate
+#        existingClaim: home-nfs-frigate-pvc
       usb:
         enabled: true
         type: hostPath
@@ -170,7 +170,7 @@ spec:
               interval: 50
               threshold: 50
           snapshots:
-            enabled: True
+            enabled: False
             timestamp: True
             retain:
               # Required: Default retention days (default: shown below)
@@ -179,7 +179,7 @@ spec:
             track:
               - person
           record:
-            enabled: True
+            enabled: False
             retain:
               days: 5
             events:
@@ -206,7 +206,7 @@ spec:
               interval: 50
               threshold: 50
           snapshots:
-            enabled: True
+            enabled: False
             timestamp: True
             retain:
               # Required: Default retention days (default: shown below)
@@ -220,7 +220,7 @@ spec:
               - dog
               - cat
           record:
-            enabled: True
+            enabled: False
             retain:
               days: 2
             events:
@@ -247,7 +247,7 @@ spec:
               interval: 50
               threshold: 50
           snapshots:
-            enabled: True
+            enabled: False
             timestamp: True
             retain:
               # Required: Default retention days (default: shown below)
@@ -269,7 +269,7 @@ spec:
               - person
               - dog
           record:
-            enabled: True
+            enabled: False
             retain:
               days: 2
               mode: motion
@@ -297,7 +297,7 @@ spec:
               interval: 50
               threshold: 50
           snapshots:
-            enabled: True
+            enabled: False
             timestamp: True
             retain:
               # Required: Default retention days (default: shown below)
@@ -311,7 +311,7 @@ spec:
               - dog
               - cat
           record:
-            enabled: True
+            enabled: False
             retain:
               days: 2
             events:
@@ -338,7 +338,7 @@ spec:
               interval: 50
               threshold: 50
           snapshots:
-            enabled: True
+            enabled: False
             timestamp: True
             retain:
               # Required: Default retention days (default: shown below)
@@ -352,7 +352,7 @@ spec:
               - dog
               - cat
           record:
-            enabled: True
+            enabled: False
             retain:
               days: 2
               mode: motion
@@ -380,7 +380,7 @@ spec:
               interval: 50
               threshold: 50
           snapshots:
-            enabled: True
+            enabled: False
             timestamp: True
             retain:
               # Required: Default retention days (default: shown below)
@@ -398,7 +398,7 @@ spec:
               - person
               - dog
           record:
-            enabled: True
+            enabled: False
             retain:
               days: 2
               mode: motion
@@ -426,7 +426,7 @@ spec:
               interval: 50
               threshold: 50
           snapshots:
-            enabled: True
+            enabled: False
             timestamp: True
             retain:
               # Required: Default retention days (default: shown below)
@@ -440,7 +440,7 @@ spec:
               - dog
               - cat
           record:
-            enabled: True
+            enabled: False
             retain:
               days: 2
             events:
@@ -467,7 +467,7 @@ spec:
               interval: 50
               threshold: 50
           snapshots:
-            enabled: True
+            enabled: False
             timestamp: True
             retain:
               # Required: Default retention days (default: shown below)
@@ -481,7 +481,7 @@ spec:
               - dog
               - cat
           record:
-            enabled: True
+            enabled: False
             retain:
               days: 2
               mode: motion
