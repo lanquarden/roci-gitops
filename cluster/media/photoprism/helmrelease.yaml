@@ -20,6 +20,9 @@ spec:
       repository: photoprism/photoprism
       tag: "220901-bullseye"
     env:
+      UID: 1000
+      GID: 1000
+      TZ: Europe/Madrid
       PHOTOPRISM_UID: 1000
       PHOTOPRISM_GID: 1000
       PHOTOPRISM_DISABLE_CHOWN: "false"
