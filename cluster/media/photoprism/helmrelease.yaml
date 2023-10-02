@@ -25,7 +25,7 @@ spec:
       TZ: Europe/Madrid
       PHOTOPRISM_UID: 1000
       PHOTOPRISM_GID: 1000
-      PHOTOPRISM_DISABLE_CHOWN: "false"
+      PHOTOPRISM_DISABLE_CHOWN: "true"
       PHOTOPRISM_SITE_URL: "https://photos.k.lanquarden.com"
       PHOTOPRISM_SITE_TITLE: "Home Pictures"
       PHOTOPRISM_SITE_AUTHOR: "@lanquarden"
