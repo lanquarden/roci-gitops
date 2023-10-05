@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://raw.githubusercontent.com/czerwonk/ping_exporter/main/dist/charts/
       chart: ping-exporter
-      version: 10.3.3
+      version: 1.0.0
       sourceRef:
         kind: HelmRepository
         name: ping-exporter-charts
