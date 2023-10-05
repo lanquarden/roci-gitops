@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: czerwonk/ping_exporter
-      tag: "0.4.8"
+      tag: "v0.4.8"
 
     service:
       type: ClusterIP
