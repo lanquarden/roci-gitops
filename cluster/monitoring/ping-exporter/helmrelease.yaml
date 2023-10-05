@@ -21,6 +21,11 @@ spec:
       repository: czerwonk/ping_exporter
       tag: "v0.4.8"
 
+    securityContext:
+      capabilities:
+        add:
+          - NET_RAW
+
     service:
       type: ClusterIP
       port: 9427
