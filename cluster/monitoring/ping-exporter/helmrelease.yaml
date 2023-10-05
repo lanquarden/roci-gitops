@@ -29,9 +29,6 @@ spec:
     service:
       type: ClusterIP
       port: 9427
-      annotations:
-        prometheus.io/scrape: "true"
-        prometheus.io/port: "9427"
 
     config:
       targets:

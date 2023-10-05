@@ -137,6 +137,11 @@ spec:
             gnetId: 11313
             revision: 8
             datasource: Prometheus
+          # Ref: https://grafana.com/grafana/dashboards/18194-ping/
+          ping-exporter:
+            gnetId: 18194
+            revision: 1
+            datasource: Prometheus
         home:
           # custom dashboards
           home-climate:
