@@ -40,18 +40,13 @@ spec:
       - --language
       - en
 
-    controllers:
-      main:
-        containers:
-          main:
-        strategy: Recreate
-    
     service:
       main:
         ports:
           http:
             enabled: false
           tcp:
+            enabled: true
             port: 10300
             protocol: TCP
 
