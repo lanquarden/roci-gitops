@@ -40,6 +40,10 @@ spec:
             enabled: true
             port: 8123
             targetPort: 8123
+          wyoming:
+            enabled: true
+            port: 10700
+            targetPort: 10700
 
     ingress:
       main:
