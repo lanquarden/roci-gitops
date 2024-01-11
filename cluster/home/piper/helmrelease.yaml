@@ -18,21 +18,19 @@ spec:
       interval: 5m
 
   values:
-    controllers:
-      main:
-        strategy: RollingUpdate
-        containers:
-          main:
-            image:
-              repository: rhasspy/wyoming-piper
-              tag: 1.4.0
-            args:
-              - --voice=en_US-amy-medium
-            resources:
-              requests:
-                cpu: 500m
-              limits:
-                cpu: 1000m
+    image:
+      repository: rhasspy/wyoming-piper
+      tag: 1.4.0
+      imagePullPolicy: IfNotPresent
+
+    args:
+      - --voice=en_US-amy-medium
+
+    resources:
+      requests:
+        cpu: 500m
+      limits:
+        cpu: 1000m
 
     service:
       main:
