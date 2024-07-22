@@ -48,7 +48,7 @@ spec:
     
     additionalContainers:
       api:
-        image: docker.io/vikunja/api:0.19.2
+        image: docker.io/vikunja/api:0.22.1
         imagePullPolicy: IfNotPresent
         volumeMounts:
           - name: data
