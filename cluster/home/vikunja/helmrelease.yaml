@@ -57,7 +57,7 @@ spec:
             mountPath: /app/vikunja/config.yaml
             subPath: vikunja.yaml  
       frontend:
-        image: docker.io/vikunja/frontend:0.19.1
+        image: docker.io/vikunja/frontend:0.22.1
         imagePullPolicy: IfNotPresent
 
     persistence:
