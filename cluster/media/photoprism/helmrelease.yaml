@@ -47,6 +47,9 @@ spec:
           - secretName: photoprism-cert
             hosts:
               - photos.k.lanquarden.com
+    probes:
+      startup:
+        enabled: false
     persistence:
       config:
         enabled: true
