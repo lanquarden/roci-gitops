@@ -16,6 +16,8 @@ spec:
         namespace: flux-system
 
   values:
+    global:
+      logsLevel: debug
     edgePort:
       externalAddrs:
         - 192.168.1.24
