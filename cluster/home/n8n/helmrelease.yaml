@@ -36,11 +36,6 @@ spec:
       N8N_HOST: &hostName n8n.k.lanquarden.com
       N8N_LOG_LEVEL: info
       N8N_LOG_OUTPUT: console
-      N8N_ENCRYPTION_KEY:
-        valueFrom:
-          secretKeyRef:
-            name: n8n-secret
-            key: N8N_ENCRYPTION_KEY
 
     service:
       main:
@@ -67,3 +62,8 @@ spec:
         enabled: true
         existingClaim: n8n-data
         mountPath: /home/node/.n8n
+
+  valuesFrom:
+    - kind: Secret
+      name: "n8n-helm-values"
+      optional: false
