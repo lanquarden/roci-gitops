@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: n8n
+  name: waha
   namespace: home
 spec:
   interval: 5m
@@ -19,28 +19,19 @@ spec:
 
   values:
     image:
-      repository: ghcr.io/n8n-io/n8n
-      tag: 1.90.2
+      repository: devlikeapro/waha
+      tag: latest-2025.4.1
       imagePullPolicy: IfNotPresent
 
     env:
-      DB_SQLITE_VACUUM_ON_STARTUP: true
-      EXECUTIONS_DATA_PRUNE: true
-      EXECUTIONS_DATA_MAX_AGE: 7
-      EXECUTIONS_DATA_PRUNE_MAX_COUNT: 50000
-      GENERIC_TIMEZONE: "Europe/Madrid"
-      N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS: false
-      N8N_PROTOCOL: "https"
-      N8N_PORT: &port 8080
-      N8N_HOST: &hostName n8n.k.lanquarden.com
-      N8N_LOG_LEVEL: info
-      N8N_LOG_OUTPUT: console
+      TZ: Europe/Madrid 
+      
 
     service:
       main:
         ports:
           http:
-            port: *port
+            port: 3000
 
     ingress:
       main:
@@ -48,21 +39,21 @@ spec:
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-production"
         hosts:
-          - host: *hostName
+          - host: &host "waha.k.lanquarden.com"
             paths:
               - path: /
         tls:
           - secretName: n8n-cert
             hosts:
-              - *hostName
+              - *host
 
     persistence:
       data:
         enabled: true
-        existingClaim: n8n-data
-        mountPath: /home/node/.n8n
+        existingClaim: waha-data
+        mountPath: /app/.sessions
 
   valuesFrom:
     - kind: Secret
-      name: "n8n-helm-values"
+      name: "waha-helm-values"
       optional: false
