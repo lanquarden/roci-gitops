@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: waha
+  name: wwebjs
   namespace: home
 spec:
   interval: 5m
@@ -19,13 +19,13 @@ spec:
 
   values:
     image:
-      repository: devlikeapro/waha
-      tag: latest-2025.4.1
+      repository: avoylenko/wwebjs-api
+      tag: v1.27.0-1
       imagePullPolicy: IfNotPresent
 
     env:
       TZ: Europe/Madrid 
-      
+
 
     service:
       main:
@@ -39,7 +39,7 @@ spec:
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-production"
         hosts:
-          - host: &host "waha.k.lanquarden.com"
+          - host: &host "wwebjs.k.lanquarden.com"
             paths:
               - path: /
         tls:
@@ -50,10 +50,10 @@ spec:
     persistence:
       data:
         enabled: true
-        existingClaim: waha-data
-        mountPath: /app/.sessions
+        existingClaim: wwebjs-data
+        mountPath: /usr/src/app/sessions
 
   valuesFrom:
     - kind: Secret
-      name: "waha-helm-values"
+      name: "wwebjs-helm-values"
       optional: false
