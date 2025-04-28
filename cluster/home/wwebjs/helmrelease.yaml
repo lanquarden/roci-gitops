@@ -25,7 +25,7 @@ spec:
 
     env:
       TZ: Europe/Madrid 
-
+      ENABLE_LOCAL_CALLBACK_EXAMPLE: FALSE
 
     service:
       main:
