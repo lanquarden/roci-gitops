@@ -35,6 +35,7 @@ spec:
       N8N_HOST: &hostName n8n.k.lanquarden.com
       N8N_LOG_LEVEL: info
       N8N_LOG_OUTPUT: console
+      WEBHOOK_URL: https://n8n.k.lanquarden.com/
 
     service:
       main:
