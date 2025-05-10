@@ -19,8 +19,8 @@ spec:
 
   values:
     image:
-      repository: ghcr.io/n8n-io/n8n
-      tag: 1.90.2
+      repository: ghcr.io/lanquarden/n8n-uv
+      tag: 1.91.3
       imagePullPolicy: IfNotPresent
 
     env:
