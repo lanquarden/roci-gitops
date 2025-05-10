@@ -33,7 +33,7 @@ spec:
       N8N_PROTOCOL: "https"
       N8N_PORT: &port 8080
       N8N_HOST: &hostName n8n.k.lanquarden.com
-      N8N_LOG_LEVEL: info
+      N8N_LOG_LEVEL: debug
       N8N_LOG_OUTPUT: console
       WEBHOOK_URL: https://n8n.k.lanquarden.com/
       N8N_COMMUNITY_PACKAGES_ALLOW_TOOL_USAGE: true
