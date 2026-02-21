@@ -138,9 +138,7 @@ spec:
     
     additionalContainers:
       chrome:
-        image:
-          repository: zenika/alpine-chrome
-          tag: with-node
+        image: zenika/alpine-chrome:with-node
         command:
           - chromium-browser
           - --headless=new
@@ -163,9 +161,7 @@ spec:
             memory: 1Gi
 
       codeserver:
-        image:
-          repository: ghcr.io/coder/code-server
-          tag: 4.109.2@sha256:1b84cd817fe8eb1159323ae9d2f29b3c70c6ccd44958d651a94900cf7f0ff9c4
+        image: ghcr.io/coder/code-server:4.109.2@sha256:1b84cd817fe8eb1159323ae9d2f29b3c70c6ccd44958d651a94900cf7f0ff9c4
         env:
           TZ: America/Edmonton
         args:
