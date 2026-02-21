@@ -1,0 +1,198 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: openclaw
+  namespace: home
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://bjw-s.github.io/helm-charts
+      chart: app-template
+      version: 0.1.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+      interval: 5m
+
+  values:
+    image:
+      repository: ghcr.io/openclaw/openclaw
+      tag: 2026.2.19@sha256:5352d3ababbc12237fda60fe00a25237441eb7bb5e3d3062a6b0b5fbd938734d
+      imagePullPolicy: IfNotPresent
+    
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        mkdir -p /home/node/.local/bin /home/node/.local/go
+
+        echo "Starting tool installation..."
+
+        # Install gh CLI if not present on PVC
+        if [ ! -f /home/node/.local/bin/gh ]; then
+          echo "Installing gh CLI..."
+          cd /tmp
+          curl -fsSL https://github.com/cli/cli/releases/download/v2.61.0/gh_2.61.0_linux_amd64.tar.gz -o gh.tar.gz
+          tar xzf gh.tar.gz
+          cp gh_2.61.0_linux_amd64/bin/gh /home/node/.local/bin/
+          rm -rf gh.tar.gz gh_2.61.0_linux_amd64
+        fi
+
+        # Install Go if not present on PVC
+        if [ ! -f /home/node/.local/go/bin/go ]; then
+          echo "Installing Go..."
+          cd /tmp
+          curl -fsSL https://go.dev/dl/go1.23.5.linux-amd64.tar.gz -o go.tar.gz
+          tar xzf go.tar.gz
+          mv go /home/node/.local/
+          rm -rf go.tar.gz
+        fi
+
+        # Install Homebrew if not present on PVC
+        if [ ! -f /home/node/.local/homebrew/bin/brew ]; then
+          echo "Installing Homebrew..."
+          export HOMEBREW_PREFIX=/home/node/.local/homebrew
+          export HOMEBREW_CELLAR=/home/node/.local/homebrew/Cellar
+          export HOMEBREW_REPOSITORY=/home/node/.local/homebrew
+          mkdir -p $HOMEBREW_PREFIX
+          cd /tmp
+          git clone --depth 1 https://github.com/Homebrew/brew $HOMEBREW_PREFIX
+        fi
+
+        # Check if pip is available (either standalone or via python3 -m pip)
+        set +e # Don't fail on pip errors
+        if command -v pip3 >/dev/null 2>&1 || command -v pip >/dev/null 2>&1 || python3 -m pip --version >/dev/null 2>&1; then
+          echo "pip is available"
+        else
+          echo "Installing pip..."
+          cd /tmp
+          curl -fsSL https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+          python3 get-pip.py --user --no-warn-script-location --break-system-packages || \
+          python3 get-pip.py --user --no-warn-script-location || \
+          echo "pip install skipped (use python3 -m pip instead)"
+          rm -f get-pip.py
+        fi
+        set -e # Re-enable error checking
+
+        echo "Tool installation complete"
+
+        # Ensure config directory exists
+        mkdir -p /home/node/.openclaw
+
+        # Set up openclawbot CLI symlink
+        ln -sf /app/openclawbot.mjs /home/node/.local/bin/openclawbot
+
+        # Start gateway
+        exec node dist/index.js gateway --bind lan --port 18789 --allow-unconfigured 
+
+    env:
+      BROWSER_WS_ENDPOINT: "ws://localhost:9222"
+      GOPATH: /home/node/go
+      HOME: &homepath /home/node
+      HOMEBREW_CELLAR: /home/node/.local/homebrew/Cellar
+      HOMEBREW_PREFIX: /home/node/.local/homebrew
+      HOMEBREW_REPOSITORY: /home/node/.local/homebrew
+      HA_URL: "https://hass.k.lanquarden.com"
+      PATH: /home/node/.local/bin:/home/node/.local/go/bin:/home/node/.local/homebrew/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      PIP_BREAK_SYSTEM_PACKAGES: "1"
+      TERM: xterm-256color
+      TZ: Europe/Madrid
+
+    service:
+      main:
+        ports:
+          http:
+            port: 18789
+          codeserver:
+            port: 12321
+
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+        hosts:
+          - host: &host "claw.k.lanquarden.com"
+            paths:
+              - path: /
+        tls:
+          - secretName: claw-cert
+            hosts:
+              - *host
+      code:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+        hosts:
+          - host: &codehost "claw-code.k.lanquarden.com"
+            paths:
+              - path: /
+        tls:
+          - secretName: claw-code-cert
+            hosts:
+              - *codehost
+    
+    additionalContainers:
+      chrome:
+        image:
+          repository: zenika/alpine-chrome
+          tag: with-node
+        command:
+          - chromium-browser
+          - --headless=new
+          - --disable-gpu
+          - --remote-debugging-address=0.0.0.0
+          - --remote-debugging-port=9222
+          - --no-sandbox
+          - --disable-dev-shm-usage
+          # Stealth flags to reduce bot detection
+          - --disable-blink-features=AutomationControlled
+          - --user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
+        env:
+          TZ: *tz
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            cpu: 1000m
+            memory: 1Gi
+
+      codeserver:
+        image:
+          repository: ghcr.io/coder/code-server
+          tag: 4.109.2@sha256:1b84cd817fe8eb1159323ae9d2f29b3c70c6ccd44958d651a94900cf7f0ff9c4
+        env:
+          TZ: America/Edmonton
+        args:
+          [
+            "--auth",
+            "none",
+            "--user-data-dir",
+            "/home/node/.vscode",
+            "--extensions-dir",
+            "/home/node/.vscode",
+            "--port",
+            "12321",
+            "/config",
+          ]
+        resources:
+          requests:
+            cpu: 10m
+          limits:
+            memory: 1Gi
+
+    persistence:
+      data:
+        enabled: true
+        existingClaim: openclaw-data
+        mountPath: *homepath
+
+  valuesFrom:
+    - kind: Secret
+      name: "openclaw-helm-values"
+      optional: false
