@@ -108,6 +108,7 @@ spec:
           http:
             port: 18789
           codeserver:
+            enabled: true
             port: 12321
 
     ingress:
@@ -131,7 +132,8 @@ spec:
           - host: &codehost "claw-code.k.lanquarden.com"
             paths:
               - path: /
-                servicePort: 12321
+                service:
+                  port: 12321
         tls:
           - secretName: claw-code-cert
             hosts:
