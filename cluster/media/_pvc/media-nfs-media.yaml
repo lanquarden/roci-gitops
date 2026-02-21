@@ -6,7 +6,7 @@ metadata:
 spec:
   storageClassName: media-nfs-media
   capacity:
-    storage: 1Ti
+    storage: 1Mi
   accessModes:
   - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
@@ -32,4 +32,4 @@ spec:
   storageClassName: media-nfs-media
   resources:
     requests:
-      storage: 1Ti
+      storage: 1Mi
