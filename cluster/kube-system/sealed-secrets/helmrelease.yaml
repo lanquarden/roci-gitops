@@ -17,5 +17,9 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    image:
+      repository: docker.io/bitnami/sealed-secrets-controller
+      tag: v0.13.1
+      imagePullPolicy: IfNotPresent
     ingress:
       enabled: false
