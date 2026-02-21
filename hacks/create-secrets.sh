@@ -44,8 +44,8 @@ then
             # Seal the Kubernetes secret
             kubeseal --format=yaml --cert="${PUB_CERT}" |
             # Remove null keys
-            yq eval 'del(.metadata.creationTimestamp)' - |
-            yq eval 'del(.spec.template.metadata.creationTimestamp)' - |
+            yq -y 'del(.metadata.creationTimestamp)' - |
+            yq -y 'del(.spec.template.metadata.creationTimestamp)' - |
             # Format yaml file
             sed \
                 -e 's/stdin\:/values.yaml\:/g' \
@@ -77,8 +77,8 @@ create_generic_literal_secret () {
         $literals_expanded --dry-run=client -o json |
         kubeseal --format yaml --cert="${PUB_CERT}" |
         # remove null keys
-        yq eval 'del(.metadata.creationTimestamp)' - |
-        yq eval 'del(.spec.template.metadata.creationTimestamp)' - |
+        yq -y 'del(.metadata.creationTimestamp)' - |
+        yq -y 'del(.spec.template.metadata.creationTimestamp)' - |
         # Format yaml file
         sed -e '1s/^/---\n/' |
         # Write secret
@@ -99,8 +99,8 @@ create_generic_file_secret () {
             --from-file=$key=/dev/stdin --dry-run=client -o json |
             kubeseal --format yaml --cert="${PUB_CERT}" |
             # remove null keys
-            yq eval 'del(.metadata.creationTimestamp)' - |
-            yq eval 'del(.spec.template.metadata.creationTimestamp)' - |
+            yq -y 'del(.metadata.creationTimestamp)' - |
+            yq -y 'del(.spec.template.metadata.creationTimestamp)' - |
             # Format yaml file
             sed -e '1s/^/---\n/' |
             # Write secret
@@ -129,7 +129,7 @@ create_generic_file_secret influxdb-ceph monitoring credentials \
 sed -i '/^[[:space:]]*$/d' "${GENERATED_SECRETS}"
 
 # Validate Yaml
-if ! yq eval "${GENERATED_SECRETS}" >/dev/null 2>&1; then
+if ! yq '.' "${GENERATED_SECRETS}" >/dev/null 2>&1; then
     echo "Errors in YAML"
     exit 1
 fi
