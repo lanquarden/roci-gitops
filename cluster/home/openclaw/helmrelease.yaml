@@ -131,6 +131,7 @@ spec:
           - host: &codehost "claw-code.k.lanquarden.com"
             paths:
               - path: /
+                servicePort: 12321
         tls:
           - secretName: claw-code-cert
             hosts:
