@@ -184,6 +184,9 @@ spec:
             cpu: 10m
           limits:
             memory: 1Gi
+        volumeMounts:
+          - name: openclaw-data
+            mountPath: /config
 
     persistence:
       data:
