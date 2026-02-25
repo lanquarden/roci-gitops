@@ -1,0 +1,41 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: whisper-asr
+  namespace: home
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://bjw-s.github.io/helm-charts
+      chart: app-template
+      version: 0.1.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+      interval: 5m
+
+  values:
+    image:
+      repository: onerahmet/openai-whisper-asr-webservice
+      tag: v1.9.1@sha256:03b402335881cdab2e4939b24620809df8d6ceec3bf2712217d41c8761a0f5d4
+      imagePullPolicy: IfNotPresent
+
+    env:
+      TZ: Europe/Madrid
+      ASR_MODEL: small
+      ASR_ENGINE: faster_whisper
+
+    service:
+      main:
+        ports:
+          http:
+            port: 9000
+
+    persistence:
+      data:
+        enabled: true
+        existingClaim: whisper-asr-data
+        mountPath: /root/.cache/whisper

@@ -1,0 +1,45 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: wyoming-openai
+  namespace: home
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://bjw-s.github.io/helm-charts
+      chart: app-template
+      version: 0.1.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+      interval: 5m
+
+  values:
+    image:
+      repository: ghcr.io/roryeckel/wyoming_openai
+      tag: 0.4.0@sha256:4114403f7b218adf76263bbca9cb068cdde054677c0284b075471709301c0943
+      imagePullPolicy: IfNotPresent
+
+    env:
+      TZ: Europe/Madrid
+      WYOMING_URI: tcp://0.0.0.0:10300
+      WYOMING_LOG_LEVEL: INFO
+      WYOMING_LANGUAGES: en
+      STT_OPENAI_URL: http://whisper-asr.home:9000/v1
+      STT_MODELS: whisper
+      TTS_OPENAI_URL: http://kokoro.home:8880/v1
+      TTS_MODELS: kokoro
+      TTS_BACKEND: KOKORO_FASTAPI
+
+    service:
+      main:
+        ports:
+          http:
+            enabled: false
+          tcp:
+            enabled: true
+            port: 10300
+            protocol: TCP
