@@ -128,19 +128,7 @@ spec:
             protocol: UDP
     ingress:
       main:
-        enabled: true
-        annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-production
-          traefik.ingress.kubernetes.io/service.serversscheme: https
-        hosts:
-          - host: &host "omada.k.lanquarden.com"
-            paths:
-              - path: /
-                pathType: Prefix
-        tls:
-          - secretName: omada-controller-cert
-            hosts:
-              - *host
+        enabled: false
     probes:
       liveness:
         enabled: true

@@ -1,0 +1,31 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: omada-controller-cert
+  namespace: network
+spec:
+  secretName: omada-controller-cert
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  dnsNames:
+    - omada.k.lanquarden.com
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: omada-controller
+  namespace: network
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`omada.k.lanquarden.com`)
+      services:
+        - name: omada-controller
+          port: 8043
+          scheme: https
+  tls:
+    secretName: omada-controller-cert
