@@ -1,0 +1,164 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: omada-controller
+  namespace: network
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://bjw-s.github.io/helm-charts
+      chart: app-template
+      version: 0.1.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    image:
+      repository: mbentley/omada-controller
+      tag: 6.1.0.19
+    env:
+      TZ: "Europe/Madrid"
+      MANAGE_HTTP_PORT: "8088"
+      MANAGE_HTTPS_PORT: "8043"
+      PORTAL_HTTP_PORT: "8888"
+      PORTAL_HTTPS_PORT: "8843"
+      SHOW_SERVER_LOGS: "true"
+      SHOW_MONGODB_LOGS: "true"
+    service:
+      main:
+        ports:
+          http:
+            port: 8043
+            targetPort: 8043
+            protocol: TCP
+      controller:
+        enabled: true
+        type: LoadBalancer
+        annotations:
+          metallb.universe.tf/allow-shared-ip: omada-controller
+        loadBalancerIP: 192.168.1.24
+        externalTrafficPolicy: Local
+        ports:
+          mgmt-http:
+            enabled: true
+            port: 8088
+            targetPort: 8088
+            protocol: TCP
+          mgmt-https:
+            enabled: true
+            port: 8043
+            targetPort: 8043
+            protocol: TCP
+          portal-https:
+            enabled: true
+            port: 8843
+            targetPort: 8843
+            protocol: TCP
+          eap-v5-discovery:
+            enabled: true
+            port: 29810
+            targetPort: 29810
+            protocol: UDP
+          eap-v4-discovery1:
+            enabled: true
+            port: 29811
+            targetPort: 29811
+            protocol: TCP
+          eap-v4-discovery2:
+            enabled: true
+            port: 29812
+            targetPort: 29812
+            protocol: TCP
+          eap-v4-upgrade:
+            enabled: true
+            port: 29813
+            targetPort: 29813
+            protocol: TCP
+          eap-v5-manage:
+            enabled: true
+            port: 29814
+            targetPort: 29814
+            protocol: TCP
+          eap-v5-device-info:
+            enabled: true
+            port: 29815
+            targetPort: 29815
+            protocol: TCP
+          eap-v5-remote-control:
+            enabled: true
+            port: 29816
+            targetPort: 29816
+            protocol: TCP
+          eap-v6-monitoring:
+            enabled: true
+            port: 29817
+            targetPort: 29817
+            protocol: TCP
+          init-check:
+            enabled: true
+            port: 27001
+            targetPort: 27001
+            protocol: UDP
+          old-init-info:
+            enabled: true
+            port: 27002
+            targetPort: 27002
+            protocol: TCP
+          old-db-access:
+            enabled: true
+            port: 27017
+            targetPort: 27017
+            protocol: TCP
+          db-access:
+            enabled: true
+            port: 27217
+            targetPort: 27217
+            protocol: TCP
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-production
+          traefik.ingress.kubernetes.io/service.serversscheme: https
+        hosts:
+          - host: &host "omada.k.lanquarden.com"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - secretName: omada-controller-cert
+            hosts:
+              - *host
+    probes:
+      liveness:
+        enabled: true
+      readiness:
+        enabled: true
+      startup:
+        enabled: true
+        spec:
+          failureThreshold: 30
+          periodSeconds: 10
+    resources:
+      requests:
+        cpu: 500m
+        memory: 1200Mi
+      limits:
+        memory: 2400Mi
+    persistence:
+      data:
+        enabled: true
+        existingClaim: omada-data
+        mountPath: /opt/tplink/EAPController/data
+      work:
+        enabled: true
+        existingClaim: omada-work
+        mountPath: /opt/tplink/EAPController/work
+      logs:
+        enabled: true
+        existingClaim: omada-logs
+        mountPath: /opt/tplink/EAPController/logs

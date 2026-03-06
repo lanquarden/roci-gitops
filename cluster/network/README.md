@@ -18,6 +18,7 @@ MetalLB has a configured pool of `192.168.1.15-192.168.1.39`
 |`192.168.1.21`|                        | bittorrent                  |
 |`192.168.1.22`|                        | influxdb                    |
 |`192.168.1.23`|                        | minecraft proxy             |
+|`192.168.1.24`|                        | omada controller            |
 
 ## Unifi cli command reference
 
