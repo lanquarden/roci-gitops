@@ -35,7 +35,7 @@ spec:
             port: 8043
             targetPort: 8043
             protocol: TCP
-      controller:
+      controller-tcp:
         enabled: true
         type: LoadBalancer
         annotations:
@@ -58,11 +58,6 @@ spec:
             port: 8843
             targetPort: 8843
             protocol: TCP
-          eap-v5-discovery:
-            enabled: true
-            port: 29810
-            targetPort: 29810
-            protocol: UDP
           eap-v4-discovery1:
             enabled: true
             port: 29811
@@ -98,11 +93,6 @@ spec:
             port: 29817
             targetPort: 29817
             protocol: TCP
-          init-check:
-            enabled: true
-            port: 27001
-            targetPort: 27001
-            protocol: UDP
           old-init-info:
             enabled: true
             port: 27002
@@ -118,6 +108,24 @@ spec:
             port: 27217
             targetPort: 27217
             protocol: TCP
+      controller-udp:
+        enabled: true
+        type: LoadBalancer
+        annotations:
+          metallb.universe.tf/allow-shared-ip: omada-controller
+        loadBalancerIP: 192.168.1.24
+        externalTrafficPolicy: Local
+        ports:
+          eap-v5-discovery:
+            enabled: true
+            port: 29810
+            targetPort: 29810
+            protocol: UDP
+          init-check:
+            enabled: true
+            port: 27001
+            targetPort: 27001
+            protocol: UDP
     ingress:
       main:
         enabled: true
