@@ -58,12 +58,12 @@ spec:
             port: 8843
             targetPort: 8843
             protocol: TCP
-          eap-v4-discovery1:
+          eap-v4-disc1:
             enabled: true
             port: 29811
             targetPort: 29811
             protocol: TCP
-          eap-v4-discovery2:
+          eap-v4-disc2:
             enabled: true
             port: 29812
             targetPort: 29812
@@ -78,17 +78,17 @@ spec:
             port: 29814
             targetPort: 29814
             protocol: TCP
-          eap-v5-device-info:
+          eap-v5-devinfo:
             enabled: true
             port: 29815
             targetPort: 29815
             protocol: TCP
-          eap-v5-remote-control:
+          eap-v5-remote:
             enabled: true
             port: 29816
             targetPort: 29816
             protocol: TCP
-          eap-v6-monitoring:
+          eap-v6-monitor:
             enabled: true
             port: 29817
             targetPort: 29817
@@ -116,7 +116,7 @@ spec:
         loadBalancerIP: 192.168.1.24
         externalTrafficPolicy: Local
         ports:
-          eap-v5-discovery:
+          eap-v5-disc:
             enabled: true
             port: 29810
             targetPort: 29810
