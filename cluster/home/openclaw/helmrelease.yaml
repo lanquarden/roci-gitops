@@ -20,7 +20,7 @@ spec:
   values:
     image:
       repository: ghcr.io/openclaw/openclaw
-      tag: 2026.2.25@sha256:3be2d31b096d2b77405d5a33d896d03e7c41f6bc2411977b20fcc5b253144116
+      tag: 2026.3.13-1@sha256:a5a4c83b773aca85a8ba99cf155f09afa33946c0aa5cc6a9ccb6162738b5da02
       imagePullPolicy: IfNotPresent
     
     command:
@@ -40,6 +40,12 @@ spec:
           tar xzf gh.tar.gz
           cp gh_2.61.0_linux_amd64/bin/gh /home/node/.local/bin/
           rm -rf gh.tar.gz gh_2.61.0_linux_amd64
+        fi
+
+        # Set up openclawbot CLI symlink
+        if [ ! -f /home/node/.local/bin/openclaw ]; then
+          echo "Installing creating symlink..."
+          ln -s /app/openclaw.mjs /home/node/.local/bin/openclaw
         fi
 
         # Install Go if not present on PVC
@@ -82,9 +88,6 @@ spec:
 
         # Ensure config directory exists
         mkdir -p /home/node/.openclaw
-
-        # Set up openclawbot CLI symlink
-        ln -sf /app/openclawbot.mjs /home/node/.local/bin/openclawbot
 
         # Start gateway
         exec node dist/index.js gateway --bind lan --port 18789 --allow-unconfigured 
