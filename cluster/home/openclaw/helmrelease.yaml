@@ -69,6 +69,13 @@ spec:
           git clone --depth 1 https://github.com/Homebrew/brew $HOMEBREW_PREFIX
         fi
 
+        # Set global node path in home directory
+        if [ ! -d /home/node/.local/node ]; then
+          echo "Setting up global node_modules path..."
+          mkdir -p /home/node/.global/node
+          npm config set prefix /home/node/.global/node
+        fi
+
         # Check if pip is available (either standalone or via python3 -m pip)
         set +e # Don't fail on pip errors
         if command -v pip3 >/dev/null 2>&1 || command -v pip >/dev/null 2>&1 || python3 -m pip --version >/dev/null 2>&1; then
@@ -100,7 +107,7 @@ spec:
       HOMEBREW_PREFIX: /home/node/.local/homebrew
       HOMEBREW_REPOSITORY: /home/node/.local/homebrew
       HA_URL: "https://hass.k.lanquarden.com"
-      PATH: /home/node/.local/bin:/home/node/.local/go/bin:/home/node/.local/homebrew/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      PATH: /home/node/.global/node/bin:/home/node/.local/bin:/home/node/.local/go/bin:/home/node/.local/homebrew/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
       PIP_BREAK_SYSTEM_PACKAGES: "1"
       TERM: xterm-256color
       TZ: &tz Europe/Madrid
