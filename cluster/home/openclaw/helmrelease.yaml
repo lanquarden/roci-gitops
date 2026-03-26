@@ -70,7 +70,7 @@ spec:
         fi
 
         # Set global node path in home directory
-        if [ ! -d /home/node/.local/node ]; then
+        if [ ! -d /home/node/.global/node ]; then
           echo "Setting up global node_modules path..."
           mkdir -p /home/node/.global/node
           npm config set prefix /home/node/.global/node
