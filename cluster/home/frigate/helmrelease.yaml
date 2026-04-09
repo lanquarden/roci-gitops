@@ -143,9 +143,9 @@ spec:
             - http://192.168.30.221/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
             - "ffmpeg:front_hq#audio=opus"
           office_lq: 
-            - http://192.168.30.56/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+            - http://192.168.30.213/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
           office_hq: 
-            - http://192.168.30.56/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+            - http://192.168.30.213/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
             - "ffmpeg:office_hq#audio=opus"
 
       cameras:
