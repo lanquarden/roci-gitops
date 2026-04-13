@@ -2,9 +2,9 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: media-nfs-documents-pv
+  name: media-nfs-backups-pv
 spec:
-  storageClassName: media-nfs-documents
+  storageClassName: media-nfs-backups
   capacity:
     storage: 1Mi
   accessModes:
@@ -12,7 +12,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   nfs:
     server: storone.lanquarden.com
-    path: /mnt/bulk/documents
+    path: /mnt/bulk/backups
   mountOptions:
   - nfsvers=4.1
   - tcp
@@ -24,12 +24,12 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: media-nfs-documents-pvc
+  name: media-nfs-backups-pvc
   namespace: media
 spec:
   accessModes:
   - ReadWriteMany
-  storageClassName: media-nfs-documents
+  storageClassName: media-nfs-backups
   resources:
     requests:
       storage: 1Mi
