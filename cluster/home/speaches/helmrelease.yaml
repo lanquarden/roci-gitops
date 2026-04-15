@@ -48,7 +48,7 @@ spec:
             paths:
               - path: /
                 service:
-                  port: http
+                  port: 8000
         tls:
           - secretName: speaches-cert
             hosts:
