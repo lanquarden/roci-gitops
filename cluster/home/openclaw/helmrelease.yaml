@@ -20,7 +20,7 @@ spec:
   values:
     image:
       repository: ghcr.io/openclaw/openclaw
-      tag: 2026.4.5@sha256:f38ff3d987e6c3e2d77bbb379de575f280d16037fd6a7ec334a35d48e480fd54
+      tag: 2026.4.14@sha256:a65101a8aed6259c4f057076005ede737335d5f2e39b233d0d7dec1fc9e9e496
       imagePullPolicy: IfNotPresent
     
     command:
