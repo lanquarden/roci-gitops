@@ -1,0 +1,55 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: speaches
+  namespace: home
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://bjw-s.github.io/helm-charts
+      chart: app-template
+      version: 0.1.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+      interval: 5m
+
+  values:
+    image:
+      repository: ghcr.io/speaches-ai/speaches
+      tag: sha-c78b77d-cpu@sha256:1d4f852ff5b148d675bcd751f414835c0bcef2541c1df8ffdeb43714968aafe6
+      imagePullPolicy: IfNotPresent
+
+    env:
+      TZ: Europe/Madrid
+
+    service:
+      main:
+        ports:
+          http:
+            port: 8000
+
+    persistence:
+      data:
+        enabled: true
+        existingClaim: speaches-data
+        mountPath: /home/ubuntu/.cache/huggingface/hub
+
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+        hosts:
+          - host: speaches.k.lanquarden.com
+            paths:
+              - path: /
+                service:
+                  port: http
+        tls:
+          - secretName: speaches-cert
+            hosts:
+              - speaches.k.lanquarden.com

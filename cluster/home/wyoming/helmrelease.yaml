@@ -28,11 +28,10 @@ spec:
       WYOMING_URI: tcp://0.0.0.0:10300
       WYOMING_LOG_LEVEL: INFO
       WYOMING_LANGUAGES: en
-      STT_OPENAI_URL: http://whisper-asr.home:9000/v1
-      STT_MODELS: whisper
-      TTS_OPENAI_URL: http://kokoro.home:8880/v1
-      TTS_MODELS: kokoro
-      TTS_BACKEND: KOKORO_FASTAPI
+      STT_OPENAI_URL: http://speaches.home:8000/v1
+      STT_MODELS: Systran/faster-whisper-base
+      TTS_OPENAI_URL: http://speaches.home:8000/v1
+      TTS_MODELS: speaches-ai/Kokoro-82M-v1.0-ONNX
 
     service:
       main:
