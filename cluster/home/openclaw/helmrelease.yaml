@@ -199,6 +199,7 @@ spec:
             mountPath: /config
           - name: wiki
             mountPath: /config/.openclaw/wiki
+            subPath: wiki
 
     persistence:
       data:
