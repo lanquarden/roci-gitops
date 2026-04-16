@@ -197,12 +197,20 @@ spec:
         volumeMounts:
           - name: data
             mountPath: /config
+          - name: wiki
+            mountPath: /config/.openclaw/wiki
 
     persistence:
       data:
         enabled: true
         existingClaim: openclaw-data
         mountPath: *homepath
+      wiki:
+        enabled: true
+        existingClaim: home-nfs-vaults-pvc
+        mountPath: /home/node/.openclaw/wiki
+        subPath: wiki
+        readOnly: false
 
   valuesFrom:
     - kind: Secret
