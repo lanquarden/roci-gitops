@@ -46,6 +46,7 @@ spec:
       TZ: "Europe/Madrid"
       PUID: "1000"
       PGID: "1000"
+      PORT: "34400"
 
     persistence:
       config:
