@@ -1,0 +1,61 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: threadfin
+  namespace: media
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://bjw-s.github.io/helm-charts
+      chart: app-template
+      version: 0.1.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+      interval: 5m
+
+  values:
+    image:
+      repository: fyb3roptik/threadfin
+      tag: 1.2.37@sha256:96122ab220e14b881cbd40d7f8c7b022e1f9c6ecfe05aca2ab801e0321dc0d61
+
+    service:
+      main:
+        ports:
+          http:
+            port: &port_main 34400
+
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+        hosts:
+          - host: &host_main "threadfin.k.lanquarden.com"
+            paths:
+              - path: /
+        tls:
+          - secretName: threadfin-cert
+            hosts:
+              - *host_main
+
+    env:
+      TZ: "Europe/Madrid"
+      PUID: "1000"
+      PGID: "1000"
+
+    persistence:
+      config:
+        enabled: true
+        existingClaim: threadfin-config
+        mountPath: /home/threadfin/conf
+
+    resources:
+      requests:
+        cpu: 50m
+        memory: 128Mi
+      limits:
+        memory: 512Mi
