@@ -1,0 +1,65 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: jellyfin
+  namespace: media
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://bjw-s.github.io/helm-charts
+      chart: app-template
+      version: 0.1.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+      interval: 5m
+
+  values:
+    image:
+      repository: docker.io/jellyfin/jellyfin
+      tag: 10.8.13
+      imagePullPolicy: IfNotPresent
+
+    env:
+      TZ: Europe/Madrid
+      JELLYFIN_PublishedServerUrl: "jellyfin.k.lanquarden.com"
+
+    service:
+      main:
+        ports:
+          http:
+            port: 8096
+
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+        hosts:
+          - host: &host "jellyfin.k.lanquarden.com"
+            paths:
+              - path: /
+        tls:
+          - secretName: jellyfin-cert
+            hosts:
+              - *host
+
+    podSecurityContext:
+      runAsUser: 1000
+      runAsGroup: 1000
+
+    persistence:
+      config:
+        enabled: true
+        existingClaim: jellyfin-config
+        mountPath: /config
+
+    resources:
+      requests:
+        memory: 250Mi
+        cpu: 250m
+      limits:
+        memory: 1Gi
