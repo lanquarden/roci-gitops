@@ -108,44 +108,44 @@ spec:
       go2rtc:
         streams:
           doorbell_lq: 
-            - rtsp://admin:{FRIGATE_DOORBELL_PASS}@192.168.30.253:554/Streaming/Channels/102/
+            - rtsp://admin:{FRIGATE_DOORBELL_PASS}@doorbell.lanquarden.com:554/Streaming/Channels/102/
           doorbell_hq: 
-            - rtsp://admin:{FRIGATE_DOORBELL_PASS}@192.168.30.253:554/Streaming/Channels/101/
+            - rtsp://admin:{FRIGATE_DOORBELL_PASS}@doorbell.lanquarden.com:554/Streaming/Channels/101/
             - ffmpeg:doorbell_hq#video=copy#audio=aac"
           garden_lq: 
-            - http://192.168.30.224/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+            - http://garden.lanquarden.com/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
           garden_hq: 
-            - http://192.168.30.224/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+            - http://garden.lanquarden.com/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
             - "ffmpeg:garden_hq#audio=opus"
           living_room_lq: 
-            - http://192.168.30.225/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+            - http://living-room.lanquarden.com/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
           living_room_hq: 
-            - http://192.168.30.225/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+            - http://living-room.lanquarden.com/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
             - "ffmpeg:living_room_hq#audio=opus"
           porch_lq: 
-            - http://192.168.30.222/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+            - http://porch.lanquarden.com/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
           porch_hq: 
-            - http://192.168.30.222/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+            - http://porch.lanquarden.com/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
             - "ffmpeg:porch_hq#audio=opus"
           garage_lq: 
-            - http://192.168.30.223/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+            - http://garage.lanquarden.com/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
           garage_hq: 
-            - http://192.168.30.223/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+            - http://garage.lanquarden.com/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
             - "ffmpeg:garage_hq#audio=opus"
           entrance_lq: 
-            - http://192.168.30.220/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+            - http://entrance.lanquarden.com/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
           entrance_hq: 
-            - http://192.168.30.220/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+            - http://entrance.lanquarden.com/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
             - "ffmpeg:entrance_hq#audio=opus"
           front_lq: 
-            - http://192.168.30.221/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+            - http://front.lanquarden.com/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
           front_hq: 
-            - http://192.168.30.221/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+            - http://front.lanquarden.com/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
             - "ffmpeg:front_hq#audio=opus"
           office_lq: 
-            - http://192.168.30.213/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+            - http://office.lanquarden.com/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
           office_hq: 
-            - http://192.168.30.213/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
+            - http://office.lanquarden.com/flv?port=1935&app=bcs&stream=channel0_main.bcs&user={FRIGATE_CAMERA_USER}&password={FRIGATE_CAMERA_PASS}
             - "ffmpeg:office_hq#audio=opus"
 
       cameras:
